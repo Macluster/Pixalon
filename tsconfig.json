@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Define the target JavaScript version
+    "module": "ES2020", // Set module system to ECMAScript modules
+    "moduleResolution": "node", // Enable module resolution
+    "outDir": "./dist", // Compile output to the dist directory
+    "rootDir": "./src", // Input source files directory
+    "strict": true,     // Enable strict type-checking options
+    "esModuleInterop": true, // Allow default imports from CommonJS modules
+    "forceConsistentCasingInFileNames": true, // Enforce case sensitivity for imports
+    "skipLibCheck": true // Skip type checking of declaration files
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

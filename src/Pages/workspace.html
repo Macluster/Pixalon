@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Css/index.css" />
+    <link rel="stylesheet" href="../Css/Properties.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body  class="body"  onkeypress="keyPress()">
+    
+   <nav>
+    <button onclick="generate()">generate</button>
+   </nav>
+
+    
+
+    
+ 
+ 
+    <div class="main">
+       
+        <div class="left-side-bar">
+            <div class="tools">
+                <input type="file" style="display: none;" id="fileInput" accept="image/*">
+                <img onclick="Selectiontool()" src="../../assets/Group 79.png">
+                <img onclick="addFrame()" src="../../assets/lets-icons_frame-light.png" >
+                <img onclick="addContainer()" src="../../assets/Group 78.png" >
+                <img onclick="addTextBox()" src="../../assets/iconoir_text.png">
+                <img onclick="addTable()" src="../../assets/tabler_table.png" >
+                <img onclick="selectImage()" src="../../assets/akar-icons_image.png" >
+            </div>
+            <div class="layers">
+
+            </div>
+
+        </div>
+
+        <div class="work-space">
+
+        </div>
+
+        <div class="tool-Property-box">
+
+                <h4 >Position</h4>
+            <div class="align">
+                <div class="align-buttons">
+                    <img onclick="alignItems('left')" src="../../assets/solar_align-left-bold-duotone.png" width="16" height="16">
+                    <img onclick="alignItems('center')" src="../../assets/solar_align-horizontal-center-bold-duotone (1).png" width="16" height="16" >
+                    <img onclick="alignItems('right')" src="../../assets/solar_align-right-bold-duotone (1).png" width="16" height="16">
+                </div>
+                <div class="align-buttons">
+                    <img onclick="alignItems('top')" src="../../assets/solar_align-top-bold-duotone.png" width="16" height="16">
+                    <img onclick="alignItems('middle')" src="../../assets/solar_align-vertical-center-bold-duotone.png" width="16" height="16">
+                    <img onclick="alignItems('bottom')" src="../../assets/solar_align-bottom-bold-duotone.png" width="16" height="16">
+                </div>
+            </div>
+            <div class="align-spacing">
+                <div class="spacing">
+                    <img onclick="alignItems('tidy-up')" src="" width="16" height="16">
+                    <img onclick="alignItems('vertical-spacing')" src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
+                    <img onclick="alignItems('horizontal-spacing')" src="../../assets/solar_align-horizonta-spacing-bold-duotone.png" width="16" height="16">
+                </div>
+                <div class="rotation">
+                    <img onclick="alignItems('rotation')" src="../../assets/gridicons_rotate.png" width="16" height="16">
+                    <img onclick="alignItems('vertical-flip')" src="../../assets/uim_flip-h.png" width="16" height="16">
+                    <img onclick="alignItems('horizontal-flip')" src="../../assets/uim_flip-h (1).png" width="16" height="16">
+                </div>
+            </div>
+            <div class="positions">
+                <div class="position_x">
+                    <button onclick="alignItems('x-position')">X</button>
+                </div>
+                <div class="position_y">
+                    <button onclick="alignItems('y-position')">Y</button>
+                </div>
+                <div class="angle-rotation">
+                    <img onclick="alignItems('angle-rotate')" src="../../assets/system-uicons_angle.png" width="16" height="16"></button>
+                </div>
+
+            </div>
+
+
+
+                <h4 >Layouts</h4>
+                <div style="display: flex;justify-content: space-around;gap: 10px;">
+                    <input class="property-input" style="width: 50px;" placeholder="height" onchange="onheightChanged(event)"></input>
+                    <input class="property-input" style="width: 50px;" placeholder="width" onchange="onWidthChanged(event)"></input>
+                </div>
+               
+                <h4>Typography</h4>
+
+
+
+
+                <h4 >Appearanace</h4>
+                <div class="property-input" >
+                    <img src="../../assets/PropertyIcons/corner.png"/>
+                    <input class="property-input" style="width: 50px;" placeholder="Corner Radius" onchange="onCornerRadiusChanged(event)"/>
+                </div>
+                <h4 >Fill</h4>
+                <input type="color" onchange="onBackgroundChanged(event)"/>
+                <h4 >Appearanace</h4>
+
+
+              
+               
+              
+               
+               
+                <button onclick="selectBackgroundImage()"  >Add BackgroundImage</button>
+
+                <input type="file"  style="display: none;" id="backgroundImage" accept="image/*">
+        </div>
+
+        <div class="output">
+
+        </div>
+
+    </div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+    <!-- <div id="dg1" class="draggable" draggable="true">Drag me!</div>
+    <div id="dropzone">Drop here</div> -->
+
+
+
+
+
+</body>
+
+<script src="../../dist/TS/global.js"></script>
+<script  src="../../dist/TS/Classes/View.js" ></script>
+<script src="../../dist/TS/Classes/Frame.js" ></script>
+<script  src="../../dist/TS/Classes/Image.js" ></script>
+<script  src="../../dist/TS/Classes/TextBox.js" ></script>
+<script  src="../../dist/TS/Classes/Table.js" ></script>
+<script  src="../../dist/TS/index.js"></script>
+<script src="../../dist/TS/Properties.js"></script>
+<script src="../../dist/TS/KeyPresses.js"></script>
+
+
+
+
+
+
+
+
+</html>
