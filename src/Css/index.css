@@ -171,27 +171,53 @@ nav
   background-color: green;
   width: 200px;
   height: 150px;
-  border: 2px solid red;
+  border: 2px solid  #4CC9FE;
   
 }
 
 .resizer {
   width: 10px;
   height: 10px;
-  background: transparent;
+  background-color: transparent;
   position: absolute;
+
   right: 0;
   bottom: 0;
   cursor: se-resize;
+
+}
+
+.resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize;
+}
+
+.resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
+
 }
 
 .resizable:hover>.resizer {
   width: 10px;
   height: 10px;
-  background: blue;
+  background: #4CC9FE;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  
   cursor: se-resize;
 }
 

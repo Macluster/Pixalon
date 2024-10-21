@@ -65,7 +65,7 @@ function selectImage(): void {
 
         // Create a new reusable div instance
         const  image = new Img((e.target.result as string));
-        image.element.style.borderRadius = "20px";
+     
         image.element.id = "I" + imageId++;
 
         // Append the div to the body
