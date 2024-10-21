@@ -48,73 +48,92 @@
 
         <div class="tool-Property-box">
 
-                <h4 >Position</h4>
-            <div class="align">
-                <div class="align-buttons">
-                    <img onclick="alignItems('left')" src="../../assets/solar_align-left-bold-duotone.png" width="16" height="16">
-                    <img onclick="alignItems('center')" src="../../assets/solar_align-horizontal-center-bold-duotone (1).png" width="16" height="16" >
-                    <img onclick="alignItems('right')" src="../../assets/solar_align-right-bold-duotone (1).png" width="16" height="16">
+                    <h4 >Position</h4>
+            <div class="alignment">
+                <div class="align">
+                    <div class="align-buttons">
+                        <img onclick="alignItems('left')" src="../../assets/solar_align-left-bold-duotone.png" width="16" height="16">
+                        <img onclick="alignItems('center')" src="../../assets/solar_align-horizontal-center-bold-duotone (1).png" width="16" height="16" >
+                        <img onclick="alignItems('right')" src="../../assets/solar_align-right-bold-duotone (1).png" width="16" height="16">
+                    </div>
+                    <div class="align-buttons">
+                        <img onclick="alignItems('top')" src="../../assets/solar_align-top-bold-duotone.png" width="16" height="16">
+                        <img onclick="alignItems('middle')" src="../../assets/solar_align-vertical-center-bold-duotone.png" width="16" height="16">
+                        <img onclick="alignItems('bottom')" src="../../assets/solar_align-bottom-bold-duotone.png" width="16" height="16">
+                    </div>
                 </div>
-                <div class="align-buttons">
-                    <img onclick="alignItems('top')" src="../../assets/solar_align-top-bold-duotone.png" width="16" height="16">
-                    <img onclick="alignItems('middle')" src="../../assets/solar_align-vertical-center-bold-duotone.png" width="16" height="16">
-                    <img onclick="alignItems('bottom')" src="../../assets/solar_align-bottom-bold-duotone.png" width="16" height="16">
+                <div class="align-spacing">
+                    <div class="spacing">
+                        <img onclick="alignItems('tidy-up')" src="" width="16" height="16">
+                        <img onclick="alignItems('vertical-spacing')" src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
+                        <img onclick="alignItems('horizontal-spacing')" src="../../assets/solar_align-horizonta-spacing-bold-duotone.png" width="16" height="16">
+                    </div>
+                    <div class="rotation">
+                        <img onclick="alignItems('rotation')" src="../../assets/gridicons_rotate.png" width="16" height="16">
+                        <img onclick="alignItems('vertical-flip')" src="../../assets/uim_flip-h.png" width="16" height="16">
+                        <img onclick="alignItems('horizontal-flip')" src="../../assets/uim_flip-h (1).png" width="16" height="16">
+                    </div>
                 </div>
+                <div class="positions">
+                    <div class="position_x">
+                        <input onclick="alignItems('x-position')"  style="width: 50px;" placeholder="X" value="X" ></button>
+                    </div>
+                    <div class="position_y">
+                        <input onclick="alignItems('y-position')"  style="width: 50px;" placeholder="Y" value="Y" >                    </div>
+                    <div class="angle-rotation">
+                        <img onclick="alignItems('angle-rotate')" src="../../assets/system-uicons_angle.png" width="16" height="16"></button>
+                    </div>
+                </div>
+                <hr>
             </div>
-            <div class="align-spacing">
-                <div class="spacing">
-                    <img onclick="alignItems('tidy-up')" src="" width="16" height="16">
-                    <img onclick="alignItems('vertical-spacing')" src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
-                    <img onclick="alignItems('horizontal-spacing')" src="../../assets/solar_align-horizonta-spacing-bold-duotone.png" width="16" height="16">
-                </div>
-                <div class="rotation">
-                    <img onclick="alignItems('rotation')" src="../../assets/gridicons_rotate.png" width="16" height="16">
-                    <img onclick="alignItems('vertical-flip')" src="../../assets/uim_flip-h.png" width="16" height="16">
-                    <img onclick="alignItems('horizontal-flip')" src="../../assets/uim_flip-h (1).png" width="16" height="16">
-                </div>
-            </div>
-            <div class="positions">
-                <div class="position_x">
-                    <button onclick="alignItems('x-position')">X</button>
-                </div>
-                <div class="position_y">
-                    <button onclick="alignItems('y-position')">Y</button>
-                </div>
-                <div class="angle-rotation">
-                    <img onclick="alignItems('angle-rotate')" src="../../assets/system-uicons_angle.png" width="16" height="16"></button>
-                </div>
-
-            </div>
-
-
-
+            <div id="layout">
                 <h4 >Layouts</h4>
-                <div style="display: flex;justify-content: space-around;gap: 10px;">
-                    <input class="property-input" style="width: 50px;" placeholder="height" onchange="onheightChanged(event)"></input>
-                    <input class="property-input" style="width: 50px;" placeholder="width" onchange="onWidthChanged(event)"></input>
+                <div style="display: flex;justify-content: space-around;" class="layout">
+                    <input class="property"  placeholder="H" value="H"  onchange="onheightChanged(event)"></input>
+                    <input class="property"  placeholder="W" value="W" onchange="onWidthChanged(event)"></input>
+                    <img onclick="constrain('constrain-proportion')" src="../../assets/material-symbols_link (1).png" width="18" height="18">
                 </div>
-               
+                <hr style="width: 100%;">
+            </div>
                 <h4>Typography</h4>
 
 
 
 
                 <h4 >Appearanace</h4>
-                <div class="property-input" >
-                    <img src="../../assets/PropertyIcons/corner.png"/>
-                    <input class="property-input" style="width: 50px;" placeholder="Corner Radius" onchange="onCornerRadiusChanged(event)"/>
+                <div class="property-inputs" >
+                    <div class="opacity">
+                        <img src="../../assets/material-symbols-light_opacity (1).png" width="16" height="16" class="input-icon">
+                        <input class="property-input" style="width: 50px;" onchange="onOpacityChanged(event)"/>
+                    </div>
+                    <div class="corner">
+                        <img src="../../assets/tabler_border-corner-pill.png" width="16" height="16" class="input-icon">
+                        <input class="property-input" style="width: 50px;" onchange="onCornerRadiusChanged(event)"/>
+                    </div>
+                    <div class="corner-full">
+                        <img src="../../assets/radix-icons_corners.png" width="16" height="16" onclick="onCornerChange(event)">
+                    </div>
                 </div>
-                <h4 >Fill</h4>
-                <input type="color" onchange="onBackgroundChanged(event)"/>
+                <hr style="width: 100%;">
+
+
+                <!-- <h4 >Fill</h4>
+                <div class="color">
+                    <input type="color" onchange="onBackgroundChanged(event)"/>
+                </div> -->
+                <div class="fill-inputs">
+                    <label for="fillColorInput">Fill</label>
+                    <input type="color" id="fillColorInput" value="#bdbdbd" onchange="onBackgroundChanged(event)">
+                    <input type="text" id="colorCodeDisplay" value="#bdbdbd">
+                  
+                    <input type="text" id="opacityDisplay" value="100%" onchange="onOpacityChanged(event)">
+                  </div>
+                
                 <h4 >Appearanace</h4>
 
 
-              
                
-              
-               
-               
-                <button onclick="selectBackgroundImage()"  >Add BackgroundImage</button>
+                <button onclick="selectBackgroundImage()">Add BackgroundImage</button>
 
                 <input type="file"  style="display: none;" id="backgroundImage" accept="image/*">
         </div>
