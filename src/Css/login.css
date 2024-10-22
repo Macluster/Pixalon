@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bg1 {
+    background-color: #8061C3;
+}
+
+.color1 {
+    color: #8061C3;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(../../assets/bg-login.svg);
+    height: 100vh; /* Full height for body */
+    display: flex; /* Use flexbox to center the container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.container {
+    width: 500px; /* Increase maximum width for spacious layout */
+    height: 450px; /* Auto height to fit content */
+    padding: 40px; /* Increase padding for more space */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background: white; 
+    border-radius: 15px; /* Rounded corners */
+    display: flex; /* Flexbox for column layout */
+    flex-direction: column; /* Arrange elements in a column */
+    justify-content: center; /* Center content vertically */
+}
+
+.login-box {
+    display: flex; /* Use flexbox in the login box */
+    flex-direction: column; /* Column layout */
+    justify-content: flex-end; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.login-title {
+    margin-top: 0px;
+    font-size: 24px; /* Increase font size for title */
+    font-weight: 400;
+    text-align: center; /* Center title text */
+    margin-bottom: 50px; /* Space below title */
+}
+
+.login-form {
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column; /* Arrange inputs in a column */
+    gap: 28px; /* Space between input fields */
+    width: 100%; /* Full width for the form */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* Column layout for label and input */
+    width: 100%; /* Full width for input group */
+}
+
+.input-group label {
+    font-size: 20px; /* Larger font for labels */
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    padding: 15px; /* Increased padding for input fields */
+    font-size: 16px; /* Larger font size for inputs */
+    border-radius: 8px;
+    border: 1px solid #8061C3;
+    width: 400px;
+    height:54px ;
+}
+
+.input-group img {
+    position: absolute;
+    transform: translateY(-50%);
+    cursor: pointer;
+    right: 470px;
+    top: 300px;
+    height: 35PX;
+    width: 35px;
+
+}
+
+.login-button {
+    height: 54px;
+    /* margin-top: 28px; */
+    /* padding: 15px; Keep button padding */
+    color: white;
+    font-size: 24px; /* Larger font size for button */
+    font-weight: 300;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    width: 400px; /* Full width for button */
+}
+
+.login-button:hover {
+    background: #674BAF; /* Darker background on hover */
+}
+
+.forgot-password {
+    text-align: center; /* Center the forgot password link */
+    margin-top: 40px; /* Space above the link */
+    margin-bottom: 0px;
+}
+
+.forgot-password a {
+    color: #696969;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}

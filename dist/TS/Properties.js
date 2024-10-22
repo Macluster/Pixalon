@@ -8,7 +8,6 @@ function onBackgroundChanged(event) {
         view.style.backgroundColor = target.value;
     }
 }
-
 function onCornerRadiusChanged(event) {
     const target = event.target;
     console.log(target.value);
@@ -60,10 +59,3 @@ function selectBackgroundImage() {
 function fontSizeChanged(event) {
     const target = event.target;
 }
-
-
-
-
-
-
-
