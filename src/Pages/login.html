@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="login-title color1">Login to your Account</div>
+            <form class="login-form" action="#" method="post">
+                <div class="input-group">
+                    <input type="email" id="username" name="username" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility" onclick="togglePasswordVisibility()">
+                </div>
+                <button type="submit" onclick="SignUp(document.getElementById(username),document.getElementById(password))" class="login-button bg1">Login</button>
+            </form>
+            <div class="forgot-password"><a href="#">Forgot password?</a></div>
+        </div>
+    </div>
+    <script src="login.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCps2Et0hY7d7Lc0qu6636vietaPPlJ57M",
+          authDomain: "login-2bef8.firebaseapp.com",
+          projectId: "login-2bef8",
+          storageBucket: "login-2bef8.appspot.com",
+          messagingSenderId: "504446546658",
+          appId: "1:504446546658:web:0a8e3081da3ca4b871e4bb",
+          measurementId: "G-C9PBVVL57Y"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+    <script src="../../dist/TS/login.js"></script>
+</body>
+</html>
