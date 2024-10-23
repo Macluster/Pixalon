@@ -1,0 +1,251 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: "Montserrat";
+}
+
+a{
+    text-decoration: none;
+}
+
+.conatainer{
+    display: flex;
+    background-color: aliceblue;
+    width: auto;
+    height: auto;
+}
+
+.first-row{
+   width: 220px; 
+   background-image: url(../../assets/dashboard/dashboardbg.svg);
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position:fixed;
+
+}
+.first-row img{
+    margin-top: 25px;
+    width: 161px;
+    height: 25px;
+}
+.search{
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+    background-color: #A67DFF;
+    height: 30px;
+    border: border;
+    border-radius: 10px ;
+}
+.search i{
+    cursor: pointer;
+    color: white;
+}
+.search input{
+    margin-top:2px;
+    margin-left:5px;
+    border: none;
+    outline: none;
+    height: 25px;
+    background-color: #A67DFF;
+}
+.nav-items{
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.nav_elements{
+   
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: border;
+    border-radius: 10px;
+    color: white;
+}
+.nav_elements i{
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 24;
+    width: 24;
+}
+.nav_elements h3{
+    font-weight: normal;
+    font-size: 15px;
+}
+#tricks h3{
+    padding-right:15px;
+}
+.selected {
+    background-color: #471CA5;
+}
+.notselected{
+    background-color: #9477D4;
+}
+.pointer{
+    cursor: pointer;
+}
+.curser{
+    cursor: default;
+}
+
+.experion img{
+    padding-top:35px;
+    width: 175px;
+    height: 30px;
+}
+/* -----------------------SECOND ROW------------------------------------------------ */
+.second-row{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 85%;
+    padding-left: 230px;
+  }
+.profile{
+    margin-top: 20px;
+    margin-left: 95%;
+    
+}
+
+.profile i{
+    color: #471CA5;
+    font-size: 20px;;
+}
+/* ---------------------------------------- */
+.design {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../assets/dashboard/top-panel.svg);
+    width:94% ;
+    height: 200px;
+    border:border;
+    border-radius: 10px;
+}
+
+/* ----------------------------------------------------------- */
+.preset{
+    /* padding-bottom: 0px; */
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.preset div{
+    display: flex;
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+
+}
+.preset-img {
+    width: 60px; 
+    height: 60px; 
+    display: inline-block;
+    border-radius: 50%; 
+    overflow: hidden; 
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .preset-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+  }
+  
+  .preset-img:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3); 
+  }
+  
+  .preset-img:hover img {
+    transform: scale(1.1); 
+  }
+
+  .preset p{
+    font-size: 15px;
+  }
+  
+/* ------------------------------------------------------ */
+
+.temp{
+    margin-top: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+.temp h4{
+    margin-top: 0px;
+}
+.grid-temp{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-gap:40px;
+    
+}
+
+
+.grid-temp div {
+    border: border;       
+    border-radius: 10px;         
+    transition: transform 0.5s;   
+    box-shadow: 0 4px 10px rgba(123, 122, 122, 0.2); 
+    overflow: hidden;            
+}
+
+.grid-temp div:hover {
+    
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
+}
+.grid-temp img {
+    width: 100%;                 
+    height: 100%;                
+    object-fit: cover;           
+}
+
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+.recent{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.grid-recent{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-gap: 40px;
+    
+}
+
+
+.grid-recent div{
+    border: border;       
+    border-radius: 10px;         
+    transition: transform 0.5s;   
+    box-shadow: 0 4px 10px rgba(123, 122, 122, 0.2); 
+    overflow: hidden;  
+    height: 120px;
+    
+}
+
+.grid-recent div:hover{
+    transform: scale(1.05); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.grid-temp img {
+    width: 100%;                 
+    height: 100%;                
+    object-fit: cover;           
+}

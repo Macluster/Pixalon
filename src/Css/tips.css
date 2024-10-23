@@ -1,0 +1,149 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: "Montserrat";
+}
+
+a{
+    text-decoration: none;
+}
+
+.conatainer{
+    display: flex;
+    background-color: aliceblue;
+    width: auto;
+    height: auto;
+}
+
+.first-row{
+   width: 220px; 
+   background-image: url(../../assets/dashboard/dashboardbg.svg);
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position:fixed;
+
+}
+.first-row img{
+    margin-top: 25px;
+    width: 161px;
+    height: 25px;
+}
+.search{
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+    background-color: #A67DFF;
+    height: 30px;
+    border: border;
+    border-radius: 10px ;
+}
+.search i{
+    cursor: pointer;
+    color: white;
+}
+.search input{
+    margin-top:2px;
+    margin-left:5px;
+    border: none;
+    outline: none;
+    height: 25px;
+    background-color: #A67DFF;
+}
+.nav-items{
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.nav_elements{
+   
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: border;
+    border-radius: 10px;
+    color: white;
+}
+.nav_elements i{
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 24;
+    width: 24;
+}
+.nav_elements h3{
+    font-weight: normal;
+    font-size: 15px;
+}
+#tricks h3{
+    padding-right:15px;
+}
+.selected {
+    background-color: #471CA5;
+}
+.notselected{
+    background-color: #9477D4;
+}
+.pointer{
+    cursor: pointer;
+}
+.curser{
+    cursor: default;
+}
+
+.experion img{
+    padding-top:35px;
+    width: 175px;
+    height: 30px;
+}
+
+.second-row{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 85%;
+    padding-left: 230px;
+  }
+.profile{
+    margin-top: 5px;
+    margin-left: 95%;
+    
+}
+
+.profile i{
+    color: #471CA5;
+    font-size: 20px;;
+}
+/* ---------------------------------------Second row(tips and tricks)----------------------------------------------- */
+
+.box{
+    display: flex;
+    margin-left:40px ;
+    width:900px ;
+    height: 250px;
+    border: border;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 10px 10px 20px rgba(133, 132, 132, 0.5);
+    
+}
+.tip-img-box{
+    width: 600px;
+    height: 245px;
+    border: border;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 10px 10px 20px rgba(133, 132, 132, 0.5);
+}
+
+.box-tip{
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+}
+.box-tip i{
+    padding-left: 95%;
+}
