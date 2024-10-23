@@ -63,6 +63,7 @@ function fontSizeChanged(event) {
 
 
 
+
 const dropdownButton = document.getElementById('dropdownButton');
   const dropdownLinks = document.querySelectorAll('.dropdown-content a');
 
@@ -112,3 +113,4 @@ const dropdownButton = document.getElementById('dropdownButton');
     console.log(`File ${fileName} of size ${size} and format ${format} is being exported.`);
   }
   
+
