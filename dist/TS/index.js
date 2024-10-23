@@ -14,7 +14,7 @@ function addTable() {
     const table = new Table("400px", "500px", "grey", "", 4, 5);
     table.element.id = "Table" + tableId++;
     tableList.push(table);
-    table.appendTo("#" + pages[0].element.id);
+    table.appendTo("#" + currentSelectedContainer);
 }
 // Adding Container
 const containerList = [];
@@ -23,7 +23,7 @@ function addContainer() {
     const view = new View("200px", "200px", "grey", "");
     view.element.id = "v" + viewId++;
     containerList.push(view);
-    view.appendTo("#" + pages[0].element.id);
+    view.appendTo("#" + currentSelectedContainer);
 }
 // Adding TextBox
 const textBoxList = [];
@@ -32,7 +32,7 @@ function addTextBox() {
     const textBox = new TextBox();
     textBox.element.id = "T" + textBoxId++;
     textBoxList.push(textBox);
-    textBox.appendTo("#" + pages[0].element.id);
+    textBox.appendTo("#" + currentSelectedContainer);
 }
 // Adding Image
 const imageList = [];
@@ -58,7 +58,7 @@ function selectImage() {
                 const image = new Img(e.target.result);
                 image.element.id = "I" + imageId++;
                 // Append the div to the body
-                image.appendTo("#" + pages[0].element.id);
+                image.appendTo("#" + currentSelectedContainer);
             };
             reader.readAsDataURL(file); // Read the image as a DataURL
         }

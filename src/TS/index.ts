@@ -15,7 +15,7 @@ function addTable(): void {
   const table = new Table("400px", "500px", "grey", "", 4, 5);
   table.element.id = "Table" + tableId++;
   tableList.push(table);
-  table.appendTo("#" + pages[0].element.id);
+  table.appendTo("#" + currentSelectedContainer);
 }
 
 // Adding Container
@@ -25,7 +25,7 @@ function addContainer(): void {
   const view = new View("200px", "200px", "grey", "");
   view.element.id = "v" + viewId++;
   containerList.push(view);
-  view.appendTo("#" + pages[0].element.id);
+  view.appendTo("#" + currentSelectedContainer);
 }
 
 // Adding TextBox
@@ -35,7 +35,7 @@ function addTextBox(): void {
   const textBox = new TextBox();
   textBox.element.id = "T" + textBoxId++;
   textBoxList.push(textBox);
-  textBox.appendTo("#" + pages[0].element.id);
+  textBox.appendTo("#" + currentSelectedContainer);
 }
 
 // Adding Image
@@ -69,7 +69,7 @@ function selectImage(): void {
         image.element.id = "I" + imageId++;
 
         // Append the div to the body
-        image.appendTo("#" + pages[0].element.id);
+        image.appendTo("#" + currentSelectedContainer);
       };
 
       reader.readAsDataURL(file); // Read the image as a DataURL
@@ -80,7 +80,7 @@ function selectImage(): void {
 
 // Generate HTML from Page Content
 function generate(): void {
-  const ele = document.getElementById("page1");
+  const ele = document.getElementById(currentSelectedContainer);
   if (!ele) return;
   
   const outputdiv = ele.cloneNode(true) as HTMLElement;
