@@ -44,10 +44,16 @@ function onCustomPopupClosed() {
     popup.style.display = "none";
 }
 function onCustomPresetCreate() {
-    const fileName = document.getElementById("cfilename")?.nodeValue;
-    const width = (document.getElementById("cheight")).innerText;
-    const height = (document.getElementById("cwidth")).innerText;
+    const fileName = document.getElementById("cfilename").value;
+    const width = document.getElementById("cheight").value;
+    const height = document.getElementById("cwidth").value;
     console.log(width);
     console.log(height);
-    // window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
+    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}`;
+}
+function onNewsletterCreate() {
+    window.location.href = `workspace.html?name=title&height=800&width=600`;
+}
+function onPosterCreate() {
+    window.location.href = `workspace.html?name=title&height=600&width=600`;
 }

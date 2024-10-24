@@ -1,3 +1,9 @@
+
+
+
+
+
+
 // Adding Page
 const pages: Frame[] = [];
 function addFrame(): void {
@@ -10,6 +16,34 @@ frame.element.style.flexDirection="column"
   pages.push(frame);
   frame.appendTo(".work-space");
 }
+
+
+
+function custom() {
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  // Get specific parameters
+  const height = urlParams.get('height');
+  const width = urlParams.get('width');
+  console.log("height"+height)
+  const frame = new Frame(width+ "px", height + "px", "white", "");
+  frame.element.id = "page1";
+  frame.element.style.display = "flex";
+  frame.element.style.flexDirection = "column";
+  frame.element.style.top="100px"
+  frame.element.style.left="300px"
+  pages.push(frame);
+  frame.appendTo(".work-space");
+}
+
+custom()
+
+
+
+
+
 
 // Adding Table
 const tableList: Table[] = [];
