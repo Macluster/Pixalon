@@ -19,17 +19,22 @@ const auth = getAuth();
 document.getElementById('login-btn').addEventListener('click', () => {
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
+
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in successfully
-            console.log("Logged in user:", user);
+            const user = userCredential.user;
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(`Error: ${errorMessage}`);
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // alert(`Error: ${errorMessage}`);
+            const password_field = document.getElementById('password');
+            password_field.style.borderColor = 'red';
+            const error_password = document.getElementById('error-password');
+            error_password.style.display = 'block';
         })
         .finally(() => {
             loadingIndicator.style.display = 'none'; // Hide loading indicator
