@@ -15,7 +15,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url(../../assets/bg-login.svg);
+    background-image: url(../../assets/login/bg-login.svg);
     height: 100vh; /* Full height for body */
     display: flex; /* Use flexbox to center the container */
     justify-content: center; /* Center horizontally */
@@ -47,6 +47,7 @@ body {
     font-weight: 400;
     text-align: center; /* Center title text */
     margin-bottom: 50px; /* Space below title */
+    cursor: default;
 }
 
 .login-form {
@@ -121,4 +122,12 @@ body {
 
 .forgot-password a:hover {
     text-decoration: underline;
+}
+.error-password{
+    color: red;
+    position: absolute;
+    font-size: x-small;
+    bottom: 240px;
+    left: 437px;
+    display: none;
 }
