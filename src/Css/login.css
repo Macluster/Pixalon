@@ -131,3 +131,11 @@ body {
     left: 437px;
     display: none;
 }
+.error-email{
+    color: red;
+    position: absolute;
+    font-size: x-small;
+    bottom: 320px;
+    left: 437px;
+    display: none;
+}

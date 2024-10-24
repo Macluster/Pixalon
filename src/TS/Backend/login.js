@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyDT0XCtY4i9UPkNdecrEkj9IBlNiOBOHCQ",
     authDomain: "pixalon-855e3.firebaseapp.com",
@@ -19,8 +21,18 @@ const auth = getAuth();
 document.getElementById('login-btn').addEventListener('click', () => {
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
+    const password_field = document.getElementById('password');
+    password_field.style.borderColor = '#8061C3';
+    const email_field = document.getElementById('username');
+    email_field.style.borderColor = '#8061C3';
+    const error_password = document.getElementById('error-password');
+    error_password.style.display = 'none';
+    const error_email = document.getElementById('error-email');
+    error_email.style.display = 'none';
 
-    signInWithEmailAndPassword(auth, email, password)
+    if (isValidEmail(email)) {
+        console.log("Valid email");
+        signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in successfully
             const user = userCredential.user;
@@ -28,15 +40,21 @@ document.getElementById('login-btn').addEventListener('click', () => {
             window.location.href = 'dashboard.html';
         })
         .catch((error) => {
-            // const errorCode = error.code;
-            // const errorMessage = error.message;
-            // alert(`Error: ${errorMessage}`);
-            const password_field = document.getElementById('password');
             password_field.style.borderColor = 'red';
-            const error_password = document.getElementById('error-password');
+            email_field.style.borderColor = 'red';
             error_password.style.display = 'block';
         })
         .finally(() => {
             loadingIndicator.style.display = 'none'; // Hide loading indicator
         });
+    } else {
+        email_field.style.borderColor = 'red';
+        error_email.style.display = 'block';
+    }
 });
+
+
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
