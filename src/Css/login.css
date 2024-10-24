@@ -15,7 +15,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url(../../assets/bg-login.svg);
+    background-image: url(../../assets/login/bg-login.svg);
     height: 100vh; /* Full height for body */
     display: flex; /* Use flexbox to center the container */
     justify-content: center; /* Center horizontally */
