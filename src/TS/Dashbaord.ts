@@ -63,10 +63,13 @@ function onCustomPopupClosed()
 
 function onCustomPresetCreate()
 {
-    const fileName=document.getElementById("cfilename")
-    const width=document.getElementById("cheight")
-    const height=document.getElementById("cwidth")
+    const fileName=document.getElementById("cfilename")?.nodeValue
+    const width=(document.getElementById("cheight")!).innerText
+    const height=(document.getElementById("cwidth")!).innerText
+console.log(width);
+console.log(height);
 
-    window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
+
+   // window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
 }
 
