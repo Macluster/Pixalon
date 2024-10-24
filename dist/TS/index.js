@@ -67,7 +67,7 @@ function selectImage() {
 }
 // Generate HTML from Page Content
 function generate() {
-    const ele = document.getElementById("page1");
+    const ele = document.getElementById(currentSelectedContainer);
     if (!ele)
         return;
     const outputdiv = ele.cloneNode(true);
