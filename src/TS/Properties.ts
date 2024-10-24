@@ -75,7 +75,42 @@ function selectBackgroundImage(): void {
   fileInput.click();
 }
 
+
+
+
+
+
 function fontSizeChanged(event: Event): void {
   const target = event.target as HTMLInputElement;
+  const view = document.getElementById(currentSelectedContainer) as HTMLElement;
+  console.log(view);
+
+  if (view) {
+    view.querySelectorAll('input')[0].style.fontSize = `${target.value}px`;
+  }
  
 }
+
+function onFontFamilyChange(event: Event)
+{
+  const target = event.target as HTMLInputElement;
+  const view = document.getElementById(currentSelectedContainer) as HTMLElement;
+  console.log(view);
+
+  if (view) {
+    view.querySelectorAll('input')[0].style.fontFamily = `${target.value}`;
+  }
+ 
+}
+
+function onFontWeightChange(event:Event)
+{
+  const target = event.target as HTMLInputElement;
+  const view = document.getElementById(currentSelectedContainer) as HTMLElement;
+  console.log(view);
+
+  if (view) {
+    view.querySelectorAll('input')[0].style.fontWeight = `${target.value}`;
+  }
+}
+

@@ -58,4 +58,25 @@ function selectBackgroundImage() {
 }
 function fontSizeChanged(event) {
     const target = event.target;
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if (view) {
+        view.querySelectorAll('input')[0].style.fontSize = `${target.value}px`;
+    }
+}
+function onFontFamilyChange(event) {
+    const target = event.target;
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if (view) {
+        view.querySelectorAll('input')[0].style.fontFamily = `${target.value}`;
+    }
+}
+function onFontWeightChange(event) {
+    const target = event.target;
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if (view) {
+        view.querySelectorAll('input')[0].style.fontWeight = `${target.value}`;
+    }
 }

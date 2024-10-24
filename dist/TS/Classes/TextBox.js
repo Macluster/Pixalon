@@ -23,7 +23,11 @@ class TextBox extends View {
         this.input.style.margin = "0px";
         this.input.classList.add("inputStyle");
         this.input.addEventListener("mousedown", function (e) {
-            e.stopPropagation();
+            e.preventDefault();
+        });
+        this.input.addEventListener("mouseover", (e) => {
+            this.input.style.cursor = "default";
+            e.stopPropagation(); // Prevent triggering parent events
         });
     }
 }

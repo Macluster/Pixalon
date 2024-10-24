@@ -47,6 +47,7 @@ body {
     font-weight: 400;
     text-align: center; /* Center title text */
     margin-bottom: 50px; /* Space below title */
+    cursor: default;
 }
 
 .login-form {

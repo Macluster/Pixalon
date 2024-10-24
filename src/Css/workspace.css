@@ -545,9 +545,9 @@ img {
   border-radius: 6px;
   border-color: black;
   border-width: 1px;
-  height: 24px;
+  height: 35px;
   outline: none;
-  width:180px;
+  width:92%;
 }
 
 .font-property {
@@ -558,13 +558,13 @@ img {
 }
 
 .font-weight {
-  width: 78px;
+  width: 45%;
   font-family: "Montserrat";
   border-radius: 6px;
   border-color: black;
   border-width: 1px;
   padding: 5px;
-  height: 24px;
+  height: 35px;
   padding-left: 13px;
   outline: none;
 }

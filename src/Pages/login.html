@@ -11,20 +11,32 @@
     <div class="container">
         <div class="login-box">
             <div class="login-title color1">Login to your Account</div>
-            <form class="login-form" action="#" method="post">
+            <div class="login-form">
                 <div class="input-group">
                     <input type="email" id="username" name="username" placeholder="Enter your email" required>
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility" onclick="togglePasswordVisibility()">
+                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility" title="Show Password" onclick="togglePasswordVisibility()">
                 </div>
-                <button type="submit" onclick="SignUp(document.getElementById(username),document.getElementById(password))" class="login-button bg1">Login</button>
-            </form>
+                <button id="login-btn" class="login-button bg1">Login</button>
+            </div>
             <div class="forgot-password"><a href="#">Forgot password?</a></div>
         </div>
     </div>
-    <script src="../../dist/TS/login.js"></script>
 
+    <!-- Include Firebase libraries -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+
+    <!-- Your JavaScript files -->
+    <script src="../../dist/TS/login.js"></script> <!-- Compiled from login.ts -->
+    <script type="module" src="../TS/Backend/login.js"></script> <!-- File with Firebase auth and login handling -->
+    <script type="module" src="../TS/Backend/Firebase.js"></script> <!-- File with Firebase auth and login handling -->
+
+    <script>
+        // Attach event listener for login button
+        document.getElementById('login-btn').addEventListener('click', handleLogin);
+    </script>
 </body>
 </html>
