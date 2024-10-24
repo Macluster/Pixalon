@@ -43,3 +43,9 @@ function onCustomPopupClosed() {
     var popup = document.getElementById('popupContainer');
     popup.style.display = "none";
 }
+function onCustomPresetCreate() {
+    const fileName = document.getElementById("cfilename");
+    const width = document.getElementById("cheight");
+    const height = document.getElementById("cwidth");
+    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}`;
+}
