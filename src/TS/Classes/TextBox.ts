@@ -11,10 +11,16 @@ class TextBox extends View {
        // Prevent focus on single click
        this.input.addEventListener("mousedown", function (e: MouseEvent) {
         e.preventDefault()
+
+        
+
+       
+
         
      
     });
 
+  
     // Allow focus only on double click
     this.input.addEventListener("dblclick", (e: MouseEvent) => {
         this.input.focus(); // Focus on input when double-clicked
@@ -37,8 +43,13 @@ class TextBox extends View {
       this.input.classList.add("inputStyle");
   
       this.input.addEventListener("mousedown", function (e: MouseEvent) {
-        e.stopPropagation();
+       e.preventDefault()
       });
+
+      this.input.addEventListener("mouseover", (e: MouseEvent) => {
+        this.input.style.cursor="default"
+        e.stopPropagation(); // Prevent triggering parent events
+    });
     }
   }
   

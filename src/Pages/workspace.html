@@ -49,7 +49,7 @@
                 <input type="file" style="display: none;" id="fileInput" accept="image/*">
                 <img onclick="Selectiontool()" src="../../assets/Group 79.png">
                 <img onclick="addFrame()" src="../../assets/lets-icons_frame-light.png">
-                <img onclick="addContainer()" src="../../assets/Group 78.png">
+                <img onclick="addSection()" src="../../assets/Group 78.png">
                 <img onclick="addTextBox()" src="../../assets/iconoir_text.png">
                 <img onclick="addTable()" src="../../assets/tabler_table.png">
                 <img onclick="selectImage()" src="../../assets/akar-icons_image.png">
@@ -62,7 +62,7 @@
 
         </div>
 
-        <div id="work-space" class="work-space">
+        <div id="work-space" onmousedown="onWorkspaceClicked(event)" class="work-space">
 
         </div>
         <!--  properties to arrange contents-->
@@ -134,7 +134,7 @@
                     <div style="display: flex; justify-content: space-around; align-items: center;" class="layout">
                         <div class="height">
                             <h5 class="size">H</h5>
-                            <input class="property" onchange="onheightChanged(event)">
+                            <input class="property" onchange="onHeightChanged(event)">
                         </div>
                         <div class="width">
                             <h5 class="size">W</h5>
@@ -152,11 +152,27 @@
                 <h4>Typography</h4>
                 <div class="typography">
                     <div>
-                        <input type="text" class="font" value="Montserrat">
+                        <select onchange="onFontFamilyChange(event)" id="fontSelect" class="font">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="Verdana, sans-serif">Verdana, sans-serif </option>
+                            <option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
+                            <option value="Courier New, monospace">Courier New, monospace;</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
                     </div>
                     <div class="font-property">
-                        <input type="text" class="font-weight" value="Regular">
-                        <input type="text" class="font-size" value="14">
+                      
+                        <select onchange="onFontWeightChange(event)"  class="font-weight" value="Regular" >
+                           
+                            <option value="300">Thin</option>
+                            <option value="400">ExtraLight</option>
+                            <option value="500">Light</option>
+                            <option value="600">Regular</option>
+                            <option value="700">Semi bold</option>
+                            <option value="800">Bold</option>
+                            <option value="900">Extra Bold</option>
+                        </select>
+                        <input onmousedown="onfonts" onchange="fontSizeChanged(event)" type="text" class="font-size" value="14">
                     </div>
                     <div>
                         <div class="line-formatter">
@@ -216,7 +232,7 @@
                         <h4>Fill<h4>
                         <div class="fill">
                             <div class="fill-inputs" style="border-radius: 6px;">
-                                <input type="color" style="border-radius: 10px;" id="fillColorInput">
+                                <input onchange="onBackgroundChanged(event)" type="color" style="border-radius: 10px;" id="fillColorInput">
                                 <input type="text" id="colorCodeDisplay" value="#bdbdbd" />
                                 <div style="height:20px;width:1.5px;background-color:white;"></div>
                                 <input type="text" id="opacityDisplay" value="100%" />
@@ -310,6 +326,8 @@
 <script src="../../dist/TS/global.js"></script>
 <script src="../../dist/TS/Classes/View.js"></script>
 <script src="../../dist/TS/Classes/Frame.js"></script>
+<script src="../../dist/TS/Classes/Section.js"></script>
+
 <script src="../../dist/TS/Classes/Image.js"></script>
 <script src="../../dist/TS/Classes/TextBox.js"></script>
 <script src="../../dist/TS/Classes/Table.js"></script>

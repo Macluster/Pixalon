@@ -3,6 +3,9 @@ const pages: Frame[] = [];
 function addFrame(): void {
   const frame = new Frame("500px", "500px", "white", "");
   frame.element.id = "page1";
+frame.element.style.display="flex"
+frame.element.style.flexDirection="column"
+
 
   pages.push(frame);
   frame.appendTo(".work-space");
@@ -18,14 +21,29 @@ function addTable(): void {
   table.appendTo("#" + currentSelectedContainer);
 }
 
-// Adding Container
-const containerList: View[] = [];
-let viewId = 0;
-function addContainer(): void {
-  const view = new View("200px", "200px", "grey", "");
-  view.element.id = "v" + viewId++;
-  containerList.push(view);
-  view.appendTo("#" + currentSelectedContainer);
+const sectionList: View[] = [];
+let sectionId = 0;
+
+function addSection(): void {
+  // Create a new section
+  let section = new Section("100%", "300px", "grey", "");
+
+  // Position the new section after the previous one, if it exists
+  if (sectionId > 0) {
+    const prevSection = sectionList[sectionId - 1];
+    const prevSectionTop = prevSection.element.offsetTop;
+    const prevSectionHeight = prevSection.element.offsetHeight;
+
+    // Calculate and set the top position for the new section
+    section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
+  }
+
+  // Set an ID for the new section and add it to the list
+  section.element.id = "section" + sectionId++;
+  sectionList.push(section);
+
+  // Append the new section to the container
+  section.appendTo("#" + currentSelectedContainer);
 }
 
 // Adding TextBox
@@ -76,6 +94,22 @@ function selectImage(): void {
     }
   });
   fileInput.click();
+}
+
+
+function onWorkspaceClicked(event:Event)
+{
+
+  event.stopPropagation()
+  const ele=document.getElementById(currentSelectedContainer);
+  ele!.style.border = "2px solid transparent";
+  let currentSelectedDiv = ele!.children; // Get only direct children
+            Array.from(currentSelectedDiv).forEach(child => {
+                if (child.classList.contains("resizer")) {
+                    (child as HTMLElement).style.backgroundColor = "transparent"; // Set the desired color
+                   
+                  }
+            });
 }
 
 // Generate HTML from Page Content
