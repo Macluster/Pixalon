@@ -95,6 +95,74 @@ a{
     cursor: default;
 }
 
+.menu
+{
+    width: 90%;
+}
+
+.savedItem
+{
+    width:90%;margin-top:5px;height:30px;background-color:#471CA5;border-radius:10px;display:flex;gap:10px;flex-direction:row;align-items:center;justify-content:start;padding:10px;
+}
+
+.savedItem:hover
+{
+    background-color: #A67DFF;
+}
+
+.popupContainer
+{
+    position: fixed;height: 100vh;width: 100vw;background-color:  rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  
+}
+
+.popupContainer>div
+{
+    height: 200px;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  
+   
+    padding: 20px;
+    gap: 10px;
+}
+
+.popupContainer>div input
+{
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(236, 234, 234);
+    
+}
+
+.popupContainer>div button
+{
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color:#8061C3;
+    color: white;
+    
+}
+.popupContainer>div>div
+{
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+   
+    
+}
+.fa-solid:hover{
+    color: white;
+}
 .experion img{
     padding-top:35px;
     width: 175px;
@@ -228,6 +296,7 @@ a{
     grid-gap: 40px;
     
 }
+
 
 
 .grid-recent div{

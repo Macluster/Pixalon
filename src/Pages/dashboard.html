@@ -12,10 +12,25 @@
 </head>
 
 <body>
+    <div class="popupContainer"  id="popupContainer">
+            <div >
+                <div>
+                    <h3>Custom Details</h3>
+                    <i onclick="onCustomPopupClosed()" class="fa-solid fa-xmark"></i>
+                </div>
+               
+                <input  placeholder="Full Name"/>
+                <div>
+                    <input style="width: 50%;" placeholder="height"/>
+                    <input style="width: 50%;"  placeholder="height"/>
+                </div>
+                <button>Create</button>
+            </div>
+    </div>
     <div class="conatainer">
         <nav class="first-row">
             <img src="../../assets/dashboard/logo.svg" alt="logo">
-            <div class="menu">
+            <div class="menu" id="menu">
                 <div class="search">
                     <input type="text">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -26,11 +41,11 @@
                         <i class="fa-solid fa-house"></i>
                         <h3>Home</h3>
                     </div>
-                    <div id="savedItemsSection" class="saved-items" style="display: none;">
+                    <div  id="savedItemsSection" class="saved-items" style="display: none;">
                         <h4>Saved Items</h4>
                         <ul id="savedItemsList"></ul>
                     </div>
-                    <div id="saveditem" class="nav_elements notselected pointer">
+                    <div onclick="onSavedItemClicked()" id="saveditem" class="nav_elements notselected pointer">
                         <i class="fa-regular fa-floppy-disk"></i>
                         <h3>Saved Items</h3>
                     </div>
@@ -61,11 +76,16 @@
                 <img src="../../assets/dashboard/logo.svg" alt="logo">
             </div>
 
+
+            
+           
             <div class="preset">
-                <div>
+            
+                <div onclick="onCustomPopupOpened()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/custom.svg" alt=""></div>
                     <p class="cursor">Custom</p>
                 </div>
+               
                 <div>
                     <div class="preset-img pointer"><img src="../../assets/dashboard/newsletter.svg" alt=""></div>
                     <p class="cursor">Newsletter</p>
@@ -125,5 +145,7 @@
     
     
 </body>
+
+<script src="../../dist/TS/Dashbaord.js"></script>
 
 </html>
