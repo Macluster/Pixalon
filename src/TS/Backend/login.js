@@ -19,21 +19,12 @@ const auth = getAuth();
 document.getElementById('login-btn').addEventListener('click', () => {
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
-
-    // Simple validation
-    if (!email || !password) {
-        alert("Please enter both email and password.");
-        return;
-    }
-
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in successfully
-            alert("Login successful!");
-            const user = userCredential.user;
             console.log("Logged in user:", user);
-            // Redirect to workspace
-            window.location.href = 'workspace.html';
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
         })
         .catch((error) => {
             const errorCode = error.code;
