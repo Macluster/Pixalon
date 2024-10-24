@@ -61,3 +61,15 @@ function onCustomPopupClosed()
     popup!.style.display="none"
 }
 
+function onCustomPresetCreate()
+{
+    const fileName=document.getElementById("cfilename")?.nodeValue
+    const width=(document.getElementById("cheight")!).innerText
+    const height=(document.getElementById("cwidth")!).innerText
+console.log(width);
+console.log(height);
+
+
+   // window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
+}
+
