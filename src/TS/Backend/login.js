@@ -38,20 +38,34 @@ document.getElementById('login-btn').addEventListener('click', () => {
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
         })
+        // .catch((error) => {
+        //     password_field.style.borderColor = 'red';
+        //     email_field.style.borderColor = 'red';
+        //     error_password.style.display = 'block';
+        // })
         .catch((error) => {
+            const errorCode = error.code;
             password_field.style.borderColor = 'red';
             email_field.style.borderColor = 'red';
             error_password.style.display = 'block';
-        })
+        
+            if (errorCode === 'auth/wrong-password') {
+                error_password.textContent = 'Incorrect password.';
+            } else if (errorCode === 'auth/user-not-found') {
+                error_email.style.display = 'block';
+                error_email.textContent = 'Email not found.';
+            } else {
+                error_password.textContent = 'Login failed. Please try again.';
+            }
+        })        
         .finally(() => {
-            loadingIndicator.style.display = 'none'; // Hide loading indicator
+            loadingIndicator.style.display = 'none';
         });
     } else {
         email_field.style.borderColor = 'red';
         error_email.style.display = 'block';
     }
 });
-
 
 function isValidEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

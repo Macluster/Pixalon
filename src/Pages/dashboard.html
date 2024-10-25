@@ -32,11 +32,11 @@
             <img src="../../assets/dashboard/logo.svg" alt="logo">
             <div class="menu" id="menu">
                 <div class="search">
-                    <input type="text">
+                    <input onchange="onSearched(event)" placeholder="Search" type="text">
                     <i class="fa-solid fa-magnifying-glass"></i>
 
                 </div>
-                <div class="nav-items">
+                <div class="nav-items" id="nav-items">
                     <div id="home" class="nav_elements selected pointer">
                         <i class="fa-solid fa-house"></i>
                         <h3>Home</h3>
