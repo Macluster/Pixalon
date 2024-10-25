@@ -129,7 +129,7 @@ document.getElementById("exportFormat")?.addEventListener("click", function () {
         exportFile(fileName, size, format);
     }
     else {
-        alert("Please fill in all fields.");
+        //alert("Please fill in all fields.");
     }
     // Hide modal after export
     const exportModal = document.getElementById("exportModal");
