@@ -9,6 +9,23 @@ function addFrame() {
     pages.push(frame);
     frame.appendTo(".work-space");
 }
+function custom() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    // Get specific parameters
+    const height = urlParams.get('height');
+    const width = urlParams.get('width');
+    console.log("height" + height);
+    const frame = new Frame(width + "px", height + "px", "white", "");
+    frame.element.id = "page1";
+    frame.element.style.display = "flex";
+    frame.element.style.flexDirection = "column";
+    frame.element.style.top = "100px";
+    frame.element.style.left = "300px";
+    pages.push(frame);
+    frame.appendTo(".work-space");
+}
+custom();
 // Adding Table
 const tableList = [];
 let tableId = 0;
@@ -95,7 +112,7 @@ function generate() {
         return;
     const outputdiv = ele.cloneNode(true);
     // Find all input elements within the div
-    const inputElements = outputdiv.querySelectorAll('input');
+    const inputElements = outputdiv.querySelectorAll('textarea');
     // Loop through each input element
     inputElements.forEach(function (inputElement) {
         const inputValue = inputElement.value;

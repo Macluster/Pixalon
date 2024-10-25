@@ -24,7 +24,7 @@
                     <input id="cheight" style="width: 50%;" placeholder="height"/>
                     <input id="cwidth" style="width: 50%;"  placeholder="width"/>
                 </div>
-                <button>Create</button>
+                <button onclick="onCustomPresetCreate()">Create</button>
             </div>
     </div>
     <div class="conatainer">
@@ -32,11 +32,11 @@
             <img src="../../assets/dashboard/logo.svg" alt="logo">
             <div class="menu" id="menu">
                 <div class="search">
-                    <input type="text">
+                    <input onchange="onSearched(event)" placeholder="Search" type="text">
                     <i class="fa-solid fa-magnifying-glass"></i>
 
                 </div>
-                <div class="nav-items">
+                <div class="nav-items" id="nav-items">
                     <div id="home" class="nav_elements selected pointer">
                         <i class="fa-solid fa-house"></i>
                         <h3>Home</h3>
@@ -86,11 +86,11 @@
                     <p class="cursor">Custom</p>
                 </div>
                
-                <div>
+                <div onclick="onNewsletterCreate()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/newsletter.svg" alt=""></div>
                     <p class="cursor">Newsletter</p>
                 </div>
-                <div>
+                <div onclick="onPosterCreate()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/poster.svg" alt=""></div>
                     <p class="cursor">Poster</p>
                 </div>
@@ -124,6 +124,7 @@
             <div class="recent">
                 <h4 class="curser">Recents</h4>
                 <div class="grid-recent pointer">
+
                     <div class="recent1">
                         <img src="../../assets/dashboard/recent1.svg" alt="recent1">
                         <samp class="overlay">Newsletter_Sept2024</samp>
@@ -139,6 +140,7 @@
                     <div class="recent1">
                         <img src="../../assets/dashboard/recent4.svg" alt="recent4">
                         <samp class="overlay">Newsletter_Sept2024</samp>
+
                     </div>
                 </div>
             </div>
