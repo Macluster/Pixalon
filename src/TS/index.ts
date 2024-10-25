@@ -154,10 +154,10 @@ function generate(): void {
   const outputdiv = ele.cloneNode(true) as HTMLElement;
 
   // Find all input elements within the div
-  const inputElements = outputdiv.querySelectorAll('input');
+  const inputElements = outputdiv.querySelectorAll('textarea');
 
   // Loop through each input element
-  inputElements.forEach(function (inputElement: HTMLInputElement) {
+  inputElements.forEach(function (inputElement: HTMLTextAreaElement) {
     const inputValue = inputElement.value;
     const inputStyle = inputElement.getAttribute('style'); // Get inline styles
 

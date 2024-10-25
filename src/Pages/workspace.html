@@ -29,7 +29,14 @@
                         <!-- <label for="size"></label> -->
                         <input type="text" id="size" placeholder="Size">
                         <!-- <label for="format"></label> -->
-                        <input type="text" id="format" placeholder="Format">
+                         <div class="format-types">
+                          <select  id="format" value="Format">
+                            
+                            <option value="PNG">PNG</option>
+                            <option value="HTML">HTML</option>
+                            <option value="PDF">PDF</option>
+                          </select>
+                         </div>
                         <button id="exportFormat">Export Format</button>
                     </div>
                 </div>
@@ -49,7 +56,7 @@
                 <input type="file" style="display: none;" id="fileInput" accept="image/*">
                 <img onclick="Selectiontool()" src="../../assets/Group 79.png">
                 <img onclick="addFrame()" src="../../assets/lets-icons_frame-light.png">
-                <img onclick="addSection()" src="../../assets/Group 78.png">
+                <img onclick="addSection()" src="../../assets/mingcute--section-line.svg">
                 <img onclick="addTextBox()" src="../../assets/iconoir_text.png">
                 <img onclick="addTable()" src="../../assets/tabler_table.png">
                 <img onclick="selectImage()" src="../../assets/akar-icons_image.png">
@@ -92,7 +99,7 @@
                     </div>
                     <div class="align-spacing">
                         <div class="spacing">
-                            <img onclick="alignItems('tidy-up')" src="" width="16" height="16">
+                            <!-- <img onclick="alignItems('tidy-up')" src="" width="16" height="16"> -->
                             <img onclick="alignItems('vertical-spacing')"
                                 src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
                             <img onclick="alignItems('horizontal-spacing')"
@@ -154,9 +161,10 @@
                     <div>
                         <select onchange="onFontFamilyChange(event)" id="fontSelect" class="font">
                             <option value="Arial, sans-serif">Arial</option>
-                            <option value="Verdana, sans-serif">Verdana, sans-serif </option>
-                            <option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
-                            <option value="Courier New, monospace">Courier New, monospace;</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Verdana, sans-serif">Verdana</option>
+                            <option value="Helvetica, sans-serif">Helvetica</option>
+                            <option value="Courier New, monospace">Courier New</option>
                             <option value="Verdana">Verdana</option>
                         </select>
                     </div>
@@ -177,18 +185,18 @@
                     <div>
                         <div class="line-formatter">
                             <img src="../../assets/vertical.png" class="format" style="padding-left: 5px;">
-                            <input class="line-formatter-verticallay" type="text" value="auto">
+                            <input class="line-formatter-verticallay" type="text" value="auto" onchange="onLineHeightChange(event)">
                             <div class="line-formatter-horizontal">
                                 <img src="../../assets/Horizontal (2).png" id="formats" style="padding-left: 5px;">
-                                <input class="line-formatter-horizontally" type="text" value="auto">
+                                <input class="line-formatter-horizontally" type="text" value="auto" onchange="onLetterSpacingChange(event)">
                             </div>
                         </div>
                     </div>
                     <div class="align-text">
                         <div id="align-paragraph">
-                            <img onclick="alignParagraph('align-left')" src="../../assets/align-left.png" width="16"
+                            <img onclick="alignParagraph(event)"  src="../../assets/align-left.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-center')" src="../../assets/align-center.png" width="16"
+                            <img onclick="alignParagraph('align-center',event)" src="../../assets/align-center.png" width="16"
                                 height="16">
                             <img onclick="alignParagraph('align-right')" src="../../assets/align-right.png" width="16"
                                 height="16">

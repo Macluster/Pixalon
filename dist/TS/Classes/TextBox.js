@@ -2,9 +2,12 @@
 class TextBox extends View {
     constructor() {
         super('200px', '40px', 'transparent', '');
-        this.input = document.createElement("input");
-        this.input.type = "text";
+        this.input = document.createElement("textarea");
+        // this.input.type = "text";
         this.input.placeholder = "add a text";
+        this.input.style.lineHeight = "auto";
+        this.input.style.overflow = "hidden";
+        this.input.style.resize = "none";
         // Prevent focus on single click
         this.input.addEventListener("mousedown", function (e) {
             e.preventDefault();
