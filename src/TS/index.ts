@@ -146,53 +146,153 @@ function onWorkspaceClicked(event:Event)
             });
 }
 
-// Generate HTML from Page Content
-function generate(): void {
-  const ele = document.getElementById(currentSelectedContainer);
-  if (!ele) return;
-  
-  const outputdiv = ele.cloneNode(true) as HTMLElement;
 
-  // Find all input elements within the div
-  const inputElements = outputdiv.querySelectorAll('textarea');
+declare var html2canvas: any;
 
-  // Loop through each input element
-  inputElements.forEach(function (inputElement: HTMLTextAreaElement) {
-    const inputValue = inputElement.value;
-    const inputStyle = inputElement.getAttribute('style'); // Get inline styles
 
-    // Create a new h2 element
-    const h2Element = document.createElement('h2');
-    h2Element.textContent = inputValue; // Set the content of the h2 to the input value
+declare var jspdf: any;
 
-    if (inputStyle) {
-      h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
+
+
+// Get references to the select and button elements
+const mySelect = document.getElementById("format") as HTMLSelectElement;
+const myButton = document.getElementById("exportFormat") as HTMLButtonElement;
+
+// Add an event listener to the button
+myButton.addEventListener("click", () => {
+  const selectedOption = mySelect.options[mySelect.selectedIndex] as HTMLOptionElement;
+
+  // Perform actions based on the selected option
+  switch (selectedOption.value) {
+    case "html":
+      {
+        const ele = document.getElementById("page1");
+        if (!ele) return;
+        
+        const outputdiv = ele.cloneNode(true) as HTMLElement;
+      
+        // Find all input elements within the div
+        const inputElements = outputdiv.querySelectorAll('input');
+      
+        // Loop through each input element
+        inputElements.forEach(function (inputElement: HTMLInputElement) {
+          const inputValue = inputElement.value;
+          const inputStyle = inputElement.getAttribute('style'); // Get inline styles
+      
+          // Create a new h2 element
+          const h2Element = document.createElement('h2');
+          h2Element.textContent = inputValue; // Set the content of the h2 to the input value
+      
+          if (inputStyle) {
+            h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
+          }
+      
+          // Replace the input element with the new h2 element
+          inputElement.parentNode?.replaceChild(h2Element, inputElement);
+        });
+      
+        // Get the outer HTML of the modified div as a string
+        const modifiedDivHtml = outputdiv.outerHTML;
+        console.log(modifiedDivHtml); // This logs the entire modified div as a string
+      
+        downloadFile(modifiedDivHtml);
+      }
+      
+      
+      
+      // Download File Function
+      function downloadFile(text: string): void {
+        // Create a Blob with the text content
+        const blob = new Blob([text], { type: 'text/plain' });
+      
+        // Create an anchor element
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'myfile.html';
+      
+        // Programmatically click the anchor to trigger the download
+        a.click();
+      
+        // Clean up by revoking the Object URL
+        URL.revokeObjectURL(a.href);
+      }
+      
+      break;
+    case "png":
+      // Get the div element by ID and ensure it's not null
+        const captureElement = document.getElementById("page1") as HTMLElement;
+
+        if (captureElement) {
+          // Use html2canvas to capture the div as a canvas
+          html2canvas(captureElement).then((canvas: HTMLCanvasElement) => {
+            // Create a link element to trigger the download
+            const link = document.createElement('a');
+            link.download = 'div_image.png';
+
+            // Convert the canvas to a PNG data URL and set it as the href for the link
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+          }).catch((error: Error) => {
+            console.error("An error occurred while capturing the div:", error);
+          });
+        } else {
+          console.error("Capture element not found.");
+        }
+      // Call a specific function for Option 2, if needed
+      break;
+
+
+    case "jpeg":
+          const capturejpeg = document.getElementById("page1") as HTMLElement;
+
+      if (capturejpeg) {
+        // Use html2canvas to capture the div as a canvas
+        html2canvas(capturejpeg).then((canvas: HTMLCanvasElement) => {
+          // Create a link element to trigger the download
+          const link = document.createElement('a');
+          link.download = 'div_image.jpeg';
+
+          // Convert the canvas to a PNG data URL and set it as the href for the link
+          link.href = canvas.toDataURL("image/jpeg", 0.8);
+          link.click();
+        }).catch((error: Error) => {
+          console.error("An error occurred while capturing the div:", error);
+        });
+      } else {
+        console.error("Capture element not found.");
+      }
+      break;
+
+    case "pdf":
+          // Get the div element by ID and ensure it's not null
+        const capturepdf = document.getElementById("page1") as HTMLElement;
+
+        if (capturepdf) {
+          // Use html2canvas to capture the div as a canvas
+          html2canvas(capturepdf).then((canvas: HTMLCanvasElement) => {
+            // Get the canvas as an image (JPEG format)
+            const imgData = canvas.toDataURL("image/jpeg", 1.0);
+
+            // Create a new jsPDF instance (use 'p' for portrait mode, 'mm' for millimeters, and 'a4' for paper size)
+            const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+
+            // Calculate the width and height of the PDF page
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            // Add the image to the PDF, adjusting the size to fit the page
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+            // Save the PDF with a filename
+            pdf.save('div_content.pdf');
+          }).catch((error: Error) => {
+            console.error("An error occurred while capturing the div:", error);
+          });
+        } else {
+          console.error("Capture element not found.");
+        }
+        break;
+      default:
+        console.log("No valid option selected");
     }
-
-    // Replace the input element with the new h2 element
-    inputElement.parentNode?.replaceChild(h2Element, inputElement);
-  });
-
-  // Get the outer HTML of the modified div as a string
-  const modifiedDivHtml = outputdiv.outerHTML;
-  console.log(modifiedDivHtml); // This logs the entire modified div as a string
-
-  downloadFile(modifiedDivHtml);
-}
-
-// Download File Function
-function downloadFile(text: string): void {
-  // Create a Blob with the text content
-  const blob = new Blob([text], { type: 'text/plain' });
-
-  // Create an anchor element
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'myfile.html';
-
-  // Programmatically click the anchor to trigger the download
-  a.click();
-
-  // Clean up by revoking the Object URL
-  URL.revokeObjectURL(a.href);
-}
+});

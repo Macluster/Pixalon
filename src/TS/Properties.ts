@@ -177,7 +177,7 @@ document.getElementById("exportFormat")?.addEventListener("click", function() {
       // Call the function that handles the actual file export logic
       exportFile(fileName, size, format);
   } else {
-      alert("Please fill in all fields.");
+      //alert("Please fill in all fields.");
   }
 
   // Hide modal after export
