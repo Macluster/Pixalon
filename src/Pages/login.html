@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Css/login.css">
 </head>
+
 <body>
     <div class="container">
         <div class="login-box">
@@ -14,12 +16,14 @@
             <div class="login-form">
                 <div class="input-group">
                     <input type="email" id="username" name="username" placeholder="Enter your email" required>
-                    <samp id="error-email" class="error-email">Invalid Email Address Please enter a valid email address</samp>
+                    <samp id="error-email" class="error-email">Invalid Email Address Please enter a valid email
+                        address</samp>
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
                     <samp id="error-password" class="error-password">Invalid email or password</samp>
-                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility" title="Show Password" onclick="togglePasswordVisibility()">
+                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility"
+                        title="Show Password" onclick="togglePasswordVisibility()">
                 </div>
                 <button id="login-btn" class="login-button bg1">Login</button>
             </div>
@@ -27,18 +31,23 @@
         </div>
     </div>
 
-    <!-- Include Firebase libraries -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
 
-    <!-- Your JavaScript files -->
-    <script src="../../dist/TS/login.js"></script> <!-- Compiled from login.ts -->
-    <script type="module" src="../TS/Backend/login.js"></script> <!-- File with Firebase auth and login handling -->
-    <script type="module" src="../TS/Backend/Firebase.js"></script> <!-- File with Firebase auth and login handling -->
+    <script src="../../dist/TS/login.js"></script>
+    <script type="module" src="../TS/Backend/login.js"></script>
+    <script type="module" src="../TS/Backend/Firebase.js"></script>
 
     <script>
-        // Attach event listener for login button
+
         document.getElementById('login-btn').addEventListener('click', handleLogin);
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                handleLogin;
+            }
+        });
     </script>
 </body>
+
 </html>
