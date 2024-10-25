@@ -95,7 +95,7 @@ function generate() {
         return;
     const outputdiv = ele.cloneNode(true);
     // Find all input elements within the div
-    const inputElements = outputdiv.querySelectorAll('input');
+    const inputElements = outputdiv.querySelectorAll('textarea');
     // Loop through each input element
     inputElements.forEach(function (inputElement) {
         const inputValue = inputElement.value;
