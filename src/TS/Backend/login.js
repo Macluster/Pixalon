@@ -30,27 +30,27 @@ function login() {
     if (isValidEmail(email)) {
         console.log("Valid email");
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in successfully
-            const user = userCredential.user;
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            password_field.style.borderColor = 'red';
-            email_field.style.borderColor = 'red';
-            error_password.style.display = 'block';
-        
-            if (errorCode === 'auth/wrong-password') {
-                error_password.textContent = 'Incorrect password.';
-            } else if (errorCode === 'auth/user-not-found') {
-                error_email.style.display = 'block';
-                error_email.textContent = 'Email not found.';
-            } else {
-                error_password.textContent = 'Login failed. Please try again.';
-            }
-        });
+            .then((userCredential) => {
+                // Signed in successfully
+                const user = userCredential.user;
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                password_field.style.borderColor = 'red';
+                email_field.style.borderColor = 'red';
+                error_password.style.display = 'block';
+
+                if (errorCode === 'auth/wrong-password') {
+                    error_password.textContent = 'Incorrect password.';
+                } else if (errorCode === 'auth/user-not-found') {
+                    error_email.style.display = 'block';
+                    error_email.textContent = 'Email not found.';
+                } else {
+                    error_password.textContent = 'Login failed. Please try again.';
+                }
+            });
     } else {
         email_field.style.borderColor = 'red';
         error_email.style.display = 'block';
