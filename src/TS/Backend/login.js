@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDT0XCtY4i9UPkNdecrEkj9IBlNiOBOHCQ",
     authDomain: "pixalon-855e3.firebaseapp.com",
@@ -16,8 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-// Login function
-document.getElementById('login-btn').addEventListener('click', () => {
+function login() {
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     const password_field = document.getElementById('password');
@@ -38,11 +36,6 @@ document.getElementById('login-btn').addEventListener('click', () => {
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
         })
-        // .catch((error) => {
-        //     password_field.style.borderColor = 'red';
-        //     email_field.style.borderColor = 'red';
-        //     error_password.style.display = 'block';
-        // })
         .catch((error) => {
             const errorCode = error.code;
             password_field.style.borderColor = 'red';
@@ -57,13 +50,18 @@ document.getElementById('login-btn').addEventListener('click', () => {
             } else {
                 error_password.textContent = 'Login failed. Please try again.';
             }
-        })        
-        .finally(() => {
-            loadingIndicator.style.display = 'none';
         });
     } else {
         email_field.style.borderColor = 'red';
         error_email.style.display = 'block';
+    }
+}
+
+document.getElementById('login-btn').addEventListener('click', login);
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        login();
     }
 });
 
