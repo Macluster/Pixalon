@@ -61,6 +61,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .input-group label {
@@ -82,8 +83,9 @@ body {
     position: absolute;
     transform: translateY(-50%);
     cursor: pointer;
-    right: 470px;
-    top: 300px;
+    align-self: flex-end;
+    margin-right: 30px;
+    margin-top: 25px;
     height: 35PX;
     width: 35px;
 
@@ -120,19 +122,10 @@ body {
 .forgot-password a:hover {
     text-decoration: underline;
 }
-.error-password{
+.error-password,
+.error-email {
     color: red;
-    position: absolute;
-    font-size: x-small;
-    bottom: 240px;
-    left: 437px;
-    display: none;
-}
-.error-email{
-    color: red;
-    position: absolute;
-    font-size: x-small;
-    bottom: 320px;
-    left: 437px;
+    font-size: 0.8em;
+    margin-top: 5px;
     display: none;
 }
