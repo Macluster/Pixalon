@@ -38,11 +38,6 @@ document.getElementById('login-btn').addEventListener('click', () => {
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
         })
-        // .catch((error) => {
-        //     password_field.style.borderColor = 'red';
-        //     email_field.style.borderColor = 'red';
-        //     error_password.style.display = 'block';
-        // })
         .catch((error) => {
             const errorCode = error.code;
             password_field.style.borderColor = 'red';
@@ -71,3 +66,48 @@ function isValidEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
+
+function enter() {
+    const email = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const password_field = document.getElementById('password');
+    password_field.style.borderColor = '#8061C3';
+    const email_field = document.getElementById('username');
+    email_field.style.borderColor = '#8061C3';
+    const error_password = document.getElementById('error-password');
+    error_password.style.display = 'none';
+    const error_email = document.getElementById('error-email');
+    error_email.style.display = 'none';
+
+    if (isValidEmail(email)) {
+        console.log("Valid email");
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in successfully
+            const user = userCredential.user;
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            password_field.style.borderColor = 'red';
+            email_field.style.borderColor = 'red';
+            error_password.style.display = 'block';
+        
+            if (errorCode === 'auth/wrong-password') {
+                error_password.textContent = 'Incorrect password.';
+            } else if (errorCode === 'auth/user-not-found') {
+                error_email.style.display = 'block';
+                error_email.textContent = 'Email not found.';
+            } else {
+                error_password.textContent = 'Login failed. Please try again.';
+            }
+        })        
+        .finally(() => {
+            loadingIndicator.style.display = 'none';
+        });
+    } else {
+        email_field.style.borderColor = 'red';
+        error_email.style.display = 'block';
+    }
+};

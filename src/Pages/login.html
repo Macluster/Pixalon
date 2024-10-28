@@ -39,16 +39,16 @@
     <script type="module" src="../TS/Backend/Firebase.js"></script>
 
     <script>
-        
+
         document.getElementById('login-btn').addEventListener('click', handleLogin);
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                handleLogin(); // Call the function with parentheses
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                handleLogin();
             }
         });
-
+        
     </script>
+    
 </body>
 
 </html>
