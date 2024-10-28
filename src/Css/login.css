@@ -27,7 +27,7 @@ body {
     height: 450px;
     padding: 40px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    background: white; 
+    background: white;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -76,7 +76,7 @@ body {
     border-radius: 8px;
     border: 1px solid #8061C3;
     width: 400px;
-    height:54px ;
+    height: 54px;
 }
 
 .input-group img {
@@ -122,6 +122,7 @@ body {
 .forgot-password a:hover {
     text-decoration: underline;
 }
+
 .error-password,
 .error-email {
     color: red;
