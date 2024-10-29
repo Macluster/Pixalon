@@ -1,0 +1,15 @@
+body {
+    overflow: hidden;
+    background-image: url('../../assets/login/bg-login.svg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    height: 50px;
+    width: auto;
+}
