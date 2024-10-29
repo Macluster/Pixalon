@@ -83,3 +83,20 @@ function onSearched(event) {
         }
     });
 }
+
+
+// ------------------------profile--------------------------
+
+function toggleMenu() {
+    const menu = document.getElementById('popupMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close the menu when clicking outside
+document.addEventListener('click', (event) => {
+    const menu = document.getElementById('popupMenu');
+    const profileIcon = document.querySelector('.profile.pointer');
+    if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
+        menu.style.display = 'none';
+    }
+}); 
