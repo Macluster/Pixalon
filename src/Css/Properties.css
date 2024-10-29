@@ -20,11 +20,11 @@
 
 .navigation {
   background-color: #8061C3;
-  width: 98.4%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: right;
+  justify-content:center ;
   padding-right: 30px;
   height: 7%;
   position: fixed;
@@ -32,6 +32,16 @@
   z-index: 3;
 
 }
+#head {
+  background-color:violet;
+  color: #FFFFFF;
+  padding: 8px 20px;        /* Adds some spacing inside the input */
+  border: none;         /* Removes the default border */
+  border-radius: 8px;   /* Optional: rounds the input's corners */
+  font-size: 14px;      /* Increases font size */
+  outline: none;
+}
+
 
 #export {
   background-color: #6547A5;
@@ -41,6 +51,7 @@
   color: #FFFFFF;
   position: absolute;
   z-index:-1 ;
+  margin-left: 90%;
 }
 
 
