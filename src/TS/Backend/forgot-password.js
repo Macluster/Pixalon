@@ -17,6 +17,17 @@ const auth = getAuth();
 
 // Attach event listener for reset button
 document.getElementById('reset-btn').addEventListener('click', () => {
+    handleResetPassword();
+});
+
+// Attach event listener for Enter key
+document.getElementById('reset-email').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        handleResetPassword();
+    }
+});
+
+function handleResetPassword() {
     const email = document.getElementById('reset-email').value.trim();
     const emailField = document.getElementById('reset-email');
     const errorEmail = document.getElementById('error-reset-email');
@@ -42,7 +53,7 @@ document.getElementById('reset-btn').addEventListener('click', () => {
         errorEmail.style.display = 'block';
         errorEmail.textContent = "Invalid Email Address. Please enter a valid email address.";
     }
-});
+}
 
 function isValidEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

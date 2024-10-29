@@ -12,13 +12,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body class="body" onkeypress="keyPress()">
 
     <nav>
         <div class="navigation">
-            <button onclick="generate()" id="export">Share/Export</button>
+            <!-- <div class="head"> -->
+            <input type="text" id="head">Title
+            <button id="export">Export</button>
+            <!-- </div> -->
             <div id="exportModal" style="display: none;">
                 <div class="modal-content">
                     <h5>Export</h5>
@@ -31,10 +36,11 @@
                         <!-- <label for="format"></label> -->
                          <div class="format-types">
                           <select  id="format" value="Format">
-                            
-                            <option value="PNG">PNG</option>
-                            <option value="HTML">HTML</option>
-                            <option value="PDF">PDF</option>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="html">HTML</option>
+                            <option value="png">PNG</option>
+                            <option value="jpeg">JPEG</option>
+                            <option value="pdf">PDF</option>
                           </select>
                          </div>
                         <button id="exportFormat">Export Format</button>
@@ -277,10 +283,11 @@
                                     <img src="../../assets/bottom.png" alt="Arrow" width="8" height="10" id="select">
                                 </button>
                                 <div class="dropdown-content">
-                                    <a href="#" data-value="center">Center</a>
-                                    <a href="#" data-value="inside">Inside</a>
-                                    <a href="#" data-value="outside">Outside</a>
-                                </div>
+                                    <select>
+                                    <object value="center">Center</object>
+                                    <object value="inside">Inside</object>
+                                    <object value="outside">Outside</object>
+                                </select>
                             </div>
                             <div class="stroke-border">
                                 <img src="../../assets/proicons--stroke-thickness.png" width="14" height="14"
@@ -335,7 +342,7 @@
 <script src="../../dist/TS/Classes/View.js"></script>
 <script src="../../dist/TS/Classes/Frame.js"></script>
 <script src="../../dist/TS/Classes/Section.js"></script>
-
+<script src="../../dist/TS/shortcuts.js"></script>
 <script src="../../dist/TS/Classes/Image.js"></script>
 <script src="../../dist/TS/Classes/TextBox.js"></script>
 <script src="../../dist/TS/Classes/Table.js"></script>
@@ -343,14 +350,7 @@
 <script src="../../dist/TS/Properties.js"></script>
 <script src="../../dist/TS/KeyPresses.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
-<script src="../../dist/TS/Workspace.js"
-
-
-
-
-
-
-
+<script src="../../dist/TS/Workspace.js"></script>
 
 
 </html>
