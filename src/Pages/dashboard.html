@@ -12,20 +12,20 @@
 </head>
 
 <body>
-    <div class="popupContainer"  id="popupContainer">
-            <div >
-                <div>
-                    <h3>Custom Details</h3>
-                    <i onclick="onCustomPopupClosed()" class="fa-solid fa-xmark"></i>
-                </div>
-               
-                <input id="cfilename"  placeholder="File Name"/>
-                <div>
-                    <input id="cheight" style="width: 50%;" placeholder="height"/>
-                    <input id="cwidth" style="width: 50%;"  placeholder="width"/>
-                </div>
-                <button onclick="onCustomPresetCreate()">Create</button>
+    <div class="popupContainer" id="popupContainer">
+        <div>
+            <div>
+                <h3>Custom Details</h3>
+                <i onclick="onCustomPopupClosed()" class="fa-solid fa-xmark"></i>
             </div>
+
+            <input id="cfilename" placeholder="File Name" />
+            <div>
+                <input id="cheight" style="width: 50%;" placeholder="height" />
+                <input id="cwidth" style="width: 50%;" placeholder="width" />
+            </div>
+            <button onclick="onCustomPresetCreate()">Create</button>
+        </div>
     </div>
     <div class="conatainer">
         <nav class="first-row">
@@ -41,7 +41,7 @@
                         <i class="fa-solid fa-house"></i>
                         <h3>Home</h3>
                     </div>
-                    <div  id="savedItemsSection" class="saved-items" style="display: none;">
+                    <div id="savedItemsSection" class="saved-items" style="display: none;">
                         <h4>Saved Items</h4>
                         <ul id="savedItemsList"></ul>
                     </div>
@@ -68,8 +68,19 @@
         </nav>
         <div class="second-row">
 
-            <div class="profile pointer">
+            <div class="profile pointer" onclick="toggleMenu()">
                 <i class="fa-regular fa-user"></i>
+
+            </div>
+            <div class="popup-menu" id="popupMenu">
+                <div class="profile-name">
+                    <img src="../../assets/dashboard/user.png">
+                    <p>Name</p>
+                </div>
+                <div onclick="window.location.href='login.html'" class="menu-item">
+                    <i class="fa-solid fa-sign-out-alt"></i> 
+                    <samp>Logout</samp>
+                </div>                
             </div>
 
             <div class="design">
@@ -77,15 +88,15 @@
             </div>
 
 
-            
-           
+
+
             <div class="preset">
-            
+
                 <div onclick="onCustomPopupOpened()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/custom.svg" alt=""></div>
                     <p class="cursor">Custom</p>
                 </div>
-               
+
                 <div onclick="onNewsletterCreate()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/newsletter.svg" alt=""></div>
                     <p class="cursor">Newsletter</p>
@@ -147,9 +158,9 @@
         </div>
     </div>
 
-    
-    
-    
+
+
+
 </body>
 
 <script src="../../dist/TS/Dashbaord.js"></script>
