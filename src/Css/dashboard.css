@@ -20,6 +20,7 @@ a{
 .first-row{
    width: 220px; 
    background-image: url(../../assets/dashboard/dashboardbg.svg);
+   background-size: cover;
    height: 100vh;
    display: flex;
    flex-direction: column;
@@ -54,6 +55,9 @@ a{
     height: 25px;
     background-color: #A67DFF;
 }
+input::placeholder {
+    color: white;
+  }
 .nav-items{
     margin-top: 75px;
     display: flex;
@@ -102,7 +106,14 @@ a{
 
 .savedItem
 {
-    width:90%;margin-top:5px;height:30px;background-color:#471CA5;border-radius:10px;display:flex;gap:10px;flex-direction:row;align-items:center;justify-content:start;padding:10px;
+    width:90%;
+    margin-top:5px;
+    height:30px;background-color:#471CA5;
+    border-radius:10px;display:flex;
+    gap:10px;flex-direction:row;
+    align-items:center;
+    justify-content:start;
+    padding:10px;
 }
 
 .savedItem:hover
@@ -184,7 +195,66 @@ a{
 
 .profile i{
     color: #471CA5;
-    font-size: 20px;;
+    font-size: 20px;
+}
+.profile.pointer {
+    cursor: pointer;
+    position: relative;
+    font-size: 24px; 
+}
+.profile-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    gap: 0px;
+}
+.profile-name img{
+     width:50px;
+     height: auto;
+     padding: 0px;
+     margin: 0px;
+}
+
+
+.popup-menu {
+    
+    display: none; 
+    position: absolute;
+    top: 40px; 
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 10;
+    border-radius: 5px;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.menu-item {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color:#8061C3;
+    color: white;
+    width: 90px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.menu-item i{
+    font-size: 10px;
+}
+
+.menu-item:hover {
+    background-color: #471CA5;
 }
 /* ---------------------------------------- */
 .design {
@@ -193,6 +263,7 @@ a{
     align-items: center;
     justify-content: center;
     background-image: url(../../assets/dashboard/top-panel.svg);
+    background-size: cover;
     width:94% ;
     height: 200px;
     border:border;

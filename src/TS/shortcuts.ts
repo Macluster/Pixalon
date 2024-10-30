@@ -1,5 +1,6 @@
 
 
+
 let clipboard = ""; // Initialize as an empty string
 
 function copyElementToClipboard() {
@@ -146,3 +147,4 @@ document.addEventListener('keydown', (event: KeyboardEvent) => {
         }
     }
 });
+

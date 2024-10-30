@@ -16,6 +16,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-image: url(../../assets/login/bg-login.svg);
+    background-size: cover;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -27,7 +28,7 @@ body {
     height: 450px;
     padding: 40px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    background: white; 
+    background: white;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -61,6 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .input-group label {
@@ -75,15 +77,16 @@ body {
     border-radius: 8px;
     border: 1px solid #8061C3;
     width: 400px;
-    height:54px ;
+    height: 54px;
 }
 
 .input-group img {
     position: absolute;
     transform: translateY(-50%);
     cursor: pointer;
-    right: 470px;
-    top: 300px;
+    align-self: flex-end;
+    margin-right: 30px;
+    margin-top: 25px;
     height: 35PX;
     width: 35px;
 
@@ -120,19 +123,11 @@ body {
 .forgot-password a:hover {
     text-decoration: underline;
 }
-.error-password{
+
+.error-password,
+.error-email {
     color: red;
-    position: absolute;
-    font-size: x-small;
-    bottom: 240px;
-    left: 437px;
-    display: none;
-}
-.error-email{
-    color: red;
-    position: absolute;
-    font-size: x-small;
-    bottom: 320px;
-    left: 437px;
+    font-size: 0.8em;
+    margin-top: 5px;
     display: none;
 }
