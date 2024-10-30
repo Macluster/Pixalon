@@ -1,67 +1,148 @@
-let currentSelectedContainer: HTMLElement | null = null;
-let copiedContent: string | null = null;
-let copiedStyles: CSSStyleDeclaration | null = null;
 
-// Function to set the currently selected container
-function selectContainer(containerId: string): void {
-    if (currentSelectedContainer) {
-        currentSelectedContainer.classList.remove("selected");
-    }
-    currentSelectedContainer = document.getElementById(containerId) as HTMLElement | null;
 
-    if (currentSelectedContainer) {
-        currentSelectedContainer.classList.add("selected");
+let clipboard = ""; // Initialize as an empty string
+
+function copyElementToClipboard() {
+    const currentElement = document.getElementById(currentSelectedContainer);
+    if (currentElement) {
+        clipboard = currentElement.outerHTML; // Store copied HTML in the clipboard variable
     } else {
-        console.error("No element found with the given ID:", containerId);
+        console.error('Element not found:', currentSelectedContainer);
     }
 }
 
-// Function to copy content and styles of the selected container
-function copyContent(): void {
-    if (currentSelectedContainer) {
-        // Copy the HTML content
-        copiedContent = currentSelectedContainer.innerHTML;
+function pasteElementToWorkspace() {
+    const workspace = document.getElementById('page1');
+    if (workspace && clipboard) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(clipboard, 'text/html');
+        const ele = doc.body.firstChild as HTMLElement; //store the copypaste element
 
-        // Copy the computed styles
-        copiedStyles = window.getComputedStyle(currentSelectedContainer);
+        if (!ele) {
+            console.error('Parsed element is null');
+            return;
+        }
 
-        console.log("Content copied:", copiedContent);
-        alert("Content copied!");
+        ele.style.position = "absolute"; 
+        ele.style.left = "0px";
+        ele.style.top = "0px";
+        workspace.appendChild(ele);
+
+        makeElementDraggable(ele);
+        resizeOfCopyPasteElement(ele);
+
+        // Update selected container to the new element
+        currentSelectedContainer = ele.id;
     } else {
-        alert("No container selected to copy from.");
+        console.error('Workspace not found or clipboard is empty.');
     }
 }
 
-// Function to paste the content and styles into the selected container
-function pasteContent(): void {
-    if (currentSelectedContainer) {
-        if (copiedContent) {
-            // Paste the content
-            currentSelectedContainer.innerHTML = copiedContent;
+function resizeOfCopyPasteElement(ele: HTMLElement) {
+    const resizerPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    resizerPositions.forEach((position) => {
+        const resizer = document.createElement('div');
+        resizer.classList.add('resizer', position);
 
-            // Apply the copied styles
-            if (copiedStyles) {
-                // Iterate over all styles and apply them to the target container
-                Array.from(copiedStyles).forEach((styleKey) => {
-                    (currentSelectedContainer!.style as any)[styleKey] = copiedStyles!.getPropertyValue(styleKey);
+        resizer.addEventListener('mousedown', (e: MouseEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const startX = e.clientX;
+            const startY = e.clientY;
+            const startWidth = parseInt(document.defaultView!.getComputedStyle(ele).width!, 10);
+            const startHeight = parseInt(document.defaultView!.getComputedStyle(ele).height!, 10);
+            const startLeft = parseInt(ele.style.left, 10);
+            const startTop = parseInt(ele.style.top, 10);
+
+            const resize = (e: MouseEvent) => {
+                if (position.includes('right')) {
+                    ele.style.width = startWidth + (e.clientX - startX) + "px";
+                }
+                if (position.includes('left')) {
+                    const widthChange = startX - e.clientX;
+                    ele.style.width = startWidth + widthChange + "px";
+                    ele.style.left = (startLeft - widthChange) + "px";
+                }
+                if (position.includes('bottom')) {
+                    ele.style.height = startHeight + (e.clientY - startY) + "px";
+                }
+                if (position.includes('top')) {
+                    const heightChange = startY - e.clientY;
+                    ele.style.height = startHeight + heightChange + "px";
+                    ele.style.top = (startTop - heightChange) + "px";
+                }
+            };
+
+            const stopResize = () => {
+                document.removeEventListener('mousemove', resize);
+                document.removeEventListener('mouseup', stopResize);
+            };
+
+            document.addEventListener('mousemove', resize);
+            document.addEventListener('mouseup', stopResize);
+        });
+
+        ele.appendChild(resizer);
+    });
+}
+
+function makeElementDraggable(ele: HTMLElement) {
+    ele.addEventListener("mousedown", (e: MouseEvent) => {
+        e.stopPropagation();
+        previouslySelectedElement = currentSelectedContainer;
+        currentSelectedContainer = ele.id;
+
+        ele.style.border = "2px solid #4CC9FE";
+        Array.from(ele.children).forEach(child => {
+            if (child.classList.contains("resizer")) {
+                (child as HTMLElement).style.backgroundColor = "#4CC9FE";
+            }
+        });
+
+        if (previouslySelectedElement && previouslySelectedElement !== currentSelectedContainer) {
+            const prevSelectedElement = document.getElementById(previouslySelectedElement);
+            if (prevSelectedElement) {
+                prevSelectedElement.style.border = "2px solid transparent";
+                Array.from(prevSelectedElement.children).forEach(child => {
+                    if (child.classList.contains("resizer")) {
+                        (child as HTMLElement).style.backgroundColor = "transparent";
+                    }
                 });
             }
-            alert("Content pasted!");
-        } else {
-            alert("No content to paste. Copy content first.");
         }
-    } else {
-        alert("Select a container to paste into.");
-    }
+
+        if ((e.target as HTMLElement).classList.contains('resizer')) return;
+        e.preventDefault();
+
+        const parentRect = (ele.parentNode as HTMLElement).getBoundingClientRect();
+        const shiftX = e.clientX - ele.getBoundingClientRect().left;
+        const shiftY = e.clientY - ele.getBoundingClientRect().top;
+
+        const moveAt = (clientX: number, clientY: number) => {
+            const newLeft = Math.max(0, Math.min(clientX - parentRect.left - shiftX, parentRect.width - ele.offsetWidth));
+            const newTop = Math.max(0, Math.min(clientY - parentRect.top - shiftY, parentRect.height - ele.offsetHeight));
+            ele.style.left = `${newLeft}px`;
+            ele.style.top = `${newTop}px`;
+        };
+
+        const onMouseMove = (e: MouseEvent) => moveAt(e.clientX, e.clientY);
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", () => document.removeEventListener("mousemove", onMouseMove), { once: true });
+    });
+
+    ele.ondragstart = () => false;
 }
 
-// Event listener for keyboard shortcuts
-document.addEventListener("keydown", (event: KeyboardEvent) => {
-    if (event.ctrlKey && event.key === "c") {
-        copyContent();
-    }
-    if (event.ctrlKey && event.key === "v") {
-        pasteContent();
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.ctrlKey || event.metaKey) {
+        if (event.key === 'c') {
+            event.preventDefault();
+            copyElementToClipboard();
+        } else if (event.key === 'v') {
+            event.preventDefault();
+            pasteElementToWorkspace();
+        }
     }
 });
-
