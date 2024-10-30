@@ -23,9 +23,9 @@ function login() {
     const errorEmail = document.getElementById('error-email');
     const errorPassword = document.getElementById('error-password');
 
-    // Reset styles and error messages
-    emailField.style.borderColor = '#8061C3';
-    passwordField.style.borderColor = '#8061C3';
+    // Reset styles and error messages for specific fields
+    if (email) emailField.style.borderColor = '#8061C3';
+    if (password) passwordField.style.borderColor = '#8061C3';
     errorEmail.style.display = 'none';
     errorPassword.style.display = 'none';
 
@@ -55,14 +55,16 @@ function login() {
     // Firebase authentication
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            // Redirect to the dashboard page
             window.location.href = 'dashboard.html';
         })
         .catch((error) => {
             const errorCode = error.code;
-            passwordField.style.borderColor = 'red';
             emailField.style.borderColor = 'red';
+            passwordField.style.borderColor = 'red';
             errorPassword.style.display = 'block';
 
+            // Handle specific Firebase authentication errors
             if (errorCode === 'auth/wrong-password') {
                 errorPassword.textContent = 'Incorrect password.';
             } else if (errorCode === 'auth/user-not-found') {
