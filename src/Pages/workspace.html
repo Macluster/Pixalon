@@ -17,11 +17,12 @@
 </head>
 
 <body class="body" onkeypress="keyPress()">
-
+    
     <nav>
         <div class="navigation">
             <!-- <div class="head"> -->
-            <input type="text" id="head">Title
+            <img  onclick="showPopUp()" style="margin-left: 20px;" src="../../assets/hamburger.png" height="30" width="30"/>
+            <input type="text" id="title" placeholder="Title"/>
             <button id="export">Export</button>
             <!-- </div> -->
             <div id="exportModal" style="display: none;">
@@ -48,7 +49,13 @@
                 </div>
             </div>
         </div>
+        
     </nav>
+    <div class="fileDropDown"  id="fileDropDown">
+        <div >
+           <h5 id="savedatabtn" style="width: 100%;">Save</h5>
+        </div>
+    </div>
 
 
 
@@ -284,9 +291,9 @@
                                 </button>
                                 <div class="dropdown-content">
                                     <select>
-                                    <object value="center">Center</object>
-                                    <object value="inside">Inside</object>
-                                    <object value="outside">Outside</object>
+                                    <option value="center">Center</option>
+                                    <option value="inside">Inside</option>
+                                    <option value="outside">Outside</option>
                                 </select>
                             </div>
                             <div class="stroke-border">
@@ -347,10 +354,11 @@
 <script src="../../dist/TS/Classes/TextBox.js"></script>
 <script src="../../dist/TS/Classes/Table.js"></script>
 <script src="../../dist/TS/index.js"></script>
+<script src="../../dist/TS/Workspace.js"></script>
 <script src="../../dist/TS/Properties.js"></script>
 <script src="../../dist/TS/KeyPresses.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
-<script src="../../dist/TS/Workspace.js"></script>
+
 
 
 </html>

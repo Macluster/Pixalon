@@ -19,28 +19,6 @@ frame.element.style.flexDirection="column"
 
 
 
-function custom() {
-
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-
-  // Get specific parameters
-  const height = urlParams.get('height');
-  const width = urlParams.get('width');
-  console.log("height"+height)
-  const frame = new Frame(width+ "px", height + "px", "white", "");
-  frame.element.id = "page1";
-  frame.element.style.display = "flex";
-  frame.element.style.flexDirection = "column";
-  frame.element.style.top="100px"
-  frame.element.style.left="300px"
-  pages.push(frame);
-  frame.appendTo(".work-space");
-}
-
-custom()
-
-
 
 
 
@@ -74,6 +52,7 @@ function addSection(): void {
 
   // Set an ID for the new section and add it to the list
   section.element.id = "section" + sectionId++;
+  
   sectionList.push(section);
 
   // Append the new section to the container
@@ -93,42 +72,58 @@ function addTextBox(): void {
 // Adding Image
 const imageList: Img[] = [];
 let imageId = 0;
+
+
 function selectImage(): void {
-  const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement | null;
 
-  if (!fileInput) {
-    console.error("File input element not found.");
-    return;
-  }
-
-  const imageElement = document.createElement("img");
-  imageElement.style.height = "100px";
-  imageElement.style.width = "100px";
-  imageElement.style.backgroundColor = "green";
-
-  fileInput.addEventListener("change", function (event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = function (e: ProgressEvent<FileReader>) {
-        if (!e.target?.result) return;
-
-        // Create a new reusable div instance
-        const  image = new Img((e.target.result as string));
-     
-        image.element.id = "I" + imageId++;
-
-        // Append the div to the body
-        image.appendTo("#" + currentSelectedContainer);
-      };
-
-      reader.readAsDataURL(file); // Read the image as a DataURL
+    if (!fileInput) {
+        console.error("File input element not found.");
+        return;
     }
-  });
-  fileInput.click();
+
+    // Trigger the file input change event to select a file
+    fileInput.addEventListener("change", function (event: Event) {
+        const file = (event.target as HTMLInputElement).files?.[0];
+
+        if (file) {
+            const storage = getStorage();
+            const storagePath = `images/${file.name}`; // Define the path in Firebase Storage
+            const fileRef = storageRef(storage, storagePath);
+
+            // Upload the file to Firebase Storage
+            uploadBytes(fileRef, file)
+                .then((snapshot) => {
+                    console.log("Uploaded a blob or file!");
+
+                    // Get the download URL
+                    return getDownloadURL(snapshot.ref);
+                })
+                .then((downloadURL) => {
+                    console.log("File available at", downloadURL);
+
+                    // Create an image element with the downloaded URL
+                    const imageElement = document.createElement("img");
+                    imageElement.src = downloadURL;
+                    imageElement.style.height = "100px";
+                    imageElement.style.width = "100px";
+                    imageElement.id = "I" + imageId++;
+
+                    // Append the image to the container
+                    const container = document.getElementById(currentSelectedContainer);
+                    if (container) {
+                        container.appendChild(imageElement);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error uploading file:", error);
+                });
+        }
+    });
+
+    fileInput.click(); // Programmatically trigger the file selection dialog
 }
+
 
 
 function onWorkspaceClicked(event:Event)

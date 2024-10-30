@@ -1,19 +1,39 @@
 import {app,database} from './Firebase.js'
-import {  ref, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+import {  ref, set,push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
+
 
 
 function addData()
 {
 
-    const userRef = ref(database);
+    const userRef = ref(database,"/savedFiles");
+
+    var ele=document.getElementById(currentSelectedContainer);
+    let sections= Array.from(ele.children)
+
+    let sectionList=[]
+    sections.forEach(element => {
+      if(element.id.includes("section"))
+      sectionList.push({
+        id:element.id,
+        data:element.innerHTML
+      })
+      
+    });
+
+
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const title = urlParams.get('name');
+    let metaData={
+      fileName:title,
+      sections:sectionList
+    }
 
     // Write an object with user details
-    set(userRef, {
-      username: 'deepakdenny',
-      email: 'deepak@example.com',
-      profile_picture: 'http://example.com/profile_picture.png'
-    })
+    push(userRef, metaData)
       .then(() => {
         console.log('User data written successfully!');
       })
@@ -23,4 +43,8 @@ function addData()
     
 }
 
-addData()
+
+
+
+document.getElementById('savedatabtn').addEventListener('click', addData);
+

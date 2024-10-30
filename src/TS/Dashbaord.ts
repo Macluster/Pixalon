@@ -63,18 +63,40 @@ function onCustomPresetCreate() {
     const fileName = (document.getElementById("cfilename")!as HTMLInputElement).value
     const width = (document.getElementById("cheight")! as HTMLInputElement).value
     const height = (document.getElementById("cwidth")! as HTMLInputElement).value
+
+    let isCustomeFieldsAreValid=true
+    console.log(width)
+    if(width=="" || height=="" || fileName=="")
+    {
+        alert("Please Fill  fields ")
+        isCustomeFieldsAreValid=false
+    }
+
+    if(!parseInt(width)&& isCustomeFieldsAreValid==true)
+    {
+        alert("Width should be numeric")
+        isCustomeFieldsAreValid=false
+
+    }
+     if(!parseInt(height)&& isCustomeFieldsAreValid==true)
+    {
+        alert("height should be numeric")
+        isCustomeFieldsAreValid=false
+
+    }
     console.log(width);
     console.log(height);
 
+    if(isCustomeFieldsAreValid)
+    {
+      window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
 
-    window.location.href=`workspace.html?name=${fileName}&height=${height}&width=${width}`
+    }
 }
 
 
 function onNewsletterCreate() {
   
-
-
     window.location.href=`workspace.html?name=title&height=800&width=600`
 }
 

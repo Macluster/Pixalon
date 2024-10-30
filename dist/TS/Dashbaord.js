@@ -47,9 +47,25 @@ function onCustomPresetCreate() {
     const fileName = document.getElementById("cfilename").value;
     const width = document.getElementById("cheight").value;
     const height = document.getElementById("cwidth").value;
+    let isCustomeFieldsAreValid = true;
+    console.log(width);
+    if (width == "" || height == "" || fileName == "") {
+        alert("Please Fill  fields ");
+        isCustomeFieldsAreValid = false;
+    }
+    if (!parseInt(width) && isCustomeFieldsAreValid == true) {
+        alert("Width should be numeric");
+        isCustomeFieldsAreValid = false;
+    }
+    if (!parseInt(height) && isCustomeFieldsAreValid == true) {
+        alert("height should be numeric");
+        isCustomeFieldsAreValid = false;
+    }
     console.log(width);
     console.log(height);
-    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}`;
+    if (isCustomeFieldsAreValid) {
+        window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}`;
+    }
 }
 function onNewsletterCreate() {
     window.location.href = `workspace.html?name=title&height=800&width=600`;
