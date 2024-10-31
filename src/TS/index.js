@@ -40,6 +40,8 @@ function addSection() {
     section.appendTo("#" + currentSelectedContainer);
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
+
+
 // Adding TextBox
 const textBoxList = [];
 let textBoxId = 0;
@@ -49,7 +51,10 @@ function addTextBox() {
     textBoxList.push(textBox);
     textBox.appendTo("#" + currentSelectedContainer);
 }
-document.getElementById("textboxBtn")?.addEventListener("click", addTextBox);
+document.getElementById("textboxBtn").addEventListener("click", addTextBox);
+
+
+
 // Adding Image
 const imageList = [];
 let imageId = 0;
