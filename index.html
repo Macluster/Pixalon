@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="src/Css/index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="assets/dashboard/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Logo with AOS zoom-in animation -->
+    <img data-aos="zoom-in" src="assets/dashboard/logo.svg" alt="Logo">
+
+    <!-- AOS Library and Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true
+        });
+    </script>
+
+    <!-- Redirect script with timeout based on login status from cookie -->
+    <script>
+        // Function to retrieve a cookie value by name
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check for the "loggedIn" cookie
+            const isLoggedIn = getCookie("loggedIn") === "true";
+
+            // Redirect based on login status after a short delay
+            setTimeout(() => {
+                if (isLoggedIn) {
+                    window.location.href = "src/Pages/dashboard.html";
+                } else {
+                    window.location.href = "src/Pages/login.html";
+                }
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

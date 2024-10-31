@@ -1,4 +1,4 @@
-"use strict";
+import uploadImageToFirebase from "../TS/Backend/upload.js";
 // Adding Page
 const pages = [];
 function addFrame() {
@@ -9,23 +9,7 @@ function addFrame() {
     pages.push(frame);
     frame.appendTo(".work-space");
 }
-function custom() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    // Get specific parameters
-    const height = urlParams.get('height');
-    const width = urlParams.get('width');
-    console.log("height" + height);
-    const frame = new Frame(width + "px", height + "px", "white", "");
-    frame.element.id = "page1";
-    frame.element.style.display = "flex";
-    frame.element.style.flexDirection = "column";
-    frame.element.style.top = "100px";
-    frame.element.style.left = "300px";
-    pages.push(frame);
-    frame.appendTo(".work-space");
-}
-custom();
+document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 // Adding Table
 const tableList = [];
 let tableId = 0;
@@ -35,6 +19,7 @@ function addTable() {
     tableList.push(table);
     table.appendTo("#" + currentSelectedContainer);
 }
+document.getElementById("tableBtn")?.addEventListener("click", addFrame);
 const sectionList = [];
 let sectionId = 0;
 function addSection() {
@@ -54,6 +39,7 @@ function addSection() {
     // Append the new section to the container
     section.appendTo("#" + currentSelectedContainer);
 }
+document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 // Adding TextBox
 const textBoxList = [];
 let textBoxId = 0;
@@ -63,6 +49,7 @@ function addTextBox() {
     textBoxList.push(textBox);
     textBox.appendTo("#" + currentSelectedContainer);
 }
+document.getElementById("textboxBtn")?.addEventListener("click", addTextBox);
 // Adding Image
 const imageList = [];
 let imageId = 0;
@@ -72,28 +59,25 @@ function selectImage() {
         console.error("File input element not found.");
         return;
     }
-    const imageElement = document.createElement("img");
-    imageElement.style.height = "100px";
-    imageElement.style.width = "100px";
-    imageElement.style.backgroundColor = "green";
-    fileInput.addEventListener("change", function (event) {
+    // Trigger the file input change event to select a file
+    fileInput.addEventListener("change", async function (event) {
         const file = event.target.files?.[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                if (!e.target?.result)
-                    return;
-                // Create a new reusable div instance
-                const image = new Img(e.target.result);
-                image.element.id = "I" + imageId++;
-                // Append the div to the body
-                image.appendTo("#" + currentSelectedContainer);
-            };
-            reader.readAsDataURL(file); // Read the image as a DataURL
+          var imageUrl= await uploadImageToFirebase(file);
+          console.log("image link "+imageUrl)
+
+          const  image = new Img(imageUrl);
+     
+          image.element.id = "I" + imageId++;
+          console.log(image.element)
+
+        // Append the div to the body
+          image.appendTo("#" + currentSelectedContainer);
         }
     });
-    fileInput.click();
+    fileInput.click(); // Programmatically trigger the file selection dialog
 }
+document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
     event.stopPropagation();
     const ele = document.getElementById(currentSelectedContainer);
@@ -105,6 +89,7 @@ function onWorkspaceClicked(event) {
         }
     });
 }
+document.getElementById("work-space")?.addEventListener("mousedown", onWorkspaceClicked);
 // Get references to the select and button elements
 const mySelect = document.getElementById("format");
 const myButton = document.getElementById("exportFormat");
@@ -197,22 +182,22 @@ myButton.addEventListener("click", () => {
             // Get the div element by ID and ensure it's not null
             const capturepdf = document.getElementById("page1");
             if (capturepdf) {
-                // Use html2canvas to capture the div as a canvas
-                html2canvas(capturepdf).then((canvas) => {
-                    // Get the canvas as an image (JPEG format)
-                    const imgData = canvas.toDataURL("image/jpeg", 1.0);
-                    // Create a new jsPDF instance (use 'p' for portrait mode, 'mm' for millimeters, and 'a4' for paper size)
-                    const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
-                    // Calculate the width and height of the PDF page
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-                    // Add the image to the PDF, adjusting the size to fit the page
-                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                    // Save the PDF with a filename
-                    pdf.save('div_content.pdf');
-                }).catch((error) => {
-                    console.error("An error occurred while capturing the div:", error);
-                });
+                // // Use html2canvas to capture the div as a canvas
+                // html2canvas(capturepdf).then((canvas: HTMLCanvasElement) => {
+                //   // Get the canvas as an image (JPEG format)
+                //   const imgData = canvas.toDataURL("image/jpeg", 1.0);
+                //   // Create a new jsPDF instance (use 'p' for portrait mode, 'mm' for millimeters, and 'a4' for paper size)
+                //   const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+                //   // Calculate the width and height of the PDF page
+                //   const pdfWidth = pdf.internal.pageSize.getWidth();
+                //   const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                //   // Add the image to the PDF, adjusting the size to fit the page
+                //   pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                //   // Save the PDF with a filename
+                //   pdf.save('div_content.pdf');
+                // }).catch((error: Error) => {
+                //   console.error("An error occurred while capturing the div:", error);
+                // });
             }
             else {
                 console.error("Capture element not found.");

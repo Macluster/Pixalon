@@ -11,20 +11,42 @@
     <div class="container">
         <div class="login-box">
             <div class="login-title color1">Login to your Account</div>
-            <form class="login-form" action="#" method="post">
+            <div class="login-form">
                 <div class="input-group">
                     <input type="email" id="username" name="username" placeholder="Enter your email" required>
+                    <samp id="error-email" class="error-email">Invalid Email Address Please enter a valid email
+                        address</samp>
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility" onclick="togglePasswordVisibility()">
+                    <samp id="error-password" class="error-password">Invalid email or password</samp>
+                    <img id="togglePassword" src="../../assets/login/el_eye-close.svg" alt="Toggle Password Visibility"
+                        title="Show Password" onclick="togglePasswordVisibility()">
                 </div>
-                <button type="submit" onclick="SignUp(document.getElementById(username),document.getElementById(password))" class="login-button bg1">Login</button>
-            </form>
-            <div class="forgot-password"><a href="#">Forgot password?</a></div>
+                <button id="login-btn" class="login-button bg1">Login</button>
+            </div>
+            <div class="forgot-password"><a href="forgot-password.html">Forgot password?</a></div>
         </div>
     </div>
-    
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+
     <script src="../../dist/TS/login.js"></script>
+    <script type="module" src="../TS/Backend/login.js"></script>
+    <script type="module" src="../TS/Backend/Firebase.js"></script>
+
+    <script>
+
+        document.getElementById('login-btn').addEventListener('click', handleLogin);
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                enter();
+            }
+        });
+
+    </script>
+
 </body>
+
 </html>

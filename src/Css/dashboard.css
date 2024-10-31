@@ -20,6 +20,7 @@ a{
 .first-row{
    width: 220px; 
    background-image: url(../../assets/dashboard/dashboardbg.svg);
+   background-size: cover;
    height: 100vh;
    display: flex;
    flex-direction: column;
@@ -42,6 +43,7 @@ a{
     border-radius: 10px ;
 }
 .search i{
+    padding-right: 5px;
     cursor: pointer;
     color: white;
 }
@@ -53,6 +55,9 @@ a{
     height: 25px;
     background-color: #A67DFF;
 }
+input::placeholder {
+    color: white;
+  }
 .nav-items{
     margin-top: 75px;
     display: flex;
@@ -90,6 +95,85 @@ a{
 .pointer{
     cursor: pointer;
 }
+.cursor{
+    cursor: default;
+}
+
+.menu
+{
+    width: 90%;
+}
+
+.savedItem
+{
+    width:90%;
+    margin-top:5px;
+    height:30px;background-color:#471CA5;
+    border-radius:10px;display:flex;
+    gap:10px;flex-direction:row;
+    align-items:center;
+    justify-content:start;
+    padding:10px;
+}
+
+.savedItem:hover
+{
+    background-color: #A67DFF;
+}
+
+.popupContainer
+{
+    position: fixed;height: 100vh;width: 100vw;background-color:  rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  
+}
+
+.popupContainer>div
+{
+    height: 200px;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  
+   
+    padding: 20px;
+    gap: 10px;
+}
+
+.popupContainer>div input
+{
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(236, 234, 234);
+    
+}
+
+.popupContainer>div button
+{
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color:#8061C3;
+    color: white;
+    
+}
+.popupContainer>div>div
+{
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+   
+    
+}
+.fa-solid:hover{
+    color: white;
+}
 .curser{
     cursor: default;
 }
@@ -115,6 +199,66 @@ a{
 
 .profile i{
     color: #471CA5;
+    font-size: 20px;
+}
+.profile.pointer {
+    cursor: pointer;
+    position: relative;
+    font-size: 24px; 
+}
+.profile-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    gap: 0px;
+}
+.profile-name img{
+     width:50px;
+     height: auto;
+     padding: 0px;
+     margin: 0px;
+}
+
+
+.popup-menu {
+    
+    display: none; 
+    position: absolute;
+    top: 40px; 
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 10;
+    border-radius: 5px;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.menu-item {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color:#8061C3;
+    color: white;
+    width: 90px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.menu-item i{
+    font-size: 10px;
+}
+
+.menu-item:hover {
+    background-color: #471CA5;
     font-size: 20px;;
 }
 /* ---------------------------------------- */
@@ -124,6 +268,7 @@ a{
     align-items: center;
     justify-content: center;
     background-image: url(../../assets/dashboard/top-panel.svg);
+    background-size: cover;
     width:94% ;
     height: 200px;
     border:border;
@@ -227,8 +372,6 @@ a{
     grid-gap: 40px;
     
 }
-
-
 .grid-recent div{
     border: border;       
     border-radius: 10px;         
@@ -248,4 +391,27 @@ a{
     width: 100%;                 
     height: 100%;                
     object-fit: cover;           
+}
+.recent1 {
+    position: relative;
+    
+}
+.recent1 img{
+    filter: blur(2%);
+    
+}
+.overlay {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    color: white;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    /* border-radius: 5px; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 10px;
 }
