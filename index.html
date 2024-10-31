@@ -23,11 +23,25 @@
         });
     </script>
 
-    <!-- Redirect script with timeout based on login status -->
+    <!-- Redirect script with timeout based on login status from cookie -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const isLoggedIn = false;
+        // Function to retrieve a cookie value by name
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check for the "loggedIn" cookie
+            const isLoggedIn = getCookie("loggedIn") === "true";
+
+            // Redirect based on login status after a short delay
             setTimeout(() => {
                 if (isLoggedIn) {
                     window.location.href = "src/Pages/dashboard.html";
