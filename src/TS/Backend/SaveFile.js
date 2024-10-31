@@ -2,6 +2,7 @@ import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
 function addData() {
+ 
     const userRef = ref(database, "/savedFiles");
     var ele = document.getElementById(currentSelectedContainer);
     let sections = Array.from(ele.children);
