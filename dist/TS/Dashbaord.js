@@ -100,3 +100,15 @@ document.addEventListener('click', (event) => {
         menu.style.display = 'none';
     }
 }); 
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiration in days
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
+
+function logout() {
+    setCookie("loggedIn", "false", 1);
+    window.location.href = 'login.html';
+}
