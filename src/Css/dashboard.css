@@ -18,29 +18,32 @@ a{
 }
 
 .first-row{
-   width: 220px; 
+   width: 12%; 
    background-image: url(../../assets/dashboard/dashboardbg.svg);
    background-size: cover;
    height: 100vh;
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: center;
    position:fixed;
+   gap: 22%;
 
 }
 .first-row img{
     margin-top: 25px;
-    width: 161px;
+    width: 100%;
     height: 25px;
 }
 .search{
     display: flex;
     align-items: center;
-    margin-top: 75px;
+    /* margin-top: 75px; */
     background-color: #A67DFF;
     height: 30px;
     border: border;
-    border-radius: 10px ;
+    border-radius: 10px;
+    width: 100%;
 }
 .search i{
     padding-right: 5px;
@@ -48,11 +51,12 @@ a{
     color: white;
 }
 .search input{
-    margin-top:2px;
+    /* margin-top:2px; */
     margin-left:5px;
     border: none;
     outline: none;
     height: 25px;
+    width: 100%;
     background-color: #A67DFF;
 }
 input::placeholder {
@@ -63,6 +67,10 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    
+}
+#nav-items h3{
+    font-size:0.8rem;
 }
 .nav_elements{
    
@@ -175,9 +183,12 @@ input::placeholder {
     color: white;
 }
 .experion img{
-    padding-top:35px;
-    width: 175px;
-    height: 30px;
+    
+    position: absolute;
+    bottom: 4%;
+    left: 6%;
+    height: auto;
+    width: 80%;
 }
 /* -----------------------SECOND ROW------------------------------------------------ */
 .second-row{
@@ -185,11 +196,11 @@ input::placeholder {
     flex-direction: column;
     gap: 10px;
     width: 85%;
-    padding-left: 230px;
+    padding-left: 12%;
   }
 .profile{
     margin-top: 20px;
-    margin-left: 95%;
+    margin-left: 100%;
     
 }
 
@@ -264,7 +275,7 @@ input::placeholder {
     justify-content: center;
     background-image: url(../../assets/dashboard/top-panel.svg);
     background-size: cover;
-    width:94% ;
+    width:100% ;
     height: 200px;
     border:border;
     border-radius: 10px;
@@ -277,7 +288,7 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 6%;
 }
 .preset div{
     display: flex;
@@ -319,9 +330,9 @@ input::placeholder {
 /* ------------------------------------------------------ */
 
 .temp{
-    margin-top: 0px;
+    margin-top: -5px;
     margin-left: 30px;
-    margin-right: 30px;
+    /* margin-right: 30px; */
 
 }
 .temp h4{
@@ -329,7 +340,7 @@ input::placeholder {
 }
 .grid-temp{
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(80px,1fr));
     grid-gap:40px;
     
 }
@@ -359,7 +370,7 @@ input::placeholder {
 
 .recent{
     margin-left: 30px;
-    margin-right: 30px;
+    /* margin-right: 30px; */
 }
 .grid-recent{
     display: grid;
@@ -376,7 +387,7 @@ input::placeholder {
     transition: transform 0.5s;   
     box-shadow: 0 4px 10px rgba(123, 122, 122, 0.2); 
     overflow: hidden;  
-    height: 120px;
+    /* height: 120px; */
     
 }
 
