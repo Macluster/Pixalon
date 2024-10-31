@@ -4,9 +4,11 @@ import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/fireba
 function addData() {
  
     const userRef = ref(database, "/savedFiles");
-    var ele = document.getElementById(currentSelectedContainer);
+    var ele = document.getElementById("page1");
     let sections = Array.from(ele.children);
+    const clone = ele.cloneNode(false);
     let sectionList = [];
+
     sections.forEach(element => {
         if (element.id.includes("section"))
             sectionList.push({
@@ -19,6 +21,7 @@ function addData() {
     const title = urlParams.get('name');
     let metaData = {
         fileName: title,
+        frameData:clone.outerHTML,
         sections: sectionList
     };
     // Write an object with user details
