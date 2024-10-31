@@ -2,17 +2,20 @@
 
 import {  ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 import { storage } from "./Firebase.js";
-const storagePath = `images/file`; // Define the path in Firebase Storage
-const fileRef = storageRef(storage, storagePath);
+
 
 // Upload the file to Firebase Storage
 
-function uploadImageToFirebase(file)
+async function uploadImageToFirebase(file)
 {
-
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const title = urlParams.get('name');
+    const storagePath = `images/${title}/${file.name}`; // Define the path in Firebase Storage
+    const fileRef = storageRef(storage, storagePath);
     console.log(file)
-
-    uploadBytes(fileRef, file)
+    var imageUrl=""
+   await  uploadBytes(fileRef, file)
     .then((snapshot) => {
         console.log("Uploaded a blob or file!");
 
@@ -21,23 +24,15 @@ function uploadImageToFirebase(file)
     })
     .then((downloadURL) => {
         console.log("File available at", downloadURL);
+        imageUrl=downloadURL;
 
-        // Create an image element with the downloaded URL
-        const imageElement = document.createElement("img");
-        imageElement.src = downloadURL;
-        imageElement.style.height = "100px";
-        imageElement.style.width = "100px";
-        imageElement.id = "I" + imageId++;
-
-        // Append the image to the container
-        const container = document.getElementById(currentSelectedContainer);
-        if (container) {
-            container.appendChild(imageElement);
-        }
+       
     })
     .catch((error) => {
         console.error("Error uploading file:", error);
     });
+
+    return imageUrl
 }
 
 

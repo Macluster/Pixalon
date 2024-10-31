@@ -60,10 +60,19 @@ function selectImage() {
         return;
     }
     // Trigger the file input change event to select a file
-    fileInput.addEventListener("change", function (event) {
+    fileInput.addEventListener("change", async function (event) {
         const file = event.target.files?.[0];
         if (file) {
-            uploadImageToFirebase(file);
+          var imageUrl= await uploadImageToFirebase(file);
+          console.log("image link "+imageUrl)
+
+          const  image = new Img(imageUrl);
+     
+          image.element.id = "I" + imageId++;
+          console.log(image.element)
+
+        // Append the div to the body
+          image.appendTo("#" + currentSelectedContainer);
         }
     });
     fileInput.click(); // Programmatically trigger the file selection dialog
