@@ -20,6 +20,7 @@ function addTable() {
     table.appendTo("#" + currentSelectedContainer);
 }
 document.getElementById("tableBtn")?.addEventListener("click", addFrame);
+// Adding Section
 const sectionList = [];
 let sectionId = 0;
 function addSection() {
