@@ -31,9 +31,9 @@ a{
 
 }
 .first-row img{
-    margin-top: 25px;
-    width: 100%;
-    height: 25px;
+    margin-top: 50px;
+    width: 80%;
+    height: auto;
 }
 .search{
     display: flex;
