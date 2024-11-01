@@ -42,7 +42,7 @@
                         <h3>Home</h3>
                     </div>
                     <div id="savedItemsSection" class="saved-items" style="display: none;">
-                        <h4>Saved Items</h4>
+                        <h3>Saved Items</h3>
                         <ul id="savedItemsList"></ul>
                     </div>
                     <div onclick="onSavedItemClicked()" id="saveditem" class="nav_elements notselected pointer">
@@ -81,7 +81,8 @@
                     <samp>Logout</samp>
                 </div>
             <div class="profile pointer">
-                <i class="fa-regular fa-user"></i>
+                <!-- <i class="fa-regular fa-user"></i> -->
+            </div>
             </div>
 
             <div class="design">
@@ -102,11 +103,11 @@
                     <div class="preset-img pointer"><img src="../../assets/dashboard/poster.svg" alt=""></div>
                     <p class="cursor">Poster</p>
                 </div>
-                <div>
+                <div onclick="onA4Create()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/A4.svg" alt=""></div>
                     <p class="cursor">A4</p>
                 </div>
-                <div>
+                <div onclick="onA3Create()">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/A3.svg" alt=""></div>
                     <p class="cursor">A3</p>
                 </div>
@@ -154,5 +155,5 @@
     </div>
 </body>
 
-<script src="../../dist/TS/Dashbaord.js"></script>
+<script src="../TS/Dashbaord.js"></script>
 </html>

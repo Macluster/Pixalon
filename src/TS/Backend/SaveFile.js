@@ -4,9 +4,11 @@ import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/fireba
 function addData() {
  
     const userRef = ref(database, "/savedFiles");
-    var ele = document.getElementById(currentSelectedContainer);
+    var ele = document.getElementById("page1");
     let sections = Array.from(ele.children);
+    const clone = ele.cloneNode(false);
     let sectionList = [];
+
     sections.forEach(element => {
         if (element.id.includes("section"))
             sectionList.push({
@@ -14,11 +16,34 @@ function addData() {
                 data: element.innerHTML
             });
     });
+  
+    const today = new Date();
+    const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+    console.log(formattedDate);
+
+
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    console.log(formattedTime);
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const title = urlParams.get('name');
+    let title = urlParams.get('name');
+    title=document.getElementById('title').value
+    
+    const type = urlParams.get('type');
+    console.log("type="+type)
+    console.log("title="+title.value)
     let metaData = {
         fileName: title,
+        fileType:type,
+        date:formattedDate,
+        time:formattedTime,
+
+        frameData:clone.outerHTML,
         sections: sectionList
     };
     // Write an object with user details

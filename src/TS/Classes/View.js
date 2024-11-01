@@ -36,19 +36,39 @@ class View {
                 const resize = (e) => {
                     if (position.includes('right')) {
                         this.element.style.width = startWidth + (e.clientX - startX) + "px";
+                        //add width to prorety menu 
+                        document.getElementById('width').value = startWidth + (e.clientX - startX);
+                        // Update y,x-position in property box 
+                        document.getElementById('y-position').value = this.element.getBoundingClientRect().top;
                     }
                     if (position.includes('left')) {
                         const widthChange = startX - e.clientX;
                         this.element.style.width = startWidth + widthChange + "px";
                         this.element.style.left = (startLeft - widthChange) + "px";
+                        //add width to prorety menu 
+                        document.getElementById('width').value = startWidth + widthChange;
+                        // Update y,x-position in property box 
+                        document.getElementById('x-position').value = this.element.getBoundingClientRect().left;
+                        document.getElementById('y-position').value = this.element.getBoundingClientRect().top;
                     }
                     if (position.includes('bottom')) {
                         this.element.style.height = startHeight + (e.clientY - startY) + "px";
+                        //add height to prorety menu 
+                        document.getElementById('height').value = startHeight + (e.clientY - startY);
+
+                        // Update y,x-position in property box 
+                        document.getElementById('x-position').value = this.element.getBoundingClientRect().left;
                     }
                     if (position.includes('top')) {
                         const heightChange = startY - e.clientY;
                         this.element.style.height = startHeight + heightChange + "px";
                         this.element.style.top = (startTop - heightChange) + "px";
+                        //add height to prorety menu 
+                        document.getElementById('height').value = startHeight + heightChange;
+
+                        // Update y,x-position in property box 
+                        document.getElementById('x-position').value = this.element.getBoundingClientRect().left;
+                        document.getElementById('y-position').value = this.element.getBoundingClientRect().top;
                     }
                 };
                 const stopResize = () => {
@@ -70,6 +90,21 @@ class View {
             previouslySelectedElement = currentSelectedContainer;
             currentSelectedContainer = this.element.id;
             this.element.style.border = "2px solid #4CC9FE";
+
+            //updating hight and width in proparty box
+            document.getElementById('height').value = this.element.style.height.split("p")[0];
+            document.getElementById('width').value = this.element.style.width.split("p")[0];
+
+            // Get the bounding rectangle of the frame element to get its position
+            const rect = this.element.getBoundingClientRect();
+            document.getElementById('x-position').value = rect.left; // Update x-position input
+            document.getElementById('y-position').value = rect.top;  // Update y-position input
+
+            // Update color in the property box
+            const hex = rgbToHex(window.getComputedStyle(this.element).backgroundColor);
+            document.getElementById('colorCodeDisplay').value = hex;
+            document.getElementById('fillColorInput').value = hex;
+
             let reziersListOfCurrentObject = this.element.children; // Get only direct children
             Array.from(reziersListOfCurrentObject).forEach(child => {
                 if (child.classList.contains("resizer")) {
@@ -104,6 +139,10 @@ class View {
                 const maxTop = parentRect.height - this.element.offsetHeight;
                 this.element.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + "px";
                 this.element.style.top = Math.max(0, Math.min(newTop, maxTop)) + "px";
+
+                // Update y,x-position in property box 
+                document.getElementById('x-position').value = this.element.getBoundingClientRect().left;
+                document.getElementById('y-position').value = this.element.getBoundingClientRect().top;
             };
             const onMouseMove = (e) => {
                 moveAt(e.clientX, e.clientY);
@@ -126,3 +165,19 @@ class View {
         }
     }
 }
+
+function rgbToHex(rgb) {
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
+  }
