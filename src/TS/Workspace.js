@@ -16,6 +16,9 @@ function custom() {
     const height = urlParams.get('height');
     const width = urlParams.get('width');
     const title = urlParams.get('name');
+    
+    const type = urlParams.get('type');
+    console.log("type="+type)
     console.log("height" + height);
     console.log("title" + title);
     const frame = new Frame(width + "px", height + "px", "white", "");
