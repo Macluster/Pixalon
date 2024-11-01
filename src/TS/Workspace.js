@@ -16,6 +16,9 @@ function custom() {
     const height = urlParams.get('height');
     const width = urlParams.get('width');
     const title = urlParams.get('name');
+    
+    const type = urlParams.get('type');
+    console.log("type="+type)
     console.log("height" + height);
     console.log("title" + title);
     const frame = new Frame(width + "px", height + "px", "white", "");
@@ -37,5 +40,26 @@ function custom() {
      const rect = frame.element.getBoundingClientRect();
      document.getElementById('x-position').value = rect.left; // Update x-position input
      document.getElementById('y-position').value = rect.top;  // Update y-position input
+
+    // Update color in the property box
+    const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor);
+    document.getElementById('colorCodeDisplay').value = hex;
+    document.getElementById('fillColorInput').value = hex;
 }
 custom();
+
+function rgbToHex(rgb) {
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
+  }

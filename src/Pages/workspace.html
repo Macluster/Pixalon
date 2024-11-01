@@ -6,56 +6,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" type="image/png" href="../../assets/dashboard/logo.svg">
     <link rel="stylesheet" href="../Css/workspace.css" />
     <link rel="stylesheet" href="../Css/Properties.css" />
-    <link rel="stylesheet" href="../Css/table.css">
+    <!-- <link rel="stylesheet" href="../Css/table.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
+
 </head>
 
 <body class="body" onkeypress="keyPress()">
-    
+
     <nav>
         <div class="navigation">
             <!-- <div class="head"> -->
-            <img  onclick="showPopUp()" style="margin: 0px;margin-left: 20px;" src="../../assets/hamburger.png" height="30" width="30"/>
-            <input  type="text" id="title" placeholder="Title"/>
+            <img onclick="showPopUp()" style="margin: 0px;margin-left: 20px;" src="../../assets/hamburger.png"
+                height="30" width="30" />
+            <input type="text" id="title" placeholder="Title" />
             <button id="export">Export</button>
             <!-- </div> -->
             <div id="exportModal" style="display: none;">
                 <div class="modal-content">
                     <h5>Export</h5>
-                    <span class="close">&times;</span></div>
-                    <!-- <label for="fileName"></label> -->
-                    <input type="text" id="fileName" placeholder="File Name">
-                    <div class="export-file-details">
-                        <!-- <label for="size"></label> -->
-                        <input type="text" id="size" placeholder="Size">
-                        <!-- <label for="format"></label> -->
-                         <div class="format-types">
-                          <select  id="format" value="Format">
+                    <span class="close">&times;</span>
+                </div>
+                <!-- <label for="fileName"></label> -->
+                <input type="text" id="fileName" placeholder="File Name">
+                <div class="export-file-details">
+                    <!-- <label for="size"></label> -->
+                    <input type="text" id="size" placeholder="Size">
+                    <!-- <label for="format"></label> -->
+                    <div class="format-types">
+                        <select id="format" value="Format">
                             <option value="" disabled selected>Select an option</option>
                             <option value="html">HTML</option>
                             <option value="png">PNG</option>
                             <option value="jpeg">JPEG</option>
                             <option value="pdf">PDF</option>
-                          </select>
-                         </div>
-                        <button id="exportFormat">Export Format</button>
+                        </select>
                     </div>
+                    <button id="exportFormat">Export Format</button>
                 </div>
             </div>
         </div>
-        
+        </div>
+
     </nav>
-    <div class="fileDropDown"  id="fileDropDown">
-        <div >
-           <h5 id="savedatabtn" style="width: 100%;">Save</h5>
+    <div class="fileDropDown" id="fileDropDown">
+        <div>
+            <h5 id="savedatabtn" style="width: 100%;">Save</h5>
         </div>
     </div>
 
@@ -69,11 +72,11 @@
         <div class="left-side-bar">
             <div class="tools">
                 <input type="file" style="display: none;" id="fileInput" accept="image/*">
-                <img  onclick="Selectiontool()" src="../../assets/Group 79.png">
-                <img id="frameBtn"  src="../../assets/lets-icons_frame-light.png">
-                <img id="sectionBtn"  src="../../assets/mingcute--section-line.svg">
-                <img id="textboxBtn"  src="../../assets/iconoir_text.png">
-                <img id="tableBtn"  src="../../assets/tabler_table.png">
+                <img onclick="Selectiontool()" src="../../assets/Group 79.png">
+                <img id="frameBtn" src="../../assets/lets-icons_frame-light.png">
+                <img id="sectionBtn" src="../../assets/mingcute--section-line.svg">
+                <img id="textboxBtn" src="../../assets/iconoir_text.png">
+                <img id="tableBtn" src="../../assets/tabler_table.png">
                 <img id="imageBtn" src="../../assets/akar-icons_image.png">
             </div>
 
@@ -84,7 +87,7 @@
 
         </div>
 
-        <div id="work-space"  class="work-space">
+        <div id="work-space" class="work-space">
 
         </div>
         <!--  properties to arrange contents-->
@@ -184,9 +187,9 @@
                         </select>
                     </div>
                     <div class="font-property">
-                      
-                        <select onchange="onFontWeightChange(event)"  class="font-weight" value="Regular" >
-                           
+
+                        <select onchange="onFontWeightChange(event)" class="font-weight" value="Regular">
+
                             <option value="300">Thin</option>
                             <option value="400">ExtraLight</option>
                             <option value="500">Light</option>
@@ -195,24 +198,27 @@
                             <option value="800">Bold</option>
                             <option value="900">Extra Bold</option>
                         </select>
-                        <input onmousedown="onfonts" onchange="fontSizeChanged(event)" type="text" class="font-size" value="14">
+                        <input onmousedown="onfonts" onchange="fontSizeChanged(event)" type="text" class="font-size"
+                            value="14">
                     </div>
                     <div>
                         <div class="line-formatter">
                             <img src="../../assets/vertical.png" class="format" style="padding-left: 5px;">
-                            <input class="line-formatter-verticallay" type="text" value="auto" onchange="onLineHeightChange(event)">
+                            <input class="line-formatter-verticallay" type="text" value="auto"
+                                onchange="onLineHeightChange(event)">
                             <div class="line-formatter-horizontal">
                                 <img src="../../assets/Horizontal (2).png" id="formats" style="padding-left: 5px;">
-                                <input class="line-formatter-horizontally" type="text" value="auto" onchange="onLetterSpacingChange(event)">
+                                <input class="line-formatter-horizontally" type="text" value="auto"
+                                    onchange="onLetterSpacingChange(event)">
                             </div>
                         </div>
                     </div>
                     <div class="align-text">
                         <div id="align-paragraph">
-                            <img onclick="alignParagraph(event)"  src="../../assets/align-left.png" width="16"
+                            <img onclick="alignParagraph(event)" src="../../assets/align-left.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-center',event)" src="../../assets/align-center.png" width="16"
-                                height="16">
+                            <img onclick="alignParagraph('align-center',event)" src="../../assets/align-center.png"
+                                width="16" height="16">
                             <img onclick="alignParagraph('align-right')" src="../../assets/align-right.png" width="16"
                                 height="16">
                         </div>
@@ -252,13 +258,14 @@
 
                 <!-- FILL COLOR -->
 
-                        <h4>Fill<h4>
+                <h4>Fill<h4>
                         <div class="fill">
                             <div class="fill-inputs" style="border-radius: 6px;">
-                                <input onchange="onBackgroundChanged(event)" type="color" style="border-radius: 10px;" id="fillColorInput">
+                                <input onchange="onBackgroundChanged(event)" type="color" style="border-radius: 10px;"
+                                    id="fillColorInput">
                                 <input type="text" id="colorCodeDisplay" value="#bdbdbd" />
                                 <div style="height:20px;width:1.5px;background-color:white;"></div>
-                                <input type="text" id="opacityDisplay" value="100%" />
+                                <input type="number" id="opacityDisplay" value="100%" />
                             </div>
                             <div class="visible">
                                 <img src="../../assets/view.png" width="16" height="16">
@@ -285,24 +292,21 @@
                             <div class="low">
                                 <img src="../../assets/minus.png" width="14" height="16">
                             </div>
-                            </div>
-                            <div class="stroke-align">
+                        </div>
+                        <div class="stroke-align">
                             <div class="dropdown">
-                                <button id="dropdownButton" class="dropdown-button">Center
-                                    <img src="../../assets/bottom.png" alt="Arrow" width="8" height="10" id="select">
-                                </button>
                                 <div class="dropdown-content">
                                     <select>
-                                    <option value="center">Center</option>
-                                    <option value="inside">Inside</option>
-                                    <option value="outside">Outside</option>
-                                </select>
-                            </div>
-                            <div class="stroke-border">
-                                <img src="../../assets/proicons--stroke-thickness.png" width="14" height="14"
-                                    class="border-thickness">
-                                <input class="thickness" onchange="onBorderChanged(event)" />
-                            </div>
+                                        <option value="center" selected>Center</option>
+                                        <option value="inside">Inside</option>
+                                        <option value="outside">Outside</option>
+                                    </select>
+                                </div>
+                                <div class="stroke-border">
+                                    <img src="../../assets/proicons--stroke-thickness.png" width="14" height="14"
+                                        class="border-thickness">
+                                    <input class="thickness" onchange="onBorderChanged(event)" />
+                                </div>
                             </div>
                         </div>
                         <hr style="width: 100%;margin-top: 18px;">
@@ -316,15 +320,15 @@
                         </div>
 
 
-            <button onclick="selectBackgroundImage()">Add BackgroundImage</button>
+                        <button onclick="selectBackgroundImage()">Add BackgroundImage</button>
 
-            <input type="file" style="display: none;" id="backgroundImage" accept="image/*">
+                        <input type="file" style="display: none;" id="backgroundImage" accept="image/*">
+            </div>
+
+            <div class="output">
+
+            </div>
         </div>
-
-        <div class="output">
-
-        </div>
-    </div>
     </div>
 
 
