@@ -87,6 +87,8 @@ body {
     align-self: flex-end;
     margin-right: 30px;
     margin-top: 25px;
+    right: 470px;
+    top: 300px;
     height: 35PX;
     width: 35px;
 
@@ -123,7 +125,6 @@ body {
 .forgot-password a:hover {
     text-decoration: underline;
 }
-
 .error-password,
 .error-email {
     color: red;

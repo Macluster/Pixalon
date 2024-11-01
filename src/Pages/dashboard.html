@@ -42,7 +42,7 @@
                         <h3>Home</h3>
                     </div>
                     <div id="savedItemsSection" class="saved-items" style="display: none;">
-                        <h4>Saved Items</h4>
+                        <h3>Saved Items</h3>
                         <ul id="savedItemsList"></ul>
                     </div>
                     <div onclick="onSavedItemClicked()" id="saveditem" class="nav_elements notselected pointer">
@@ -67,7 +67,6 @@
             </div>
         </nav>
         <div class="second-row">
-
             <div class="profile pointer" onclick="toggleMenu()">
                 <i class="fa-regular fa-user"></i>
 
@@ -80,16 +79,15 @@
                 <div onclick="logout()" class="menu-item">
                     <i class="fa-solid fa-sign-out-alt"></i> 
                     <samp>Logout</samp>
-                </div>                
+                </div>
+            <div class="profile pointer">
+                <i class="fa-regular fa-user"></i>
+            </div>
             </div>
 
             <div class="design">
                 <img src="../../assets/dashboard/logo.svg" alt="logo">
             </div>
-
-
-
-
             <div class="preset">
 
                 <div onclick="onCustomPopupOpened()">
@@ -135,7 +133,6 @@
             <div class="recent">
                 <h4 class="curser">Recents</h4>
                 <div class="grid-recent pointer">
-
                     <div class="recent1">
                         <img src="../../assets/dashboard/recent1.svg" alt="recent1">
                         <samp class="overlay">Newsletter_Sept2024</samp>
@@ -151,18 +148,12 @@
                     <div class="recent1">
                         <img src="../../assets/dashboard/recent4.svg" alt="recent4">
                         <samp class="overlay">Newsletter_Sept2024</samp>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </body>
 
 <script src="../../dist/TS/Dashbaord.js"></script>
-
 </html>
