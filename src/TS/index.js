@@ -8,6 +8,15 @@ function addFrame() {
     frame.element.style.flexDirection = "column";
     pages.push(frame);
     frame.appendTo(".work-space");
+
+    // updating hight and width in property box
+    document.getElementById('height').value = 500;
+    document.getElementById('width').value = 500;
+
+     // Get the bounding rectangle of the frame element to get its position
+     const rect = frame.element.getBoundingClientRect();
+     document.getElementById('x-position').value = rect.left; // Update x-position input
+     document.getElementById('y-position').value = rect.top;  // Update y-position input
 }
 document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 // Adding Table
