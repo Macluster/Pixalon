@@ -7,8 +7,8 @@ function showPopUp() {
     else
         ele.style.display = "none";
 }
-function saveProgress() {
-}
+
+
 function custom() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
