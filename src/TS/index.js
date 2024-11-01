@@ -8,6 +8,20 @@ function addFrame() {
     frame.element.style.flexDirection = "column";
     pages.push(frame);
     frame.appendTo(".work-space");
+
+    // updating hight and width in property box
+    document.getElementById('height').value = 500;
+    document.getElementById('width').value = 500;
+
+     // Get the bounding rectangle of the frame element to get its position
+     const rect = frame.element.getBoundingClientRect();
+     document.getElementById('x-position').value = rect.left; // Update x-position input
+     document.getElementById('y-position').value = rect.top;  // Update y-position input
+
+    //color setting in property box
+    const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor)
+    document.getElementById('colorCodeDisplay').value = hex;
+    document.getElementById('fillColorInput').value = hex;
 }
 document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 // Adding Table
@@ -20,6 +34,7 @@ function addTable() {
     table.appendTo("#" + currentSelectedContainer);
 }
 document.getElementById("tableBtn")?.addEventListener("click", addFrame);
+// Adding Section
 const sectionList = [];
 let sectionId = 0;
 function addSection() {
@@ -40,6 +55,8 @@ function addSection() {
     section.appendTo("#" + currentSelectedContainer);
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
+
+
 // Adding TextBox
 const textBoxList = [];
 let textBoxId = 0;
@@ -49,7 +66,10 @@ function addTextBox() {
     textBoxList.push(textBox);
     textBox.appendTo("#" + currentSelectedContainer);
 }
-document.getElementById("textboxBtn")?.addEventListener("click", addTextBox);
+document.getElementById("textboxBtn").addEventListener("click", addTextBox);
+
+
+
 // Adding Image
 const imageList = [];
 let imageId = 0;
@@ -207,3 +227,19 @@ myButton.addEventListener("click", () => {
             console.log("No valid option selected");
     }
 });
+
+function rgbToHex(rgb) {
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
+  }
