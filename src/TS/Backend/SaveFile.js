@@ -19,8 +19,10 @@ function addData() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const title = urlParams.get('name');
+    const type = urlParams.get('type');
     let metaData = {
         fileName: title,
+        dataType:type,
         frameData:clone.outerHTML,
         sections: sectionList
     };

@@ -49,13 +49,21 @@ function onCustomPresetCreate() {
     const height = document.getElementById("cwidth").value;
     console.log(width);
     console.log(height);
-    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}`;
+    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}&type=custom`;
 }
 function onNewsletterCreate() {
-    window.location.href = `workspace.html?name=title&height=800&width=600`;
+    window.location.href = `workspace.html?name=title&height=800&width=600&type=newsletter`;
 }
 function onPosterCreate() {
-    window.location.href = `workspace.html?name=title&height=600&width=600`;
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=poster`;
+}
+
+function onA4Create() {
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=a4`;
+}
+
+function onA3Create() {
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=a3`;
 }
 function onSearched(event) {
     console.log("hai");
