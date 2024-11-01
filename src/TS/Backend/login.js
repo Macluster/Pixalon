@@ -28,6 +28,7 @@ function login() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
             // Signed in successfully
+            setCookie("loggedIn", "true", 1);
             const user = userCredential.user;
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
@@ -63,4 +64,12 @@ document.addEventListener('keydown', (event) => {
 function isValidEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+}
+
+//cookie
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiration in days
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
 }

@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Css/workspace.css" />
     <link rel="stylesheet" href="../Css/Properties.css" />
+    <link rel="stylesheet" href="../Css/table.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -132,11 +133,11 @@
                     <div class="positions">
                         <div class="position_x">
                             <h5 class="sizes">X</h5>
-                            <input onclick="alignItems('x-position')" style="width: 41px;">
+                            <input id="x-position" onclick="alignItems('x-position')" style="width: 41px;">
                         </div>
                         <div class="position_y">
                             <h5 class="sizes">Y</h5>
-                            <input onclick="alignItems('y-position')" style="width: 41px;">
+                            <input id="y-position" onclick="alignItems('y-position')" style="width: 41px;">
                         </div>
                         <div class="angle-rotation">
                             <img src="../../assets/system-uicons_angle.png" width="16" height="16">
@@ -155,11 +156,11 @@
                     <div style="display: flex; justify-content: space-around; align-items: center;" class="layout">
                         <div class="height">
                             <h5 class="size">H</h5>
-                            <input class="property" onchange="onHeightChanged(event)">
+                            <input id="height" class="property" onchange="onHeightChanged(event)">
                         </div>
                         <div class="width">
                             <h5 class="size">W</h5>
-                            <input class="property" onchange="onWidthChanged(event)">
+                            <input id="width" class="property" onchange="onWidthChanged(event)">
                         </div>
                         <img onclick="constrain('constrain-proportion')"
                             src="../../assets/material-symbols_link (1).png" width="18" height="18"
@@ -360,6 +361,7 @@
 <script src="../TS/Workspace.js"></script>
 <script src="../TS/Properties.js"></script>
 <script src="../TS/KeyPresses.js"></script>
+<script src="../TS/Classes/height&width.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
 
 

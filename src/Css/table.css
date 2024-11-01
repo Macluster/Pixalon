@@ -1,0 +1,55 @@
+table {
+  width: 80%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid black;
+  /* padding: 8px; */
+  /* text-align: center; */
+  /* box-sizing: border-box; */
+
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+/* Highlight selected cells */
+.selected {
+  background-color: skyblue;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  margin: 5px;
+  text-align: left;
+  cursor: pointer;
+  /* border-radius: 20px; */
+  /* height: 40px;
+    width: 100px;
+    background-color: rgb(18, 80, 250); */
+  /* border: none; */
+  /* color: white; */
+}
+
+.fill-inputs {
+  width: 20%;
+  height: 100px;
+  padding-top: 20px;
+  padding-left: 20px;
+  flex-direction: column;
+  background-color: burlywood;
+  display: none;
+}
+
+#right {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: bisque;
+  visibility: hidden;
+  position: fixed;
+}
