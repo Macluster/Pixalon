@@ -24,10 +24,18 @@
     <nav>
         <div class="navigation">
             <!-- <div class="head"> -->
-            <img onclick="showPopUp()" style="margin: 0px;margin-left: 20px;" src="../../assets/hamburger.png"
-                height="30" width="30" />
+            <!-- <img  style="margin: 0px;margin-left: 20px;" src="../../assets/hamburger.png"
+                height="30" width="30" /> -->
+
+            <div style="width: 200px;"></div>
             <input type="text" id="title" placeholder="Title" />
-            <button id="export">Export</button>
+            <div>
+             
+                <button class="workSpaceBtn" id="savedatabtn">Save</button>
+                <button class="workSpaceBtn" id="export">Export</button>
+                
+            </div>
+         
             <!-- </div> -->
             <div id="exportModal" style="display: none;">
                 <div class="modal-content">
@@ -56,11 +64,7 @@
         </div>
 
     </nav>
-    <div class="fileDropDown" id="fileDropDown">
-        <div>
-            <h5 id="savedatabtn" style="width: 100%;">Save</h5>
-        </div>
-    </div>
+ 
 
 
 
