@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Css/dashboard.css">
+    <link rel="icon" type="image/png" href="../../assets/dashboard/logo.svg">
     <script src="https://kit.fontawesome.com/44e938003e.js" crossorigin="anonymous"></script>
     <link href="
     https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -16,7 +17,7 @@
         <div>
             <div>
                 <h3>Custom Details</h3>
-                <i onclick="onCustomPopupClosed()" class="fa-solid fa-xmark"></i>
+                <i id="onCustomPopupClosed" class="fa-solid fa-xmark"></i>
             </div>
 
             <input id="cfilename" placeholder="File Name" />
@@ -41,14 +42,12 @@
                         <i class="fa-solid fa-house"></i>
                         <h3>Home</h3>
                     </div>
-                    <div id="savedItemsSection" class="saved-items" style="display: none;">
-                        <h3>Saved Items</h3>
-                        <ul id="savedItemsList"></ul>
-                    </div>
-                    <div onclick="onSavedItemClicked()" id="saveditem" class="nav_elements notselected pointer">
+                   
+                    <div id="onSavedItemClicked" class="nav_elements notselected pointer">
                         <i class="fa-regular fa-floppy-disk"></i>
                         <h3>Saved Items</h3>
                     </div>
+
                     <a href="tips.html">
                         <div id="tricks" class="nav_elements notselected pointer">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -90,7 +89,7 @@
             </div>
             <div class="preset">
 
-                <div onclick="onCustomPopupOpened()">
+                <div id="onCustomPopupOpened">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/custom.svg" alt=""></div>
                     <p class="cursor">Custom</p>
                 </div>
@@ -155,5 +154,6 @@
     </div>
 </body>
 
-<script src="../TS/Dashbaord.js"></script>
+<script type="module" src="../TS/Dashbaord.js"></script>
+
 </html>
