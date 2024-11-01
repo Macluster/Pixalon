@@ -110,5 +110,5 @@ function setCookie(name, value, days) {
 
 function logout() {
     setCookie("loggedIn", "false", 1);
-    window.location.href = 'login.html';
+    window.location.href = "../../index.html";
 }
