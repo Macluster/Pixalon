@@ -1,52 +1,70 @@
 "use strict";
 class Table extends View {
-    constructor(width, height, bgcolor, content, cols, rows) {
-        super(width, height, bgcolor, content);
-        this.element.style.padding = "20px";
+  constructor(width, height, bgcolor, content, cols, rows) {
+    super(width, height, bgcolor, content);
+    this.selectedCells = [];
+    // this.element.style.padding = "20px";
+    this.element.style.backgroundColor = "transparent";
+    const table = document.createElement("table");
+    for (let i = 0; i < rows; i++) {
+      const newRow = document.createElement("tr");
+      newRow.className = "rowHeader";
+      console.log(newRow);
 
-        for (let i = 0; i < rows; i++) {
-          const newRow = table.insertRow();
-          newRow.className = "rowHeader";
-          console.log(newRow);
+      for (let j = 0; j < cols; j++) {
+        const newCell = document.createElement("td");
+        newCell.addEventListener("click", (event) => this.CellSelection(newCell, event));
+        newCell.contentEditable ="true";  
+        newRow.appendChild(newCell);
+      }
+      table.contentEditable = "true";
+      table.appendChild(newRow);
       
-          for (let j = 0; j < colums; j++) {
-            const newCell = newRow.insertCell(j);
-          }
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-        //   // Generate table headers with inputs for each column
-      //   let headings = ``;
-      //   for (let i = 0; i < cols; i++) {
-      //       headings += `<th><input style="width:100%; padding:5px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" placeholder="Heading ${i + 1}"/></th>`;
-      //   }
-      //   // Generate table rows with dynamic content (for demo, filled with sample data)
-      //   let rowsContent = ``;
-      //   for (let r = 0; r < rows; r++) {
-      //       rowsContent += `<tr>`;
-      //       for (let c = 0; c < cols; c++) {
-      //           rowsContent += `<td style="padding:10px; text-align:center; border: 1px solid #ddd;">Data ${r + 1}-${c + 1}</td>`;
-      //       }
-      //       rowsContent += `</tr>`;
-      //   }
-      //   this.element.innerHTML = `
-      //   <table style="width:100%; border-collapse: collapse; background-color:white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-      //     <thead>
-      //       <tr style="background-color:#f8f9fa; border-bottom: 2px solid #ddd;">
-      //         ${headings}
-      //       </tr>
-      //     </thead>
-      //     <tbody>
-      //       ${rowsContent}
-      //     </tbody>
-      //   </table>
-      // `;
     }
+    this.element.appendChild(table);
+    console.log(rows);
+    console.log(cols);
+  }
+
+  // Cell Selection
+  CellSelection(cell, event) {
+    event.stopPropagation();
+    console.log(event.target.tagName);
+
+    if (event.target.tagName === "TD") {
+      // Check if Shift key is pressed
+      if (event.shiftKey) {
+        this.toggleCellSelection(event.target);
+      } 
+      else if(event.ctrlKey)
+      {
+        this.clearAllSelections();
+      }
+      else {
+        // If Shift is not pressed, clear the selection and select only the clicked cell
+        this.clearAllSelections();
+        this.toggleCellSelection(event.target);
+      }
+    }
+  }
+  // Toggle cell selection (select/unselect)
+  toggleCellSelection(cell) {
+    console.log(cell);
+    if (this.selectedCells.includes(cell)) {
+      cell.classList.remove("selected");
+      this.selectedCells = this.selectedCells.filter(
+        (selectedCell) => selectedCell !== cell
+      );
+    } else {
+      cell.classList.add("selected");
+      this.selectedCells.push(cell);
+      // updateColorInputs(cell);
+    }
+  }
+
+  // Clear all selected cells
+  clearAllSelections() {
+    this.selectedCells.forEach((cell) => cell.classList.remove("selected"));
+    this.selectedCells = [];
+  }
 }

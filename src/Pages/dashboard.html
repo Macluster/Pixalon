@@ -25,12 +25,12 @@
                 <input id="cheight" style="width: 50%;" placeholder="height" />
                 <input id="cwidth" style="width: 50%;" placeholder="width" />
             </div>
-            <button onclick="onCustomPresetCreate()">Create</button>
+            <button id="popupPresetBtn">Create</button>
         </div>
     </div>
     <div class="conatainer">
         <nav class="first-row">
-            <img src="../../assets/dashboard/logo.svg" alt="logo">
+            <img  src="../../assets/dashboard/logo.svg" alt="logo">
             <div class="menu" id="menu">
                 <div class="search">
                     <input onchange="onSearched(event)" placeholder="Search" type="text">
@@ -48,7 +48,7 @@
                         <h3>Saved Items</h3>
                     </div>
 
-                    <a href="tips.html">
+                    <a href="tips.html" class="nav_elements notselected pointer">
                         <div id="tricks" class="nav_elements notselected pointer">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             <h3>Tips and Tricks</h3>
@@ -65,6 +65,7 @@
                 <img src="../../assets/dashboard/experion.png" alt="logo">
             </div>
         </nav>
+       
         <div class="second-row">
             <div class="profile pointer" onclick="toggleMenu()">
                 <i class="fa-regular fa-user"></i>
@@ -84,7 +85,7 @@
             </div>
             </div>
 
-            <div class="design">
+            <div class="design" style="height: 200px;">
                 <img src="../../assets/dashboard/logo.svg" alt="logo">
             </div>
             <div class="preset">
@@ -94,19 +95,19 @@
                     <p class="cursor">Custom</p>
                 </div>
 
-                <div onclick="onNewsletterCreate()">
+                <div id="newsletterBtn">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/newsletter.svg" alt=""></div>
                     <p class="cursor">Newsletter</p>
                 </div>
-                <div onclick="onPosterCreate()">
+                <div id="posterBtn">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/poster.svg" alt=""></div>
                     <p class="cursor">Poster</p>
                 </div>
-                <div onclick="onA4Create()">
+                <div id="A4PresentBtn">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/A4.svg" alt=""></div>
                     <p class="cursor">A4</p>
                 </div>
-                <div onclick="onA3Create()">
+                <div id="A3PresentBtn">
                     <div class="preset-img pointer"><img src="../../assets/dashboard/A3.svg" alt=""></div>
                     <p class="cursor">A3</p>
                 </div>
@@ -133,20 +134,20 @@
                 <h4 class="curser">Recents</h4>
                 <div class="grid-recent pointer">
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent1.svg" alt="recent1">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box1" src="../../assets/dashboard/recent1.svg" alt="recent1">
+                        <samp id="recent_name1" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent2.svg" alt="recent2">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box2" src="../../assets/dashboard/recent2.svg" alt="recent2">
+                        <samp id="recent_name2" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent3.svg" alt="recent3">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box3" src="../../assets/dashboard/recent3.svg" alt="recent3">
+                        <samp id="recent_name3" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent4.svg" alt="recent4">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box4" src="../../assets/dashboard/recent4.svg" alt="recent4">
+                        <samp id="recent_name4" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                 </div>
             </div>
