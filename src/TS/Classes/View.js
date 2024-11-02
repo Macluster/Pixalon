@@ -100,6 +100,11 @@ class View {
             document.getElementById('x-position').value = rect.left; // Update x-position input
             document.getElementById('y-position').value = rect.top;  // Update y-position input
 
+            // Update color in the property box
+            const hex = rgbToHex(window.getComputedStyle(this.element).backgroundColor);
+            document.getElementById('colorCodeDisplay').value = hex;
+            document.getElementById('fillColorInput').value = hex;
+
             let reziersListOfCurrentObject = this.element.children; // Get only direct children
             Array.from(reziersListOfCurrentObject).forEach(child => {
                 if (child.classList.contains("resizer")) {
@@ -160,3 +165,19 @@ class View {
         }
     }
 }
+
+function rgbToHex(rgb) {
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
+  }
