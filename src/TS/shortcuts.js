@@ -1,4 +1,4 @@
-
+import addData from "./Backend/SaveFile.js";
 
 
 "use strict";
@@ -182,56 +182,44 @@ function pasteElementToWorkspace() {
 
     
     function redo() {
-        const workspace = document.getElementById("page1");
-        if (redoStack.length > 0 && workspace) {
-            const lastRemovedElementHTML = redoStack.pop(); // Get the last removed HTML
-    
-            // Parse the HTML string to recreate the DOM element
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(lastRemovedElementHTML, "text/html");
-            const restoredElement = doc.body.firstChild;
-    
-            if (restoredElement) {
-                // Ensure the ID is unique to avoid conflicts
-                restoredElement.id = `restored-${Date.now()}`;
-    
-                // Append the restored element to the workspace
-                workspace.appendChild(restoredElement);
-                
-                // Add the outerHTML of the restored element back to the undo stack
-                undoStack.push(restoredElement.outerHTML);
-    
-                // Reapply necessary event listeners
-                makeElementDraggable(restoredElement);
-                resizeOfCopyPasteElement(restoredElement);
-                clickTextBox(restoredElement);
-                doubleClickTextBox(restoredElement);
-    
-                console.log("Redo performed. Element restored:", restoredElement.outerHTML);
-            } else {
-                console.warn("Error: Restored element is null or invalid.");
-            }
+    const workspace = document.getElementById("page1");
+    if (redoStack.length > 0 && workspace) {
+        const lastRemovedElementHTML = redoStack.pop(); // Get the last removed HTML
+
+        // Parse the HTML string to recreate the DOM element
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(lastRemovedElementHTML, "text/html");
+        const restoredElement = doc.body.firstChild;
+
+        if (restoredElement) {
+            // Ensure the ID is unique to avoid conflicts
+            restoredElement.id = `restored-${Date.now()}`;
+
+            // Append the restored element to the workspace
+            workspace.appendChild(restoredElement);
+            
+            // Add the outerHTML of the restored element back to the undo stack
+            undoStack.push(restoredElement.outerHTML);
+
+            // Reapply necessary event listeners
+            makeElementDraggable(restoredElement);
+            resizeOfCopyPasteElement(restoredElement);
+            clickTextBox(restoredElement);
+            doubleClickTextBox(restoredElement);
+
+            console.log("Redo performed. Element restored:", restoredElement.outerHTML);
         } else {
-            console.warn("Nothing to redo");
+            console.warn("Error: Restored element is null or invalid.");
         }
+    } else {
+        console.warn("Nothing to redo");
     }
-    
-    
-    // Usage in copy-paste or other actions
-    document.addEventListener('keydown', (event) => {
-        if (event.ctrlKey || event.metaKey) {
-            if (event.key === 'c') {
-                event.preventDefault();
-                copyElementToClipboard();
-            } else if (event.key === 'v') {
-                event.preventDefault();
-                const newElement = pasteElementToWorkspace();
-                if (newElement) {
-                    addElementToWorkspace(newElement);
-                }
-            }
-        }
-    });
+}
+
+function saveItems(){
+   
+}
+   
     
 // Key bindings for copy, paste, undo, and redo
 document.addEventListener("keydown", (event) => {
@@ -248,6 +236,10 @@ document.addEventListener("keydown", (event) => {
         } else if (event.key === "y") {
             event.preventDefault();
             redo();
+        }
+        else if (event.key === "s") {
+            event.preventDefault();
+            addData()
         }
     }
 });
