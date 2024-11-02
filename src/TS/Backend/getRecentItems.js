@@ -1,28 +1,25 @@
 import { database } from './Firebase.js';
-import { get ,ref} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+import { get, ref, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
+export async function fetchRecentData() {
+    const recentDataRef = ref(database, '/recentData'); // Reference to the recent data path in Firebase
 
-
-async function getRecentFiles() {
-
-    const dbRef = ref(database, '/savedFiles'); // Specify the path to the data you want
     try {
-        const snapshot = await get(dbRef);
+        // Query to get the last 4 items based on timestamp
+        const recentDataQuery = query(recentDataRef, orderByChild('timestamp'), limitToLast(4));
+        const snapshot = await get(recentDataQuery);
+
         if (snapshot.exists()) {
-           // console.log(snapshot.val()); // The data is stored in snapshot.val()
-            //return snapshot.val()
-            return snapshot.val()
+            // Extract data and order it in descending order of timestamps
+            const recentItems = Object.values(snapshot.val()).sort((a, b) => b.timestamp - a.timestamp);
+            console.log('recentItems:', recentItems); // Log the recent items to the console
+            return recentItems; // Return an array of the 4 most recent items
         } else {
-            console.log('No data available');
+            console.log('No recent data available');
+            return []; // Return empty array if no data is available
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching recent data:', error);
+        return []; // Return empty array if there's an error
     }
 }
-export default getRecentFiles
-
-
-
-
-
-
