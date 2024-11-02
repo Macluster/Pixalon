@@ -14,7 +14,7 @@ class Table extends View {
       for (let j = 0; j < cols; j++) {
         const newCell = document.createElement("td");
         newCell.addEventListener("click", (event) => this.CellSelection(newCell, event));
-        newCell.contentEditable ="true";
+        newCell.contentEditable ="true";  
         newRow.appendChild(newCell);
       }
       table.contentEditable = "true";
