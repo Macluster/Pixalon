@@ -7,6 +7,11 @@ function onBackgroundChanged(event) {
     if (view) {
         view.style.backgroundColor = target.value;
     }
+
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view).backgroundColor);
+   document.getElementById('colorCodeDisplay').value = hex;
+   document.getElementById('fillColorInput').value = hex;
 }
 function onCornerRadiusChanged(event) {
     const target = event.target;
@@ -140,3 +145,19 @@ function exportFile(fileName, size, format) {
     // Implement the actual export logic (e.g., downloading the file)
     console.log(`File ${fileName} of size ${size} and format ${format} is being exported.`);
 }
+
+function rgbToHex(rgb) {
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
+  }
