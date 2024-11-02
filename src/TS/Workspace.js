@@ -16,6 +16,9 @@ function custom() {
     const height = urlParams.get('height');
     const width = urlParams.get('width');
     const title = urlParams.get('name');
+    
+    const type = urlParams.get('type');
+    console.log("type="+type)
     console.log("height" + height);
     console.log("title" + title);
     const frame = new Frame(width + "px", height + "px", "white", "");
@@ -28,5 +31,14 @@ function custom() {
     frame.appendTo(".work-space");
     var titleElement = document.getElementById("title");
     titleElement.value = title;
+
+    //updating hight and width in property box
+    document.getElementById('height').value = width;
+    document.getElementById('width').value = height;
+
+     // Get the bounding rectangle of the frame element to get its position
+     const rect = frame.element.getBoundingClientRect();
+     document.getElementById('x-position').value = rect.left; // Update x-position input
+     document.getElementById('y-position').value = rect.top;  // Update y-position input
 }
 custom();

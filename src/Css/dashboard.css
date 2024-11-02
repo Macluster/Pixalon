@@ -31,9 +31,9 @@ a{
 
 }
 .first-row img{
-    margin-top: 50px;
-    width: 80%;
-    height: auto;
+    margin-top: 60%;
+    width: 85%;
+    height: 25px;
 }
 .search{
     display: flex;
@@ -238,8 +238,8 @@ input::placeholder {
     
     display: none; 
     position: absolute;
-    top: 40px; 
-    right: 0;
+    top: 45px; 
+    right: 2%;
     background-color: white;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -270,7 +270,7 @@ input::placeholder {
 
 .menu-item:hover {
     background-color: #471CA5;
-    font-size: 20px;;
+    /* font-size: 20px; */
 }
 /* ---------------------------------------- */
 .design {
