@@ -216,9 +216,7 @@ function pasteElementToWorkspace() {
     }
 }
 
-function saveItems(){
-   
-}
+
    
     
 // Key bindings for copy, paste, undo, and redo

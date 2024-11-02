@@ -1,17 +1,16 @@
 import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
-function addData() {
- 
+async function addData() {
+
+
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let title = urlParams.get('name');
     title=document.getElementById('title').value
     const type = urlParams.get('type');
-
-
-
+ 
     const userRef = ref(database, `/savedFiles/${title}`);
     var ele = document.getElementById("page1");
     let sections = Array.from(ele.children);
@@ -38,8 +37,7 @@ function addData() {
     const formattedTime = `${hours}:${minutes}:${seconds}`;
     console.log(formattedTime);
 
-   
-   
+    
     console.log("type="+type)
     console.log("title="+title.value)
     let metaData = {
@@ -52,14 +50,36 @@ function addData() {
         sections: sectionList
     };
     // Write an object with user details
-    set(userRef, metaData)
+  await  set(userRef, metaData)
         .then(() => {
         console.log('User data written successfully!');
+        
     })
         .catch((error) => {
         console.error('Error writing user data:', error);
     });
+
+    displayMessage("Data Saved", "success")
 }
 document.getElementById('savedatabtn').addEventListener('click', addData);
 
-export default addData
+
+function displayMessage(message, type) {
+    const messageBox = document.createElement('div');
+    messageBox.textContent = message;
+    messageBox.className = `message${type}`;
+   
+    messageBox.style.zIndex="20"
+    console.log("Before appending message box");
+    document.getElementById('work-space').appendChild(messageBox);
+    console.log("After appending message box");
+    
+    console.log("asfasf")
+    // Remove the message after a few seconds
+    setTimeout(() => {
+        document.getElementById('work-space').removeChild(messageBox);
+    }, 3000);
+  }
+
+  export default addData
+  
