@@ -42,11 +42,13 @@ onSavedItemClicked.addEventListener("click", async function() {
     const savedFiles = await displaySavedFiles(); // Fetch data from Firebase
     const menuDiv = document.getElementById("menu");
     const div = document.createElement("div");
+    
     div.style.display = "flex";
     div.style.flexDirection = "column";
     div.style.alignItems = "center";
     div.style.width = "100%";
     div.style.height = "100%";
+    div.style.overflowY="auto"
     
     menuDiv.innerHTML = "<div onclick='onSavedItemsbackButtonPressed()' style='width:100%;display:flex;align-items:center;margin-top:20px;gap:10px'><a href='../Pages/dashboard.html'><i style='display:flex;align-items:center;height:20px;' class='fa-solid fa-arrow-left'></i></a><h3>Saved items</h3></div>";
     menuDiv.appendChild(div);
