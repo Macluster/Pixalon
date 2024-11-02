@@ -1,4 +1,4 @@
-
+import addData from "./Backend/SaveFile.js";
 
 
 "use strict";
@@ -248,6 +248,10 @@ document.addEventListener("keydown", (event) => {
         } else if (event.key === "y") {
             event.preventDefault();
             redo();
+        }
+        else if (event.key === "s") {
+            event.preventDefault();
+            addData();
         }
     }
 });

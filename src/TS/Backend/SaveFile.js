@@ -3,7 +3,18 @@ import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/fireba
 // Reference to the 'users' node in the 
 async function addData() {
  
-    const userRef = ref(database, "/savedFiles");
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let title = urlParams.get('name');
+    title=document.getElementById('title').value
+    
+    const type = urlParams.get('type');
+    console.log("type="+type)
+    console.log("title="+title.value)
+
+
+    const userRef = ref(database, `/savedFiles/${title}`);
     var ele = document.getElementById("page1");
     let sections = Array.from(ele.children);
     const clone = ele.cloneNode(false);
@@ -29,14 +40,7 @@ async function addData() {
     const formattedTime = `${hours}:${minutes}:${seconds}`;
     console.log(formattedTime);
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    let title = urlParams.get('name');
-    title=document.getElementById('title').value
     
-    const type = urlParams.get('type');
-    console.log("type="+type)
-    console.log("title="+title.value)
     let metaData = {
         fileName: title,
         fileType:type,
@@ -47,7 +51,7 @@ async function addData() {
         sections: sectionList
     };
     // Write an object with user details
-  await  push(userRef, metaData)
+  await  set(userRef, metaData)
         .then(() => {
         console.log('User data written successfully!');
         
@@ -78,3 +82,4 @@ function displayMessage(message, type) {
     }, 3000);
   }
   
+  export default addData
