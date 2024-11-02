@@ -1,6 +1,6 @@
 "use strict";
-import getRecentFiles from "./Backend/getRecentItems.js";
 import {displaySavedFiles} from './Backend/savedItems.js';
+import {getRecentFiles} from './Backend/getRecentItems.js'
 
 
 let recentData=[
@@ -8,10 +8,32 @@ let recentData=[
 ]
 
 async function getRecentData() {
- 
-recentData= await getRecentFiles();  
-console.log(recentData) 
+    recentData = await getRecentFiles(); 
+
+    const names = recentData.map(file => file.fileName);
+
+    // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
+    for (let i = 1; i <= 4; i++) {
+        const id = "recent_name" + i;  
+        const name = names[i - 1]; // Adjust index to match names array
+        console.log(id);
+        const string = name ;
+        
+        // Get the element by ID
+        const element = document.getElementById(id);
+        
+        // Check if the element exists and if there is a corresponding name
+        if (element && name) {
+            element.innerHTML = string; // Set the value of the input element
+            console.log(name); // Log the name for debugging
+        }
+        else{
+            document.getElementById("recent_box" + i).style.display = "none";
+            element.style.display = "none";
+        }
+    } 
 }
+
 getRecentData()
 
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');

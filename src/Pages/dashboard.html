@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="conatainer">
-        <nav class="first-row">
-            <img src="../../assets/dashboard/logo.svg" alt="logo">
+        <div class="first-row">
+            <img  src="../../assets/dashboard/logo.svg" alt="logo">
             <div class="menu" id="menu">
                 <div class="search">
                     <input onchange="onSearched(event)" placeholder="Search" type="text">
@@ -48,7 +48,7 @@
                         <h3>Saved Items</h3>
                     </div>
 
-                    <a href="tips.html">
+                    <a href="tips.html" class="nav_elements notselected pointer">
                         <div id="tricks" class="nav_elements notselected pointer">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             <h3>Tips and Tricks</h3>
@@ -64,7 +64,7 @@
             <div class="experion">
                 <img src="../../assets/dashboard/experion.png" alt="logo">
             </div>
-        </nav>
+        </div>
         <div class="second-row">
             <div class="profile pointer" onclick="toggleMenu()">
                 <i class="fa-regular fa-user"></i>
@@ -133,20 +133,20 @@
                 <h4 class="curser">Recents</h4>
                 <div class="grid-recent pointer">
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent1.svg" alt="recent1">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box1" src="../../assets/dashboard/recent1.svg" alt="recent1">
+                        <samp id="recent_name1" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent2.svg" alt="recent2">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box2" src="../../assets/dashboard/recent2.svg" alt="recent2">
+                        <samp id="recent_name2" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent3.svg" alt="recent3">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box3" src="../../assets/dashboard/recent3.svg" alt="recent3">
+                        <samp id="recent_name3" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                     <div class="recent1">
-                        <img src="../../assets/dashboard/recent4.svg" alt="recent4">
-                        <samp class="overlay">Newsletter_Sept2024</samp>
+                        <img id="recent_box4" src="../../assets/dashboard/recent4.svg" alt="recent4">
+                        <samp id="recent_name4" class="overlay">Newsletter_Sept2024</samp>
                     </div>
                 </div>
             </div>
