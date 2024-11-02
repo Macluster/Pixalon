@@ -30,30 +30,33 @@ onSavedItemClicked.addEventListener("click", async function() {
     menuDiv.appendChild(div);
     menuDiv.style.height = "100%";
 
-    // Use Firebase data instead of static savedItems array
+    
     savedFiles.forEach(({ fileName, fileType }) => {
 
         let imgSrc;
 
         // Set image source based on file type
-        if (fileType === "newsletter") {
-            imgSrc = "../../assets/dashboard/newsletter.svg"; // Path to your newsletter image
-        } 
-        
-        else if(fileType === "poster") {
-            imgSrc = "../../assets/dashboard/poster.svg"; // Default image for other file types
-        }
+        switch(fileType){
+            case "newsletter":
+                imgSrc = "../../assets/dashboard/newsletter.svg"; 
+                break;
+            case "poster":
+                imgSrc = "../../assets/dashboard/poster.svg"; 
+                break;
+            case "a3":
+                imgSrc = "../../assets/dashboard/A3.svg"; 
+                break;
+            case "a4":
+                imgSrc = "../../assets/dashboard/A4.svg"; 
+                break;
+            case "custom":
+                imgSrc = "../../assets/dashboard/custom.svg"; 
+                break;
+            default:
+                imgSrc = "../../assets/dashboard/default.svg";
+                break;
 
-        else if(fileType === "a3") {
-            imgSrc = "../../assets/dashboard/A3.svg"; // Default image for other file types
-        }
 
-        else if(fileType === "a4") {
-            imgSrc = "../../assets/dashboard/A4.svg"; // Default image for other file types
-        }
-
-        else  {
-            imgSrc = "../../assets/dashboard/default.svg"; // Default image for other file types
         }
 
 
@@ -65,6 +68,8 @@ onSavedItemClicked.addEventListener("click", async function() {
             <h5 style="margin:0px;color:white">${fileName}</h5>
         </div>`;
         div.innerHTML += card;
+
+       
     });
 });
 

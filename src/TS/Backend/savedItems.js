@@ -11,7 +11,9 @@ export async function displaySavedFiles() {
             // Extract fileName and fileType for each file
             const fileData = Object.values(files).map(file => ({
                 fileName: file.fileName,
-                fileType: file.fileType
+                fileType: file.fileType,
+                framedata: file.frameData,
+                sections: file.sections
             }));
             return fileData; // Return array of objects with fileName and fileType
         } else {
