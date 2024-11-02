@@ -28,12 +28,30 @@ document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 const tableList = [];
 let tableId = 0;
 function addTable() {
-    const table = new Table("400px", "500px", "grey", "", 4, 5);
+    const row = document.getElementsByClassName("rows")[0].value;
+    const column = document.getElementsByClassName("columns")[0].value;
+    console.log(row);
+    
+    const table = new Table("auto", "auto", "grey", "", column, row);
     table.element.id = "Table" + tableId++;
     tableList.push(table);
     table.appendTo("#" + currentSelectedContainer);
 }
-document.getElementById("tableBtn")?.addEventListener("click", addFrame);
+
+function tablePopUp()
+{
+    document.getElementById("tablePop").style.visibility ="visible";
+}
+
+function closePopTable()
+{
+    document.getElementById("tablePop").style.visibility ="hidden";
+
+}
+document.getElementById("tableBtn")?.addEventListener("click", tablePopUp);
+// document.getElementsById("closeTab")?.addEventListener("click", closePopTable);
+document.getElementById("createTableButton")?.addEventListener("click",addTable);
+
 // Adding Section
 const sectionList = [];
 let sectionId = 0;
