@@ -1,3 +1,7 @@
+import uploadImageToFirebase from "../TS/Backend/upload.js";
+
+
+
 "use strict";
 function onBackgroundChanged(event) {
   const target = event.target;
@@ -8,11 +12,30 @@ function onBackgroundChanged(event) {
     view.style.backgroundColor = target.value;
   }
 
-  // Update color in the property box
-  const hex = rgbToHex(window.getComputedStyle(view).backgroundColor);
-  document.getElementById("colorCodeDisplay").value = hex;
-  document.getElementById("fillColorInput").value = hex;
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view).backgroundColor);
+   document.getElementById('colorCodeDisplay').value = hex;
+   document.getElementById('fillColorInput').value = hex;
 }
+
+
+function onTextColorChanged(event)
+{
+    const target = event.target;
+    console.log(target.value);
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if (view) {
+        view.querySelectorAll('textarea')[0].style.color = target.value;
+    }
+
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view.querySelectorAll('textarea')[0]).color);
+   document.getElementById('colorCodeDisplay').value = hex;
+   document.getElementById('fillColorInput').value = hex;
+}
+
+
 function onCornerRadiusChanged(event) {
   const target = event.target;
   console.log(target.value);
@@ -41,25 +64,28 @@ function onWidthChanged(event) {
   }
 }
 function selectBackgroundImage() {
-  const fileInput = document.getElementById("backgroundImage");
-  const preview = document.getElementById(currentSelectedContainer);
-  fileInput.addEventListener("change", async (event) => {
-    const target = event.target;
-    const file = target.files?.[0];
-    if (file && preview) {
-      const imageUrl = URL.createObjectURL(file);
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        preview.style.backgroundRepeat = "no-repeat";
-        preview.style.backgroundSize = "cover";
-        if (e.target?.result) {
-          preview.style.backgroundImage = `url('${e.target.result}')`;
+    const fileInput = document.getElementById("backgroundImage");
+    const preview = document.getElementById(currentSelectedContainer);
+    fileInput.addEventListener("change", async (event) => {
+        const target = event.target;
+        const file = target.files?.[0];
+        if (file && preview) {
+
+            var imageUrl= await uploadImageToFirebase(file);
+           
+  
+
+            
+                preview.style.backgroundRepeat = "no-repeat";
+                preview.style.backgroundSize = "cover";
+             
+                preview.style.backgroundImage = `url('${imageUrl}')`;
+                
+          
+       
         }
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-  fileInput.click();
+    });
+    fileInput.click();
 }
 function fontSizeChanged(event) {
   const target = event.target;
@@ -124,13 +150,13 @@ function onLetterSpacingChange(event) {
     view.querySelectorAll("table")[0].style.letterSpacing = `${target.value}px`;
   }
 }
-function alignParagraph(alignValue, event) {
-  const target = event.target;
-  const view = document.getElementById(currentSelectedContainer);
-  console.log(view);
-  if (view) {
-    view.querySelectorAll("textarea")[0].style.textAlign = `${alignValue}`;
-  }
+function alignParagraph(event,alignValue) {
+    const target = event.target;
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if (view) {
+        view.querySelectorAll('textarea')[0].style.textAlign = `${alignValue}`;
+    }
 }
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
@@ -173,18 +199,58 @@ function exportFile(fileName, size, format) {
 }
 
 function rgbToHex(rgb) {
-  if (!rgb) return "#000000"; // Default if no color is set
-  const result = rgb.match(/\d+/g);
-  if (result) {
-    return `#${(
-      (1 << 24) +
-      (Number(result[0]) << 16) +
-      (Number(result[1]) << 8) +
-      Number(result[2])
-    )
-      .toString(16)
-      .slice(1)}`;
+    if (!rgb) return "#000000"; // Default if no color is set
+    const result = rgb.match(/\d+/g);
+    if (result) {
+      return `#${(
+        (1 << 24) +
+        (Number(result[0]) << 16) +
+        (Number(result[1]) << 8) +
+        Number(result[2])
+      )
+        .toString(16)
+        .slice(1)}`;
+    }
+    return "#ffffff"; // Return black if parsing fails
   }
-  return "#ffffff"; // Return black if parsing fails
-}
 
+
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Event listeners for position-related inputs
+    document.getElementById("backgroundColorChanged").addEventListener("change", onBackgroundChanged);
+    document.getElementById("cornerRadiusInput").addEventListener("change", onCornerRadiusChanged);
+    document.getElementById("textColorInput").addEventListener("change",onTextColorChanged);
+    document.getElementById("alignTopImg").addEventListener("click",alignParagraph('align-top'));
+    document.getElementById("alignMiddle").addEventListener("click",alignParagraph('align-middle'));
+    document.getElementById("alignBottom").addEventListener("click",(event)=>alignParagraph(event,'align-bottom'));
+    document.getElementById("align-left").addEventListener("click",(event)=>alignParagraph(event,'left'));
+    document.getElementById("align-center").addEventListener("click",(event)=>alignParagraph(event,'center'));
+    document.getElementById("align-right").addEventListener("click",(event)=>alignParagraph(event,'right'));
+    document.getElementById("letter-spacing-input").addEventListener("change",onLetterSpacingChange);
+    document.getElementById("line-height-input").addEventListener("change",onLineHeightChange);
+    document.getElementById("font-size-input").addEventListener("change",fontSizeChanged);
+    document.getElementById("font-weight-changed").addEventListener("change",onFontWeightChange);
+    document.getElementById("font-family-input").addEventListener("change",onFontFamilyChange);
+    document.getElementById("height").addEventListener("change",onHeightChanged);
+    document.getElementById("width").addEventListener("change",onWidthChanged);
+    
+
+   
+
+
+
+
+    document.getElementById("background-image-picker").addEventListener("click",selectBackgroundImage);
+
+
+    
+   
+
+    
+
+    
+});

@@ -1,59 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../Css/tips.css">
+    <link rel="stylesheet" href="../Css/dashboard.css">
     <link rel="icon" type="image/png" href="../../assets/dashboard/logo.svg">
     <script src="https://kit.fontawesome.com/44e938003e.js" crossorigin="anonymous"></script>
     <link href="
 https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="conatainer">
         <nav class="first-row">
             <img src="../../assets/dashboard/logo.svg" alt="logo">
-            <div class="menu">
+            <div class="menu" id="menu">
                 <div class="search">
-                    <input type="text">
+                    <input onchange="onSearched(event)" placeholder="Search" type="text">
                     <i class="fa-solid fa-magnifying-glass"></i>
 
                 </div>
-                
-                <div class="nav-items">
-                    <a href="../Pages/dashboard.html">
+                <div class="nav-items" id="nav-items">
+                    <a href="dashboard.html" class="nav_elements notselected pointer">
                         <div id="home" class="nav_elements notselected pointer">
                             <i class="fa-solid fa-house"></i>
                             <h3>Home</h3>
                         </div>
                     </a>
-                    <div id="saveditem" class="nav_elements notselected pointer">
+
+                    <div id="onSavedItemClicked" class="nav_elements notselected pointer">
                         <i class="fa-regular fa-floppy-disk"></i>
                         <h3>Saved Items</h3>
                     </div>
-                    <div id="tricks" class="nav_elements selected pointer">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <h3>Tips and Tricks</h3>
-                    </div>
-                
+
+                    <a href="tips.html" class="nav_elements selected pointer">
+                        <div id="tricks" class="nav_elements selected pointer">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <h3>Tips and Tricks</h3>
+                        </div>
+                    </a>
                     <div id="import" class="nav_elements notselected pointer">
                         <i class="fa-solid fa-file-import"></i>
                         <h3>Import</h3>
                     </div>
                 </div>
-                
+
             </div>
             <div class="experion">
                 <img src="../../assets/dashboard/experion.png" alt="logo">
             </div>
         </nav>
+
         <div class="second-row">
 
             <div class="profile pointer">
                 <i class="fa-regular fa-user"></i>
             </div>
-            <div >
+            <div>
                 <p>Tips and Tricks</p>
             </div>
             <div class="box">
@@ -61,18 +66,18 @@ https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..
 
                 </div>
                 <div class="box-tip">
-                    <div> 
+                    <div>
                         <h3>How to use the text box</h3>
                     </div>
                     <div>
-                        <p>A text box in Pixalon is a design element used to input and display text within 
-                        a layout or interface. It serves as a container for text, allowing designers 
-                        to manage content placement, format, and organization in their designs.
+                        <p>A text box in Pixalon is a design element used to input and display text within
+                            a layout or interface. It serves as a container for text, allowing designers
+                            to manage content placement, format, and organization in their designs.
                         </p>
                     </div>
                     <div>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div class="box">
@@ -80,18 +85,18 @@ https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..
 
                 </div>
                 <div class="box-tip">
-                    <div> 
+                    <div>
                         <h3>How to use the text box</h3>
                     </div>
                     <div>
-                        <p>A text box in Pixalon is a design element used to input and display text within 
-                        a layout or interface. It serves as a container for text, allowing designers 
-                        to manage content placement, format, and organization in their designs.
+                        <p>A text box in Pixalon is a design element used to input and display text within
+                            a layout or interface. It serves as a container for text, allowing designers
+                            to manage content placement, format, and organization in their designs.
                         </p>
                     </div>
                     <div>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div class="box">
@@ -99,21 +104,22 @@ https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..
 
                 </div>
                 <div class="box-tip">
-                    <div> 
+                    <div>
                         <h3>How to use the text box</h3>
                     </div>
                     <div>
-                        <p>A text box in Pixalon is a design element used to input and display text within 
-                        a layout or interface. It serves as a container for text, allowing designers 
-                        to manage content placement, format, and organization in their designs.
+                        <p>A text box in Pixalon is a design element used to input and display text within
+                            a layout or interface. It serves as a container for text, allowing designers
+                            to manage content placement, format, and organization in their designs.
                         </p>
                     </div>
                     <div>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </body>
+
 </html>
