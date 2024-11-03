@@ -8,19 +8,23 @@ class Table extends View {
     const table = document.createElement("table");
     for (let i = 0; i < rows; i++) {
       const newRow = document.createElement("tr");
-      newRow.className = "rowHeader";
+      // newRow.className = "rowHeader";
       console.log(newRow);
 
       for (let j = 0; j < cols; j++) {
         const newCell = document.createElement("td");
+        newCell.className = "cellselect";
         newCell.addEventListener("click", (event) => this.CellSelection(newCell, event));
         newCell.contentEditable ="true";  
         newRow.appendChild(newCell);
       }
-      table.contentEditable = "true";
+      // table.contentEditable = "true";
       table.appendChild(newRow);
       
     }
+    table.style.fontSize ="14px";
+    table.style.font ="Arial";
+    // this.element.contentEditable = "true";
     this.element.appendChild(table);
     console.log(rows);
     console.log(cols);
@@ -43,6 +47,7 @@ class Table extends View {
       else {
         // If Shift is not pressed, clear the selection and select only the clicked cell
         this.clearAllSelections();
+        // event.target.contentEditable ="true";
         this.toggleCellSelection(event.target);
       }
     }
@@ -56,6 +61,7 @@ class Table extends View {
         (selectedCell) => selectedCell !== cell
       );
     } else {
+      cell.focus();
       cell.classList.add("selected");
       this.selectedCells.push(cell);
       // updateColorInputs(cell);

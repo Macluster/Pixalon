@@ -33,6 +33,7 @@ document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 const tableList = [];
 let tableId = 0;
 function addTable() {
+    document.getElementById("tablePop").style.visibility ="hidden";
     const row = document.getElementsByClassName("rows")[0].value;
     const column = document.getElementsByClassName("columns")[0].value;
     console.log(row);
@@ -54,9 +55,20 @@ function closePopTable() {
     document.getElementById("tablePop").style.visibility = "hidden";
 
 }
+function checkTable()
+{
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    
+    if( view.querySelectorAll("table")[0])
+        document.getElementById("tableTools").style.visibility="visible";
+    else
+    document.getElementById("tableTools").style.visibility="hidden";
+}
+document.getElementById("currentSelectedContainer")?.addEventListener("click",checkTable);
 document.getElementById("tableBtn")?.addEventListener("click", tablePopUp);
-// document.getElementsById("closeTab")?.addEventListener("click", closePopTable);
-document.getElementById("createTableButton")?.addEventListener("click", addTable);
+document.getElementById("closeTab")?.addEventListener("click", closePopTable);
+document.getElementById("createTableButton")?.addEventListener("click",addTable);
 
 // Adding Section
 const sectionList = [];
@@ -126,6 +138,9 @@ function selectImage() {
 
             // Add layer for the image
             addLayerItem("Image", image.element.id);
+        // Append the div to the body
+        console.log("current selected containr ="+currentSelectedContainer)
+          image.appendTo("#" + currentSelectedContainer);
         }
     });
     fileInput.click(); // Programmatically trigger the file selection dialog
@@ -133,14 +148,18 @@ function selectImage() {
 document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
     event.stopPropagation();
+     document.getElementById('work-space').querySelectorAll("*").forEach((e)=>{
+        e.style.border = "2px solid transparent";
+        let currentSelectedDiv = e.children; // Get only direct children
+        Array.from(currentSelectedDiv).forEach(child => {
+            if (child.classList.contains("resizer")) {
+                child.style.backgroundColor = "transparent"; // Set the desired color
+            }
+        });
+     })
+
     const ele = document.getElementById(currentSelectedContainer);
-    ele.style.border = "2px solid transparent";
-    let currentSelectedDiv = ele.children; // Get only direct children
-    Array.from(currentSelectedDiv).forEach(child => {
-        if (child.classList.contains("resizer")) {
-            child.style.backgroundColor = "transparent"; // Set the desired color
-        }
-    });
+   
 }
 document.getElementById("work-space")?.addEventListener("mousedown", onWorkspaceClicked);
 // Get references to the select and button elements
@@ -158,17 +177,18 @@ myButton.addEventListener("click", () => {
                     return;
                 const outputdiv = ele.cloneNode(true);
                 // Find all input elements within the div
-                const inputElements = outputdiv.querySelectorAll('input');
+                const inputElements = outputdiv.querySelectorAll('textarea');
                 // Loop through each input element
                 inputElements.forEach(function (inputElement) {
                     const inputValue = inputElement.value;
                     const inputStyle = inputElement.getAttribute('style'); // Get inline styles
                     // Create a new h2 element
-                    const h2Element = document.createElement('h2');
+                    const h2Element = document.createElement('h5');
                     h2Element.textContent = inputValue; // Set the content of the h2 to the input value
                     if (inputStyle) {
                         h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
                     }
+                    h2Element.style.fontFamily="Helvetica, sans-serif"
                     // Replace the input element with the new h2 element
                     inputElement.parentNode?.replaceChild(h2Element, inputElement);
                 });
