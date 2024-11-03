@@ -1,5 +1,5 @@
 body {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
   height: 100vh;
   width: 100%;
   margin: 0px;
@@ -11,19 +11,17 @@ button {
 }
 
 .main {
-
   width: 100%;
   height: 3000px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-
 }
 
 .messagesuccess {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
-  width: 200PX;
+  width: 200px;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -33,10 +31,7 @@ button {
   left: 500px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgb(121, 121, 121);
-
- 
 }
-
 
 .work-space {
   width: 100%;
@@ -45,63 +40,79 @@ button {
   margin: 0px;
 }
 
+#tableTools
+{
+  position: fixed;
+  visibility: hidden;
+  margin-left: 30%;
+  bottom: 10%;
+  background-color:#8061c3;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 40%;
+  height: 8%;
+  border-radius: 30px;
+  z-index: 1;
+  color: #d9d9d9;
+  display: flex;
+  flex-direction: row;
+  gap: 4%;
+  align-items: center;
+}
 
-
+#tableTools input[type = "color"]
+{
+  appearance: auto;
+  inline-size: 30px;
+  block-size: 30px;
+  /* border: #d9d9d9 2px solid; */
+  border-radius: 0%;
+  cursor: default;
+  background-color: white;
+}
 
 nav {
   height: 40px;
   width: 100%;
   display: flex;
   justify-content: end;
-
 }
 
 .fileDropDown {
-
-
   display: none;
 
   position: absolute;
   z-index: 20;
   padding: 10px;
-
-
 }
 
-.fileDropDown>div {
-
-
+.fileDropDown > div {
   background-color: white;
   height: 200px;
   width: 300px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey;
   padding: 10px;
-
 }
 
-.fileDropDown>div>h5 {
-
+.fileDropDown > div > h5 {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
-
 }
 
-.fileDropDown>div>h5:hover {
-
+.fileDropDown > div > h5:hover {
   width: 100%;
-  background-color: #8061C3;
+  background-color: #8061c3;
   color: white;
   padding: 5px;
-
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* HEADER */
 
 .navigation {
-  background-color: #8061C3;
+  background-color: #8061c3;
   width: 100%;
   display: flex;
 
@@ -113,10 +124,9 @@ nav {
   border-radius: 0px 0px 0px 0px;
   z-index: 3;
   padding: 10px;
-
 }
 
-.navigation>input {
+.navigation > input {
   width: auto;
   border: 0px;
   background-color: transparent;
@@ -124,24 +134,19 @@ nav {
   color: white;
 }
 
-.navigation>input::placeholder {
-
+.navigation > input::placeholder {
   color: white;
 }
 
-
-
-.workSpaceBtn
-{
-  background-color: #6547A5;
+.workSpaceBtn {
+  background-color: #6547a5;
   border: 0px;
   padding: 8px 20px;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
 
   z-index: -1;
 }
-
 
 /* -------------------------------------------------------------------------------------------------------- */
 /* FILL */
@@ -152,16 +157,15 @@ input[type="color"] {
   block-size: 25px;
   cursor: default;
 
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-width: 0px;
   border-image: initial;
   padding: 1px 2px;
   border-radius: 6px;
-
 }
 
 .color {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   height: 22px;
   width: 70px;
 }
@@ -176,7 +180,7 @@ input[type="color"] {
   width: 25px;
   height: 25px;
   border: 0;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
 .fill-inputs {
@@ -186,7 +190,7 @@ input[type="color"] {
   gap: 0;
   padding: 2px;
   width: 140px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
 #colorCodeDisplay {
@@ -233,11 +237,10 @@ input[type="color"] {
 /* STROKE */
 
 .dropdown-button {
-
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   color: rgb(0, 0, 0);
   padding: 5px 10px;
   font-size: 12px;
@@ -248,7 +251,7 @@ input[type="color"] {
 }
 
 .dropdown-button::after {
-  content: '';
+  content: "";
   font-size: 12px;
 }
 
@@ -296,7 +299,6 @@ input[type="color"] {
   position: absolute;
 }
 
-
 .stroke-border {
   position: relative;
   display: inline-block;
@@ -306,11 +308,10 @@ input[type="color"] {
   width: 30px;
   padding-left: 22px;
   height: 22px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 6px;
   border: 0;
   outline: none;
-
 }
 
 .border-thickness {
@@ -323,7 +324,6 @@ input[type="color"] {
   pointer-events: none;
 }
 
-
 .stroke-align {
   display: flex;
   flex-direction: row;
@@ -331,8 +331,6 @@ input[type="color"] {
   gap: 10px;
   margin-top: 10px;
 }
-
-
 
 /* ---------------------EXPORT----------------------------- */
 
@@ -380,7 +378,7 @@ input[type="color"] {
   width: 140px;
   border-radius: 6px;
   border: 0px;
-  background-color: #6547A5;
+  background-color: #6547a5;
   padding: 5px;
 }
 
@@ -390,7 +388,6 @@ input[type="color"] {
   border: 0px;
   background-color: white;
   padding: 5px;
-
 }
 
 #size {
@@ -419,21 +416,19 @@ input[type="color"] {
 /* ------------------------------------------------------------------------------------- */
 
 .tool-Property-box h4 {
-
   color: black;
   font-weight: 400;
   margin-top: 0px;
   padding-top: 5px;
   padding-bottom: 8px;
   margin-bottom: 6px;
-
 }
 
 .tool-Property-box {
   width: auto;
   height: 80%;
   /* Fixed height to enable vertical scroll */
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   border-radius: 6px;
   position: fixed;
   right: 0px;
@@ -453,8 +448,6 @@ input[type="color"] {
   scrollbar-width: none;
 }
 
-
-
 .property-box {
   height: auto;
   /* Allow the content inside to grow */
@@ -469,7 +462,6 @@ alignment {
 /* --------------------------------------------------------------------------------------- */
 
 .left-side-bar {
-
   width: 12%;
   height: 80%;
   margin-top: 4%;
@@ -478,13 +470,12 @@ alignment {
   display: flex;
   flex-direction: column;
   align-items: start;
-
 }
 
 .tools {
   height: 16%;
   width: 100%;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   border-radius: 6px;
   margin-bottom: 25px;
   display: grid;
@@ -504,15 +495,17 @@ alignment {
   width: 35px;
   padding: 5px;
   border-radius: 5px;
-
 }
 
-#tablePop
-{
+#tablePop {
   position: absolute;
   margin-left: 50%;
   margin-top: 40%;
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  gap: 10%;
   width: 120%;
   height: 20%;
   border-radius: 8px;
@@ -521,41 +514,45 @@ alignment {
   z-index: 4;
 }
 
-#tablePop input
-{
+#tablePop input {
   border: none;
   width: 100%;
   height: 15%;
   border-radius: 6px;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
 }
 
-#tablePop button
-{
-  background-color: #8061C3;
+
+#tablePop button {
+  background-color: #8061c3;
+  height: 20%;
+  width: 100%;
+  text-align: center;
+  color: #ebebeb;
+  border-radius: 6px;
 }
 
-#closetable
-{
+#closeTab {
   float: right;
-  margin-left: 86%;
-  margin-top: -8%;
-    font-size: 24px;
-    font-weight: 700;
-  
+  margin-left: 95%;
+  margin-top: -5%;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #6547a5;
 }
 
 /* ------------------------------------------------------------------------------- */
 .layers {
   height: 75%;
   width: 100%;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   border-radius: 6px;
 }
 
 /* --------------------------------------------------------------------------- */
 .layout img {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 6px;
   padding: 2px;
 }
@@ -570,11 +567,10 @@ alignment {
   border-radius: 6px;
   width: 70px;
   border: 0;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
 /* ------------------------------------------------------------------------------------------ */
-
 
 .draggable {
   width: 100px;
@@ -599,21 +595,19 @@ alignment {
 .resizable {
   width: 200px;
   height: 150px;
-  border: 2px solid transparent
+  border: 2px solid transparent;
 }
 
 .inputStyle {
   background-color: transparent;
   border: 0px;
-
 }
 
 .resizable:hover {
   background-color: green;
   width: 200px;
   height: 150px;
-  border: 2px solid #4CC9FE;
-
+  border: 2px solid #4cc9fe;
 }
 
 .resizer {
@@ -625,7 +619,6 @@ alignment {
   right: 0;
   bottom: 0;
   cursor: se-resize;
-
 }
 
 .resizer.top-left {
@@ -650,18 +643,16 @@ alignment {
   right: -5px;
   bottom: -5px;
   cursor: nwse-resize;
-
 }
 
-.resizable:hover>.resizer {
+.resizable:hover > .resizer {
   width: 10px;
   height: 10px;
-  background: #4CC9FE;
+  background: #4cc9fe;
   position: absolute;
 
   cursor: se-resize;
 }
-
 
 .movable {
   width: 150px;
@@ -687,10 +678,9 @@ td {
 /* --------------------------------------------------------------------------- */
 /* POSITION */
 
-
 .align-buttons {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -703,11 +693,11 @@ td {
 }
 
 .align img:hover {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
 }
 
 .align-spacing img:hover {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
 }
 
 .alignment {
@@ -715,7 +705,6 @@ td {
   flex-direction: column;
   gap: 5px;
 }
-
 
 .align {
   display: flex;
@@ -733,7 +722,7 @@ td {
 
 .spacing {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: space-between;
   padding: 8px;
@@ -747,7 +736,7 @@ td {
 
 .rotation {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -761,7 +750,7 @@ td {
 
 .position_x {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: start;
   height: 22px;
@@ -783,7 +772,7 @@ td {
 
 .position_y {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: start;
   height: 22px;
@@ -795,7 +784,7 @@ td {
 
 .angle-rotation {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: start;
   height: 22px;
@@ -814,18 +803,15 @@ td {
 }
 
 .position_x:hover {
-  background-color: #A9A9A9;
-
+  background-color: #a9a9a9;
 }
 
 .angle-rotation:hover {
-  background-color: #A9A9A9;
-
+  background-color: #a9a9a9;
 }
 
 .position_y:hover {
-  background-color: #A9A9A9;
-
+  background-color: #a9a9a9;
 }
 
 .sizes {
@@ -834,9 +820,8 @@ td {
   font-weight: 500;
 }
 
-
 hr {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   opacity: 39%;
 }
 
@@ -860,11 +845,10 @@ hr {
   width: 70px;
   padding-left: 22px;
   height: 20px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 6px;
   border: 0;
   outline: none;
-
 }
 
 .input-icon {
@@ -880,7 +864,6 @@ hr {
 .corner {
   position: relative;
   display: inline-block;
-
 }
 
 .property-input {
@@ -888,7 +871,6 @@ hr {
   padding-left: 22px;
   height: 20px;
   outline: none;
-
 }
 
 .input-icon {
@@ -922,7 +904,6 @@ hr {
   background-color: #d9d9d9;
   border-radius: 6px;
   padding: 5px;
-
 }
 
 .size {
@@ -943,7 +924,6 @@ hr {
 
 img {
   cursor: pointer;
-
 }
 
 /* -------------------------------------------------------------------------------------- */
@@ -995,7 +975,7 @@ img {
   padding: 5px;
   height: 24px;
   padding-left: 13px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   font-weight: 500;
   outline: none;
 }
@@ -1018,7 +998,7 @@ img {
   padding-left: 30px;
   border-radius: 6px;
   border-width: 0px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   outline: none;
 }
 
@@ -1042,7 +1022,7 @@ img {
   padding-left: 30px;
   border-radius: 6px;
   border-width: 0px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   outline: none;
 }
 
@@ -1066,7 +1046,7 @@ img {
 
 #align-paragraph {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: center;
   padding: 5px;
@@ -1080,7 +1060,7 @@ img {
 
 #align-sides {
   display: flex;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-items: center;
   justify-content: center;
   padding: 5px;

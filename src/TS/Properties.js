@@ -4,13 +4,13 @@ import uploadImageToFirebase from "../TS/Backend/upload.js";
 
 "use strict";
 function onBackgroundChanged(event) {
-    const target = event.target;
-    console.log(target.value);
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.style.backgroundColor = target.value;
-    }
+  const target = event.target;
+  console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view) {
+    view.style.backgroundColor = target.value;
+  }
 
    // Update color in the property box
    const hex = rgbToHex(window.getComputedStyle(view).backgroundColor);
@@ -37,31 +37,31 @@ function onTextColorChanged(event)
 
 
 function onCornerRadiusChanged(event) {
-    const target = event.target;
-    console.log(target.value);
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.style.borderRadius = `${target.value}px`;
-    }
+  const target = event.target;
+  console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view) {
+    view.style.borderRadius = `${target.value}px`;
+  }
 }
 function onHeightChanged(event) {
-    const target = event.target;
-    console.log(target.value);
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.style.height = `${target.value}px`;
-    }
+  const target = event.target;
+  console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view) {
+    view.style.height = `${target.value}px`;
+  }
 }
 function onWidthChanged(event) {
-    const target = event.target;
-    console.log(target.value);
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.style.width = `${target.value}px`;
-    }
+  const target = event.target;
+  console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view) {
+    view.style.width = `${target.value}px`;
+  }
 }
 function selectBackgroundImage() {
     const fileInput = document.getElementById("backgroundImage");
@@ -88,44 +88,67 @@ function selectBackgroundImage() {
     fileInput.click();
 }
 function fontSizeChanged(event) {
-    const target = event.target;
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.querySelectorAll('textarea')[0].style.fontSize = `${target.value}px`;
-    }
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view.querySelectorAll("textarea")[0]);
+  if (view.querySelectorAll("textarea")[0]) {
+    view.querySelectorAll("textarea")[0].style.fontSize = `${target.value}px`;
+  }
+  console.log(view.querySelectorAll("table")[0]);
+
+  if (view.querySelectorAll("table")[0]) {
+    view.querySelectorAll("table")[0].style.fontSize = `${target.value}px`;
+  }
 }
 function onFontFamilyChange(event) {
-    const target = event.target;
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.querySelectorAll('textarea')[0].style.fontFamily = `${target.value}`;
-    }
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view.querySelectorAll("textarea")[0]) {
+    view.querySelectorAll("textarea")[0].style.fontFamily = `${target.value}`;
+  }
+
+  if (view.querySelectorAll("table")[0]) {
+    view.querySelectorAll("table")[0].style.fontFamily = `${target.value}`;
+  }
 }
 function onFontWeightChange(event) {
-    const target = event.target;
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.querySelectorAll('textarea')[0].style.fontWeight = `${target.value}`;
-    }
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view.querySelectorAll("textarea")[0]) {
+    view.querySelectorAll("textarea")[0].style.fontWeight = `${target.value}`;
+  }
+
+  if (view.querySelectorAll("table")[0]) {
+    view.querySelectorAll("table")[0].style.fontWeight = `${target.value}`;
+  }
 }
 function onLineHeightChange(event) {
-    const target = event.target;
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.querySelectorAll('textarea')[0].style.lineHeight = `${target.value}px`;
-    }
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view);
+  if (view.querySelectorAll("textarea")[0]) {
+    view.querySelectorAll("textarea")[0].style.lineHeight = `${target.value}px`;
+  }
+
+  if (view.querySelectorAll("table")[0]) {
+    view.querySelectorAll("table")[0].style.lineHeight = `${target.value}px`;
+  }
 }
 function onLetterSpacingChange(event) {
-    const target = event.target;
-    const view = document.getElementById(currentSelectedContainer);
-    console.log(view);
-    if (view) {
-        view.querySelectorAll('textarea')[0].style.letterSpacing = `${target.value}px`;
-    }
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  console.log(view.querySelectorAll("table")[0]);
+  if (view.querySelectorAll("textarea")[0]) {
+    view.querySelectorAll(
+      "textarea"
+    )[0].style.letterSpacing = `${target.value}px`;
+  }
+
+  if (view.querySelectorAll("table")[0]) {
+    view.querySelectorAll("table")[0].style.letterSpacing = `${target.value}px`;
+  }
 }
 function alignParagraph(event,alignValue) {
     const target = event.target;
@@ -137,39 +160,42 @@ function alignParagraph(event,alignValue) {
 }
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
-    const exportModal = document.getElementById("exportModal");
-    exportModal.style.display = "block";
+  const exportModal = document.getElementById("exportModal");
+  exportModal.style.display = "block";
 });
 // Close the modal when the close button is clicked
 document.querySelector(".close")?.addEventListener("click", function () {
-    const exportModal = document.getElementById("exportModal");
-    exportModal.style.display = "none";
+  const exportModal = document.getElementById("exportModal");
+  exportModal.style.display = "none";
 });
 // Perform export when the "Export Format" button is clicked
 document.getElementById("exportFormat")?.addEventListener("click", function () {
-    const fileNameInput = document.getElementById("fileName");
-    const sizeInput = document.getElementById("size");
-    const formatInput = document.getElementById("format");
-    const fileName = fileNameInput.value;
-    const size = sizeInput.value;
-    const format = formatInput.value;
-    // Implement your export logic based on the entered values
-    if (fileName && size && format) {
-        alert(`Exporting file: ${fileName} with size: ${size} and format: ${format}`);
-        // Call the function that handles the actual file export logic
-        exportFile(fileName, size, format);
-    }
-    else {
-        //alert("Please fill in all fields.");
-    }
-    // Hide modal after export
-    const exportModal = document.getElementById("exportModal");
-    exportModal.style.display = "none";
+  const fileNameInput = document.getElementById("fileName");
+  const sizeInput = document.getElementById("size");
+  const formatInput = document.getElementById("format");
+  const fileName = fileNameInput.value;
+  const size = sizeInput.value;
+  const format = formatInput.value;
+  // Implement your export logic based on the entered values
+  if (fileName && size && format) {
+    alert(
+      `Exporting file: ${fileName} with size: ${size} and format: ${format}`
+    );
+    // Call the function that handles the actual file export logic
+    exportFile(fileName, size, format);
+  } else {
+    //alert("Please fill in all fields.");
+  }
+  // Hide modal after export
+  const exportModal = document.getElementById("exportModal");
+  exportModal.style.display = "none";
 });
 // Function to handle the actual file export logic
 function exportFile(fileName, size, format) {
-    // Implement the actual export logic (e.g., downloading the file)
-    console.log(`File ${fileName} of size ${size} and format ${format} is being exported.`);
+  // Implement the actual export logic (e.g., downloading the file)
+  console.log(
+    `File ${fileName} of size ${size} and format ${format} is being exported.`
+  );
 }
 
 function rgbToHex(rgb) {
