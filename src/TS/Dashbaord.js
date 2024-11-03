@@ -1,6 +1,7 @@
 "use strict";
 import {displaySavedFiles} from './Backend/savedItems.js';
 import {getRecentFiles} from './Backend/getRecentItems.js'
+import { getTemplates } from './Backend/getTemplates.js';
 
 
 let recentData=[
@@ -35,6 +36,80 @@ async function getRecentData() {
 }
 
 getRecentData()
+
+
+
+async function getTemplatesData() {
+    recentData = await getTemplates(); 
+    console.log(recentData)
+    const names = recentData.map(file => file.fileName);
+    console.log(names)
+    // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
+    let templateContainer=document.getElementById("templates-container")
+ //   templateContainer.style.overflowX="auto"
+    recentData.forEach((e)=>{
+        let card=document.createElement("div")
+        card.style.height="150px"
+        card.style.width="200px"
+        card.innerHTML=`<img src="../../assets/dashboard/news.png" alt="">`
+
+
+        card.addEventListener("click", () => {
+            // Log frameData and sections for reference
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
+          
+            
+            localStorage.setItem('frameData', e.frameData);
+            localStorage.setItem('sections', JSON.stringify(e.sections)); // Store sections as a JSON string
+            
+            
+            
+            // Redirect to workspace.html
+       window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}`;
+        });
+        
+
+       
+       
+        templateContainer.appendChild( card)
+
+
+
+
+    })
+
+     
+
+
+
+
+
+    // for (let i = 1; i <= 4; i++) {
+    //     const id = "template" + i;  
+    //     const name = names[i - 1]; // Adjust index to match names array
+    //     console.log(id);
+    //     const string = name ;
+        
+    //     // Get the element by ID
+    //     const element = document.getElementById(id);
+        
+    //     // Check if the element exists and if there is a corresponding name
+    //     if (element && name) {
+    //         element.innerHTML = string; // Set the value of the input element
+    //         console.log(name); // Log the name for debugging
+    //     }
+    //     else{
+    //         document.getElementById("recent_box" + i).style.display = "none";
+    //         element.style.display = "none";
+    //     }
+    // } 
+}
+
+getTemplatesData()
+
+
+
 
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');
 onSavedItemClicked.addEventListener("click", async function() {
@@ -93,8 +168,8 @@ onSavedItemClicked.addEventListener("click", async function() {
         // Add click event to redirect to another page with query parameters
         card.addEventListener("click", () => {
             // Log frameData and sections for reference
-            console.log('Frame Data:', frameData);
-            console.log('Sections:', sections);
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
           
             
             localStorage.setItem('frameData', frameData);

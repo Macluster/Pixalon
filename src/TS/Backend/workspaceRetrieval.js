@@ -21,8 +21,7 @@ if (frameData) {
     const tempDiv = await (parser.parseFromString(frameData, "text/html")).body.firstChild;
     tempDiv.id="page1"
    
-    console.log("hai")
-    console.log(tempDiv)
+   
     makeElementDraggable(tempDiv);
     resizeOfCopyPasteElement(tempDiv);
     // clickTextBox(ele);
@@ -82,9 +81,7 @@ if (frameData) {
     }
 
     workSpaceElement.appendChild(tempDiv);
-    console.log("when retriving")
-    console.log(tempDiv)
-    console.log("end")
+ 
 } else {
     console.error('Frame data not found'); // Handle case where frameData is not available
 }
