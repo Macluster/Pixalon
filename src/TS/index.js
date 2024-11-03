@@ -110,6 +110,7 @@ function selectImage() {
           console.log(image.element)
 
         // Append the div to the body
+        console.log("current selected containr ="+currentSelectedContainer)
           image.appendTo("#" + currentSelectedContainer);
         }
     });

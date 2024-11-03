@@ -16,8 +16,14 @@ function custom() {
     const height = urlParams.get('height');
     const width = urlParams.get('width');
     const title = urlParams.get('name');
-
+    var titleElement = document.getElementById("title");
+    titleElement.value = title;
   
+    if(height!=0)
+    {
+
+    
+
       const type = urlParams.get('type');
       console.log("type="+type)
       console.log("height" + height);
@@ -30,8 +36,7 @@ function custom() {
       frame.element.style.left = "300px";
       //pages.push(frame);
       frame.appendTo(".work-space");
-      var titleElement = document.getElementById("title");
-      titleElement.value = title;
+     
   
       //updating hight and width in property box
       document.getElementById('height').value = width;
@@ -47,9 +52,11 @@ function custom() {
       document.getElementById('colorCodeDisplay').value = hex;
       document.getElementById('fillColorInput').value = hex;
     
-    
+    }
 }
-custom();
+
+custom()
+
 
 function rgbToHex(rgb) {
     if (!rgb) return "#000000"; // Default if no color is set

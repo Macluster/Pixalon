@@ -1,7 +1,7 @@
 
 
 
- async function showData()
+async function showData()
 {
 // Retrieve frameData and sections from localStorage
 const frameData = await   localStorage.getItem('frameData');
@@ -18,7 +18,7 @@ if (frameData) {
 
     const parser = new DOMParser();
    
-    const tempDiv = await  (parser.parseFromString(frameData, "text/html")).body.firstChild;
+    const tempDiv = await (parser.parseFromString(frameData, "text/html")).body.firstChild;
     tempDiv.id="page1"
    
     console.log("hai")
@@ -51,12 +51,18 @@ if (frameData) {
                 let textareas= sec.querySelectorAll('textarea')
                 textareas.forEach((e)=>{
                     
+                   
                     let parentofTextarea=e.parentElement
-                    makeElementDraggable(parentofTextarea);
-                    resizeOfCopyPasteElement(parentofTextarea);
                     clickTextBox(parentofTextarea)
                     doubleClickTextBox(parentofTextarea)
                 })
+
+               let allChild= sec.querySelectorAll('*')
+               allChild.forEach((e)=>{
+                let parentofChild=e.parentElement
+                makeElementDraggable(parentofChild);
+                resizeOfCopyPasteElement(parentofChild);
+               })
                
 
                 makeElementDraggable(sec);
@@ -76,7 +82,9 @@ if (frameData) {
     }
 
     workSpaceElement.appendChild(tempDiv);
+    console.log("when retriving")
     console.log(tempDiv)
+    console.log("end")
 } else {
     console.error('Frame data not found'); // Handle case where frameData is not available
 }
