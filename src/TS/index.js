@@ -119,14 +119,18 @@ function selectImage() {
 document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
     event.stopPropagation();
+     document.getElementById('work-space').querySelectorAll("*").forEach((e)=>{
+        e.style.border = "2px solid transparent";
+        let currentSelectedDiv = e.children; // Get only direct children
+        Array.from(currentSelectedDiv).forEach(child => {
+            if (child.classList.contains("resizer")) {
+                child.style.backgroundColor = "transparent"; // Set the desired color
+            }
+        });
+     })
+
     const ele = document.getElementById(currentSelectedContainer);
-    ele.style.border = "2px solid transparent";
-    let currentSelectedDiv = ele.children; // Get only direct children
-    Array.from(currentSelectedDiv).forEach(child => {
-        if (child.classList.contains("resizer")) {
-            child.style.backgroundColor = "transparent"; // Set the desired color
-        }
-    });
+   
 }
 document.getElementById("work-space")?.addEventListener("mousedown", onWorkspaceClicked);
 // Get references to the select and button elements
