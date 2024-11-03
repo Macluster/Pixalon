@@ -73,6 +73,19 @@
 
 
     <div class="main">
+
+        <!-- table tools -->
+        <div id="tableTools">
+            <label>Cell Color:</label>
+            <input type="color" id="cellColor" value="#d0e6ff" />
+        
+            <label>Border Color:</label>
+            <input type="color" id="borderColor" value="#007bff" />
+        
+            <label>Font Color:</label>
+            <input type="color" id="fontColor" value="#000000" />
+         </div>
+
         <!-- Left sideBars-to add frame,select etc -->
         <div class="left-side-bar">
             <div class="tools">
@@ -86,7 +99,7 @@
             </div>
 
             <div id="tablePop">
-                <button id="closeTab">×</button>
+                <span id="closeTab">×</span>
                 <input type="number" class="rows" placeholder="rows">
                 <input type="number" class="columns" placeholder="columns">
                 <button id="createTableButton">Create Table</button>
@@ -178,7 +191,7 @@
                         </div>
                         <img onclick="constrain('constrain-proportion')"
                             src="../../assets/material-symbols_link (1).png" width="18" height="18"
-                            style="padding: 7px;">
+                            style="padding: 7px;"
                     </div>
                 </div>
                 <hr style="width: 100%;margin-top: 18px;">
@@ -228,7 +241,7 @@
                         <div id="align-paragraph">
                             <img onclick="alignParagraph(event)" src="../../assets/align-left.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-center',event)" src="../../assets/align-center.png"
+                            <img onclick="alignParagraph('center',event)" src="../../assets/align-center.png"
                                 width="16" height="16">
                             <img onclick="alignParagraph('align-right')" src="../../assets/align-right.png" width="16"
                                 height="16">
@@ -276,7 +289,7 @@
                                     id="fillColorInput">
                                 <input type="text" id="colorCodeDisplay" value="#bdbdbd" />
                                 <div style="height:20px;width:1.5px;background-color:white;"></div>
-                                <input type="number" id="opacityDisplay" value="100%" />
+                                <input type="number" id="opacityDisplay" value="100" />
                             </div>
                             <div class="visible">
                                 <img src="../../assets/view.png" width="16" height="16">

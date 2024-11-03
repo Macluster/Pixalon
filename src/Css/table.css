@@ -3,19 +3,24 @@ table {
   height: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  /* position:absolute; */
 }
 
 th,
 td {
   border: 1px solid black;
-  /* padding: 8px; */
-  /* text-align: center; */
-  /* box-sizing: border-box; */
-
   cursor: pointer;
   width: 20px;
   height: 20px;
+  pointer-events: auto;
+  user-select: text;
+  position: static;
+  overflow: visible;
+  color: #000;
+  line-height: normal;
 }
+
+
 
 /* Highlight selected cells */
 .selected {

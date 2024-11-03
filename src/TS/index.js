@@ -28,6 +28,7 @@ document.getElementById("frameBtn")?.addEventListener("click", addFrame);
 const tableList = [];
 let tableId = 0;
 function addTable() {
+    document.getElementById("tablePop").style.visibility ="hidden";
     const row = document.getElementsByClassName("rows")[0].value;
     const column = document.getElementsByClassName("columns")[0].value;
     console.log(row);
@@ -36,6 +37,7 @@ function addTable() {
     table.element.id = "Table" + tableId++;
     tableList.push(table);
     table.appendTo("#" + currentSelectedContainer);
+
 }
 
 function tablePopUp()
@@ -48,9 +50,21 @@ function closePopTable()
     document.getElementById("tablePop").style.visibility ="hidden";
 
 }
+function checkTable()
+{
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    
+    if( view.querySelectorAll("table")[0])
+        document.getElementById("tableTools").style.visibility="visible";
+    else
+    document.getElementById("tableTools").style.visibility="hidden";
+}
+document.getElementById("currentSelectedContainer")?.addEventListener("click",checkTable);
 document.getElementById("tableBtn")?.addEventListener("click", tablePopUp);
-// document.getElementsById("closeTab")?.addEventListener("click", closePopTable);
+document.getElementById("closeTab")?.addEventListener("click", closePopTable);
 document.getElementById("createTableButton")?.addEventListener("click",addTable);
+
 
 // Adding Section
 const sectionList = [];
