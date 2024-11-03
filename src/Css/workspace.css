@@ -34,7 +34,7 @@ button {
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgb(121, 121, 121);
 
- 
+
 }
 
 
@@ -113,7 +113,6 @@ nav {
   border-radius: 0px 0px 0px 0px;
   z-index: 3;
   padding: 10px;
-
 }
 
 .navigation>input {
@@ -131,8 +130,7 @@ nav {
 
 
 
-.workSpaceBtn
-{
+.workSpaceBtn {
   background-color: #6547A5;
   border: 0px;
   padding: 8px 20px;
@@ -412,6 +410,11 @@ input[type="color"] {
   margin-left: 10px;
 }
 
+#exportModal{
+  position: absolute;
+  right: 0.01%;
+}
+
 .close {
   align-items: top;
 }
@@ -507,8 +510,7 @@ alignment {
 
 }
 
-#tablePop
-{
+#tablePop {
   position: absolute;
   margin-left: 50%;
   margin-top: 40%;
@@ -521,8 +523,7 @@ alignment {
   z-index: 4;
 }
 
-#tablePop input
-{
+#tablePop input {
   border: none;
   width: 100%;
   height: 15%;
@@ -530,19 +531,17 @@ alignment {
   margin-bottom: 10%;
 }
 
-#tablePop button
-{
+#tablePop button {
   background-color: #8061C3;
 }
 
-#closetable
-{
+#closetable {
   float: right;
   margin-left: 86%;
   margin-top: -8%;
-    font-size: 24px;
-    font-weight: 700;
-  
+  font-size: 24px;
+  font-weight: 700;
+
 }
 
 /* ------------------------------------------------------------------------------- */
@@ -551,6 +550,8 @@ alignment {
   width: 100%;
   background-color: #EBEBEB;
   border-radius: 6px;
+  /* overflow-x: hidden; */
+  overflow-y: scroll;
 }
 
 /* --------------------------------------------------------------------------- */
@@ -1097,3 +1098,20 @@ img {
   flex-direction: row;
   gap: 12px;
 }
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.layer-item label {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* .layer-item button {
+  margin-left: 5px;
+  padding: 2px 5px;
+} */

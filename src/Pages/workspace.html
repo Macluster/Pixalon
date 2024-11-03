@@ -93,7 +93,9 @@
             </div>
 
             <div class="layers">
-                <!-- Layers -Minhaj -->
+                <div id="layers-container">
+                    <!-- Layers for each tool will be added here dynamically -->
+                </div>
             </div>
 
         </div>
@@ -129,9 +131,9 @@
                     <div class="align-spacing">
                         <div class="spacing">
                             <!-- <img onclick="alignItems('tidy-up')" src="" width="16" height="16"> -->
-                            <img onclick="alignItems('vertical-spacing')"
+                            <img onclick="vertical_spacing()"
                                 src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
-                            <img onclick="alignItems('horizontal-spacing')"
+                            <img onclick="horizontal_spacing()"
                                 src="../../assets/solar_align-horizonta-spacing-bold-duotone.png" width="16"
                                 height="16">
                         </div>
@@ -375,7 +377,7 @@
 <script type="module" src="../TS/index.js"></script>
 <script src="../TS/Workspace.js"></script>
 <script src="../TS/Properties.js"></script>
-<script src="../TS/KeyPresses.js"></script>
+<script type="module" src="../TS/KeyPresses.js"></script>
 <script src="../TS/Classes/align.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
 
