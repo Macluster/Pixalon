@@ -170,11 +170,11 @@
                     <div style="display: flex; justify-content: space-around; align-items: center;" class="layout">
                         <div class="height">
                             <h5 class="size">H</h5>
-                            <input id="height" class="property" onchange="onHeightChanged(event)">
+                            <input id="height" class="property">
                         </div>
                         <div class="width">
                             <h5 class="size">W</h5>
-                            <input id="width" class="property" onchange="onWidthChanged(event)">
+                            <input id="width" class="property" >
                         </div>
                         <img onclick="constrain('constrain-proportion')"
                             src="../../assets/material-symbols_link (1).png" width="18" height="18"
@@ -188,7 +188,7 @@
                 <h4>Typography</h4>
                 <div class="typography">
                     <div>
-                        <select onchange="onFontFamilyChange(event)" id="fontSelect" class="font">
+                        <select id="font-family-input"  id="fontSelect" class="font">
                             <option value="Arial, sans-serif">Arial</option>
                             <option value="Montserrat">Montserrat</option>
                             <option value="Verdana, sans-serif">Verdana</option>
@@ -199,7 +199,7 @@
                     </div>
                     <div class="font-property">
 
-                        <select onchange="onFontWeightChange(event)" class="font-weight" value="Regular">
+                        <select id="font-weight-changed"  class="font-weight" value="Regular">
 
                             <option value="300">Thin</option>
                             <option value="400">ExtraLight</option>
@@ -209,38 +209,45 @@
                             <option value="800">Bold</option>
                             <option value="900">Extra Bold</option>
                         </select>
-                        <input onmousedown="onfonts" onchange="fontSizeChanged(event)" type="text" class="font-size"
+                        <input onmousedown="onfonts" id="font-size-input"  type="text" class="font-size"
                             value="14">
                     </div>
                     <div>
                         <div class="line-formatter">
                             <img src="../../assets/vertical.png" class="format" style="padding-left: 5px;">
                             <input class="line-formatter-verticallay" type="text" value="auto"
-                                onchange="onLineHeightChange(event)">
+                              id="line-height-input"  >
                             <div class="line-formatter-horizontal">
                                 <img src="../../assets/Horizontal (2).png" id="formats" style="padding-left: 5px;">
                                 <input class="line-formatter-horizontally" type="text" value="auto"
-                                    onchange="onLetterSpacingChange(event)">
+                                  id="letter-spacing-input" >
                             </div>
                         </div>
                     </div>
                     <div class="align-text">
                         <div id="align-paragraph">
-                            <img onclick="alignParagraph(event)" src="../../assets/align-left.png" width="16"
+                            <img  id="align-left"    src="../../assets/align-left.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-center',event)" src="../../assets/align-center.png"
+                            <img id="align-center" src="../../assets/align-center.png"
                                 width="16" height="16">
-                            <img onclick="alignParagraph('align-right')" src="../../assets/align-right.png" width="16"
+                            <img  id="align-right"  src="../../assets/align-right.png" width="16"
                                 height="16">
                         </div>
                         <div id="align-sides">
-                            <img onclick="alignParagraph('align-top')" src="../../assets/align-top.png" width="16"
+                            <img id="alignTopImg"  src="../../assets/align-top.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-middle')" src="../../assets/align-text.png" width="16"
+                            <img id="alignMiddle"  src="../../assets/align-text.png" width="16"
                                 height="16">
-                            <img onclick="alignParagraph('align-bottom')" src="../../assets/bottom-alignment.png"
+                            <img id="alignBottom"  src="../../assets/bottom-alignment.png"
                                 width="16" height="16">
                         </div>
+                    </div>
+                    <div class="fill-inputs" style="border-radius: 6px;">
+                        <input id="textColorInput" onchange="onTextColorChanged(event)" type="color" style="border-radius: 10px;"
+                            id="textColorInput">
+                        <input type="text" id="colorCodeDisplay" value="#bdbdbd" />
+                        <div style="height:20px;width:1.5px;background-color:white;"></div>
+                        <input type="number" id="opacityDisplay" value="100%" />
                     </div>
                 </div>
                 <hr style="width: 100%;margin-top: 15px;">
@@ -254,11 +261,11 @@
                     <div class="opacity">
                         <img src="../../assets/material-symbols-light_opacity (1).png" width="14" height="14"
                             class="input-icon">
-                        <input class="property-input" style="width: 50px;" onchange="onOpacityChanged(event)" />
+                        <input id="opacityInput" class="property-input" style="width: 50px;"  />
                     </div>
                     <div class="corner">
                         <img src="../../assets/tabler_border-corner-pill.png" width="12" height="12" class="input-icon">
-                        <input class="property-input" style="width: 50px;" onchange="onCornerRadiusChanged(event)" />
+                        <input id="cornerRadiusInput"  class="property-input" style="width: 50px;"  />
                     </div>
                     <div class="corner-full">
                         <img src="../../assets/radix-icons_corners.png" width="16" height="16"
@@ -272,7 +279,7 @@
                 <h4>Fill<h4>
                         <div class="fill">
                             <div class="fill-inputs" style="border-radius: 6px;">
-                                <input onchange="onBackgroundChanged(event)" type="color" style="border-radius: 10px;"
+                                <input id="backgroundColorChanged"  type="color" style="border-radius: 10px;"
                                     id="fillColorInput">
                                 <input type="text" id="colorCodeDisplay" value="#bdbdbd" />
                                 <div style="height:20px;width:1.5px;background-color:white;"></div>
@@ -331,7 +338,7 @@
                         </div>
 
 
-                        <button onclick="selectBackgroundImage()">Add BackgroundImage</button>
+                        <button id="background-image-picker">Add BackgroundImage</button>
 
                         <input type="file" style="display: none;" id="backgroundImage" accept="image/*">
             </div>
@@ -374,7 +381,7 @@
 <script type="module" src="../TS/Backend/upload.js"></script>
 <script type="module" src="../TS/index.js"></script>
 <script src="../TS/Workspace.js"></script>
-<script src="../TS/Properties.js"></script>
+<script type="module" src="../TS/Properties.js"></script>
 <script src="../TS/KeyPresses.js"></script>
 <script src="../TS/Classes/align.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>

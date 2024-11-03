@@ -174,9 +174,18 @@ input::placeholder {
     border: 0px;
     border-radius: 5px;
     padding: 10px;
+    color: black;
     background-color: rgb(236, 234, 234);
     
 }
+.popupContainer>div input::placeholder
+{
+ 
+    color: black;
+ 
+    
+}
+
 
 .popupContainer>div button
 {
