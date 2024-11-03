@@ -1,4 +1,6 @@
 import uploadImageToFirebase from "../TS/Backend/upload.js";
+import { addLayerItem } from "./Classes/layers.js";
+
 // Adding Page
 const pages = [];
 function addFrame() {
@@ -9,14 +11,17 @@ function addFrame() {
     pages.push(frame);
     frame.appendTo(".work-space");
 
+    // Add layer for the frame
+    addLayerItem("Frame", frame.element.id);
+
     // updating hight and width in property box
     document.getElementById('height').value = 500;
     document.getElementById('width').value = 500;
 
-     // Get the bounding rectangle of the frame element to get its position
-     const rect = frame.element.getBoundingClientRect();
-     document.getElementById('x-position').value = rect.left; // Update x-position input
-     document.getElementById('y-position').value = rect.top;  // Update y-position input
+    // Get the bounding rectangle of the frame element to get its position
+    const rect = frame.element.getBoundingClientRect();
+    document.getElementById('x-position').value = rect.left; // Update x-position input
+    document.getElementById('y-position').value = rect.top;  // Update y-position input
 
     //color setting in property box
     const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor)
@@ -32,22 +37,22 @@ function addTable() {
     const row = document.getElementsByClassName("rows")[0].value;
     const column = document.getElementsByClassName("columns")[0].value;
     console.log(row);
-    
+
     const table = new Table("auto", "auto", "grey", "", column, row);
     table.element.id = "Table" + tableId++;
     tableList.push(table);
     table.appendTo("#" + currentSelectedContainer);
 
+    // Add layer for the table
+    addLayerItem("table", table.element.id);
 }
 
-function tablePopUp()
-{
-    document.getElementById("tablePop").style.visibility ="visible";
+function tablePopUp() {
+    document.getElementById("tablePop").style.visibility = "visible";
 }
 
-function closePopTable()
-{
-    document.getElementById("tablePop").style.visibility ="hidden";
+function closePopTable() {
+    document.getElementById("tablePop").style.visibility = "hidden";
 
 }
 function checkTable()
@@ -64,7 +69,6 @@ document.getElementById("currentSelectedContainer")?.addEventListener("click",ch
 document.getElementById("tableBtn")?.addEventListener("click", tablePopUp);
 document.getElementById("closeTab")?.addEventListener("click", closePopTable);
 document.getElementById("createTableButton")?.addEventListener("click",addTable);
-
 
 // Adding Section
 const sectionList = [];
@@ -85,6 +89,9 @@ function addSection() {
     sectionList.push(section);
     // Append the new section to the container
     section.appendTo("#" + currentSelectedContainer);
+
+    // Add layer for the section
+    addLayerItem("Section", section.element.id);
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 
@@ -97,6 +104,9 @@ function addTextBox() {
     textBox.element.id = "T" + textBoxId++;
     textBoxList.push(textBox);
     textBox.appendTo("#" + currentSelectedContainer);
+
+    // Add layer for the textbox
+    addLayerItem("text", textBox.element.id);
 }
 document.getElementById("textboxBtn").addEventListener("click", addTextBox);
 
@@ -115,14 +125,19 @@ function selectImage() {
     fileInput.addEventListener("change", async function (event) {
         const file = event.target.files?.[0];
         if (file) {
-          var imageUrl= await uploadImageToFirebase(file);
-          console.log("image link "+imageUrl)
+            var imageUrl = await uploadImageToFirebase(file);
+            console.log("image link " + imageUrl)
 
-          const  image = new Img(imageUrl);
-     
-          image.element.id = "I" + imageId++;
-          console.log(image.element)
+            const image = new Img(imageUrl);
 
+            image.element.id = "I" + imageId++;
+            console.log(image.element)
+
+            // Append the div to the body
+            image.appendTo("#" + currentSelectedContainer);
+
+            // Add layer for the image
+            addLayerItem("Image", image.element.id);
         // Append the div to the body
         console.log("current selected containr ="+currentSelectedContainer)
           image.appendTo("#" + currentSelectedContainer);
@@ -270,14 +285,14 @@ function rgbToHex(rgb) {
     if (!rgb) return "#000000"; // Default if no color is set
     const result = rgb.match(/\d+/g);
     if (result) {
-      return `#${(
-        (1 << 24) +
-        (Number(result[0]) << 16) +
-        (Number(result[1]) << 8) +
-        Number(result[2])
-      )
-        .toString(16)
-        .slice(1)}`;
+        return `#${(
+            (1 << 24) +
+            (Number(result[0]) << 16) +
+            (Number(result[1]) << 8) +
+            Number(result[2])
+        )
+            .toString(16)
+            .slice(1)}`;
     }
     return "#ffffff"; // Return black if parsing fails
-  }
+}
