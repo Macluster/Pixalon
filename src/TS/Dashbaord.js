@@ -95,6 +95,7 @@ onSavedItemClicked.addEventListener("click", async function() {
             // Log frameData and sections for reference
             console.log('Frame Data:', frameData);
             console.log('Sections:', sections);
+          
             
             localStorage.setItem('frameData', frameData);
             localStorage.setItem('sections', JSON.stringify(sections)); // Store sections as a JSON string
@@ -102,7 +103,7 @@ onSavedItemClicked.addEventListener("click", async function() {
             
             
             // Redirect to workspace.html
-            window.location.href = './workspace.html';
+        window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}`;
         });
         
 

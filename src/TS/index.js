@@ -143,17 +143,18 @@ myButton.addEventListener("click", () => {
                     return;
                 const outputdiv = ele.cloneNode(true);
                 // Find all input elements within the div
-                const inputElements = outputdiv.querySelectorAll('input');
+                const inputElements = outputdiv.querySelectorAll('textarea');
                 // Loop through each input element
                 inputElements.forEach(function (inputElement) {
                     const inputValue = inputElement.value;
                     const inputStyle = inputElement.getAttribute('style'); // Get inline styles
                     // Create a new h2 element
-                    const h2Element = document.createElement('h2');
+                    const h2Element = document.createElement('h5');
                     h2Element.textContent = inputValue; // Set the content of the h2 to the input value
                     if (inputStyle) {
                         h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
                     }
+                    h2Element.style.fontFamily="Helvetica, sans-serif"
                     // Replace the input element with the new h2 element
                     inputElement.parentNode?.replaceChild(h2Element, inputElement);
                 });
