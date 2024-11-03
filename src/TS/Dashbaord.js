@@ -50,19 +50,22 @@ onSavedItemClicked.addEventListener("click", async function() {
     div.style.height = "100%";
     div.style.overflowY="auto"
     
-    menuDiv.innerHTML = "<div onclick='onSavedItemsbackButtonPressed()' style='width:100%;display:flex;align-items:center;margin-top:20px;gap:10px'><a href='../Pages/dashboard.html'><i style='display:flex;align-items:center;height:20px;' class='fa-solid fa-arrow-left'></i></a><h3>Saved items</h3></div>";
+    menuDiv.innerHTML = `<div onclick="onSavedItemsbackButtonPressed()" style="width:100%;display:flex;align-items:center;margin-top:20px;gap:10px">
+                            <a href="../Pages/dashboard.html">
+                                <i style="display:flex;align-items:center;height:20px;" class="fa-solid fa-arrow-left"></i>
+                            </a>
+                            <h3>Saved items</h3>
+                         </div>`;
     menuDiv.appendChild(div);
     menuDiv.style.height = "100%";
 
-    
-    savedFiles.forEach(({ fileName, fileType }) => {
-
+    savedFiles.forEach(({ fileName, fileType, frameData, sections }) => {
         let imgSrc;
 
         // Set image source based on file type
         switch(fileType){
             case "newsletter":
-                imgSrc = "../../assets/dashboard/newsletter.svg"; 
+                imgSrc = "../../assets/dashboard/newsletter.svg";
                 break;
             case "poster":
                 imgSrc = "../../assets/dashboard/poster.svg"; 
@@ -70,29 +73,40 @@ onSavedItemClicked.addEventListener("click", async function() {
             case "a3":
                 imgSrc = "../../assets/dashboard/A3.svg"; 
                 break;
-            case "a4":
-                imgSrc = "../../assets/dashboard/A4.svg"; 
-                break;
             case "custom":
                 imgSrc = "../../assets/dashboard/custom.svg"; 
                 break;
             default:
-                imgSrc = "../../assets/dashboard/default.svg";
+                imgSrc = "../../assets/dashboard/default.svg"; 
                 break;
-
-
         }
+        
 
-
-
-
-        const card = `
-        <div class="savedItem">
-            <img src='${imgSrc}' style="height:20px;width:20px;margin-top:0px" />
+        // Create a div element for each saved item
+        const card = document.createElement('div');
+        card.className = "savedItem";
+        card.innerHTML = `
+            <img src="${imgSrc}" style="height:20px;width:20px;margin-top:0px" />
             <h5 style="margin:0px;color:white">${fileName}</h5>
-        </div>`;
-        div.innerHTML += card;
+        `;
 
+        // Add click event to redirect to another page with query parameters
+        card.addEventListener("click", () => {
+            // Log frameData and sections for reference
+            console.log('Frame Data:', frameData);
+            console.log('Sections:', sections);
+            
+            localStorage.setItem('frameData', frameData);
+            localStorage.setItem('sections', JSON.stringify(sections)); // Store sections as a JSON string
+            
+            
+            
+            // Redirect to workspace.html
+            window.location.href = './workspace.html';
+        });
+        
+
+        div.appendChild(card);
        
     });
 });

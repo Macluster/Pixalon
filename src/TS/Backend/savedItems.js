@@ -12,7 +12,7 @@ export async function displaySavedFiles() {
             const fileData = Object.values(files).map(file => ({
                 fileName: file.fileName,
                 fileType: file.fileType,
-                framedata: file.frameData,
+                frameData: file.frameData,
                 sections: file.sections
             }));
             return fileData; // Return array of objects with fileName and fileType
