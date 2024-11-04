@@ -19,11 +19,7 @@ async function addData() {
     console.log(ele)
     let sections = Array.from(ele.children)
     sections = sections.filter(section => !section.classList.contains("resizer"));
-    console.log("ppppppppppppppp")
-    console.log(sections)
-    console.log(sections)
-    console.log("his sections")
-    console.log(sections)
+   
     const clone = ele.cloneNode(false);
     let sectionList = [];
 

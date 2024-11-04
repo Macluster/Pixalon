@@ -13,7 +13,7 @@ export async function getRecentFiles() {
                 .map(file => ({
                     fileName: file.fileName,
                     fileType: file.fileType,
-                    framedata: file.frameData,
+                    frameData: file.frameData,
                     sections: file.sections,
                     createdDate: file.createdDate,
                     createdTime: file.time,
