@@ -63,11 +63,13 @@ async function getTemplatesData() {
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
     let templateContainer=document.getElementById("templates-container")
  //   templateContainer.style.overflowX="auto"
+    let i=0;
     recentData.forEach((e)=>{
         let card=document.createElement("div")
         card.style.height="150px"
         card.style.width="200px"
-        card.innerHTML=`<img src="../../assets/dashboard/news.png" alt="">`
+        card.innerHTML=`<img src="../../assets/dashboard/news${i}.png" alt="">`
+        i++;
 
 
         card.addEventListener("click", () => {
