@@ -281,8 +281,20 @@ function onSearched(event) {
         }
     });
 }
+//-----------------------logout--------------
 
+document.getElementById('logout').onclick = logout;
+function logout() {
+    setCookie("loggedIn", "false", 1);
+    window.location.href = 'login.html';
+}
 
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiration in days
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
 
 
 
@@ -292,7 +304,7 @@ function toggleMenu() {
     const menu = document.getElementById('popupMenu');
     menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 }
-
+document.getElementById('logoutToggle').onclick = toggleMenu;
 // Close the menu when clicking outside
 document.addEventListener('click', (event) => {
     const menu = document.getElementById('popupMenu');
