@@ -194,7 +194,6 @@ myButton.addEventListener("click", () => {
                 });
                 // Get the outer HTML of the modified div as a string
                 const modifiedDivHtml = outputdiv.outerHTML;
-                console.log(modifiedDivHtml); // This logs the entire modified div as a string
                 downloadFile(modifiedDivHtml);
             }
             // Download File Function

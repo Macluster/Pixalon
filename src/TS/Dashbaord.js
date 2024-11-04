@@ -10,18 +10,34 @@ let recentData=[
 
 async function getRecentData() {
     recentData = await getRecentFiles(); 
-
-    const names = recentData.map(file => file.fileName);
+console.log(recentData)
+   // const names = recentData.map(file => file.fileName);
 
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4&&i<recentData.length; i++) {
         const id = "recent_name" + i;  
-        const name = names[i - 1]; // Adjust index to match names array
+
+console.log(recentData[i - 1].frameData)
+        const name = recentData[i - 1].fileName; // Adjust index to match names array
         console.log(id);
         const string = name ;
         
         // Get the element by ID
         const element = document.getElementById(id);
+        element.addEventListener("click", () => {
+            // Log frameData and sections for reference
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
+          
+            
+            localStorage.setItem('frameData',recentData[i - 1].frameData );
+            localStorage.setItem('sections', JSON.stringify(recentData[i - 1].sections)); // Store sections as a JSON string
+            
+            
+            
+            // Redirect to workspace.html
+         window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}`;
+        });
         
         // Check if the element exists and if there is a corresponding name
         if (element && name) {
@@ -35,15 +51,15 @@ async function getRecentData() {
     } 
 }
 
-getRecentData()
+
 
 
 
 async function getTemplatesData() {
     recentData = await getTemplates(); 
-    console.log(recentData)
+    
     const names = recentData.map(file => file.fileName);
-    console.log(names)
+  
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
     let templateContainer=document.getElementById("templates-container")
  //   templateContainer.style.overflowX="auto"
@@ -106,10 +122,18 @@ async function getTemplatesData() {
     // } 
 }
 
-getTemplatesData()
 
 
+document.addEventListener("DOMContentLoaded", async function(event) {
+  
+   await  getTemplatesData()
+   await   getRecentData()
+});
 
+async function getInitialData()
+{
+}
+//getInitialData()
 
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');
 onSavedItemClicked.addEventListener("click", async function() {
