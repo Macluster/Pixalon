@@ -66,3 +66,27 @@ function centerVertically() {
     console.log(top)
     child.style.top = top+"px"
 }
+
+function vertical_spacing() {
+    const parent = document.getElementById(currentSelectedContainer).parentElement; // Get parent container
+    const parentHeight = parent.offsetHeight; // Height of parent container
+    const children = Array.from(parent.children); // Convert children to an array
+    
+    let totalHeight = 0; // Initialize height accumulator
+    
+    // Sum the heights of all child elements
+    children.forEach(child => {
+        const childHeight = child.offsetHeight; // Get the height of each child
+        totalHeight += childHeight; // Accumulate the height
+    });
+    
+    // Calculate the remaining height and divide it for spacing
+    const balHeight = parentHeight - totalHeight;
+    const gap = balHeight / (children.length - 1); // Distribute evenly between children
+    
+    // Apply the calculated gap to the parent container
+    parent.style.gap = `${gap}px`;
+    
+    console.log("Total height of child elements:", totalHeight);
+    console.log("Calculated gap:", gap);
+}

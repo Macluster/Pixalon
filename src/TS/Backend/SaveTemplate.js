@@ -1,7 +1,9 @@
+
+
 import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
-async function addData() {
+async function addTemplate() {
 
 
     const queryString = window.location.search;
@@ -14,12 +16,12 @@ async function addData() {
     console.log("title=" + title.value)
 
 
-    const userRef = ref(database, `/savedFiles/${title}`);
+    const userRef = ref(database, `/templates/${title}`);
     var ele = document.getElementById("page1");
-    console.log(ele)
+ 
     let sections = Array.from(ele.children)
     sections = sections.filter(section => !section.classList.contains("resizer"));
-   
+ 
     const clone = ele.cloneNode(false);
     let sectionList = [];
 
@@ -83,7 +85,7 @@ async function addData() {
 
     displayMessage("Data Saved", "success")
 }
-document.getElementById('savedatabtn').addEventListener('click', addData);
+document.getElementById('addTemplateBtn').addEventListener('click', addTemplate);
 
 
 function displayMessage(message, type) {
@@ -103,4 +105,4 @@ function displayMessage(message, type) {
     }, 3000);
 }
 
-export default addData
+export default addTemplate

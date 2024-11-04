@@ -12,7 +12,7 @@ button {
 
 .main {
   width: 100%;
-  height: 3000px;
+  height: 5000px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
@@ -137,6 +137,7 @@ nav {
 .navigation > input::placeholder {
   color: white;
 }
+
 
 .workSpaceBtn {
   background-color: #6547a5;
@@ -409,6 +410,11 @@ input[type="color"] {
   margin-left: 10px;
 }
 
+#exportModal{
+  position: absolute;
+  right: 0.01%;
+}
+
 .close {
   align-items: top;
 }
@@ -523,6 +529,7 @@ alignment {
 }
 
 
+
 #tablePop button {
   background-color: #8061c3;
   height: 20%;
@@ -548,6 +555,8 @@ alignment {
   width: 100%;
   background-color: #ebebeb;
   border-radius: 6px;
+  /* overflow-x: hidden; */
+  overflow-y: scroll;
 }
 
 /* --------------------------------------------------------------------------- */
@@ -1077,3 +1086,20 @@ img {
   flex-direction: row;
   gap: 12px;
 }
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.layer-item label {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* .layer-item button {
+  margin-left: 5px;
+  padding: 2px 5px;
+} */

@@ -1,6 +1,7 @@
 "use strict";
 import {displaySavedFiles} from './Backend/savedItems.js';
 import {getRecentFiles} from './Backend/getRecentItems.js'
+import { getTemplates } from './Backend/getTemplates.js';
 
 
 let recentData=[
@@ -9,18 +10,34 @@ let recentData=[
 
 async function getRecentData() {
     recentData = await getRecentFiles(); 
-
-    const names = recentData.map(file => file.fileName);
+console.log(recentData)
+   // const names = recentData.map(file => file.fileName);
 
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4&&i<recentData.length; i++) {
         const id = "recent_name" + i;  
-        const name = names[i - 1]; // Adjust index to match names array
+
+console.log(recentData[i - 1].frameData)
+        const name = recentData[i - 1].fileName; // Adjust index to match names array
         console.log(id);
         const string = name ;
         
         // Get the element by ID
         const element = document.getElementById(id);
+        element.addEventListener("click", () => {
+            // Log frameData and sections for reference
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
+          
+            
+            localStorage.setItem('frameData',recentData[i - 1].frameData );
+            localStorage.setItem('sections', JSON.stringify(recentData[i - 1].sections)); // Store sections as a JSON string
+            
+            
+            
+            // Redirect to workspace.html
+         window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}`;
+        });
         
         // Check if the element exists and if there is a corresponding name
         if (element && name) {
@@ -34,7 +51,91 @@ async function getRecentData() {
     } 
 }
 
-getRecentData()
+
+
+
+
+async function getTemplatesData() {
+    recentData = await getTemplates(); 
+    
+    const names = recentData.map(file => file.fileName);
+  
+    // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
+    let templateContainer=document.getElementById("templates-container")
+ //   templateContainer.style.overflowX="auto"
+    let i=0;
+    recentData.forEach((e)=>{
+        let card=document.createElement("div")
+        card.style.height="150px"
+        card.style.width="200px"
+        card.innerHTML=`<img src="../../assets/dashboard/news${i}.png" alt="">`
+        i++;
+
+
+        card.addEventListener("click", () => {
+            // Log frameData and sections for reference
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
+          
+            
+            localStorage.setItem('frameData', e.frameData);
+            localStorage.setItem('sections', JSON.stringify(e.sections)); // Store sections as a JSON string
+            
+            
+            
+            // Redirect to workspace.html
+       window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}`;
+        });
+        
+
+       
+       
+        templateContainer.appendChild( card)
+
+
+
+
+    })
+
+     
+
+
+
+
+
+    // for (let i = 1; i <= 4; i++) {
+    //     const id = "template" + i;  
+    //     const name = names[i - 1]; // Adjust index to match names array
+    //     console.log(id);
+    //     const string = name ;
+        
+    //     // Get the element by ID
+    //     const element = document.getElementById(id);
+        
+    //     // Check if the element exists and if there is a corresponding name
+    //     if (element && name) {
+    //         element.innerHTML = string; // Set the value of the input element
+    //         console.log(name); // Log the name for debugging
+    //     }
+    //     else{
+    //         document.getElementById("recent_box" + i).style.display = "none";
+    //         element.style.display = "none";
+    //     }
+    // } 
+}
+
+
+
+document.addEventListener("DOMContentLoaded", async function(event) {
+  
+   await  getTemplatesData()
+   await   getRecentData()
+});
+
+async function getInitialData()
+{
+}
+//getInitialData()
 
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');
 onSavedItemClicked.addEventListener("click", async function() {
@@ -93,8 +194,8 @@ onSavedItemClicked.addEventListener("click", async function() {
         // Add click event to redirect to another page with query parameters
         card.addEventListener("click", () => {
             // Log frameData and sections for reference
-            console.log('Frame Data:', frameData);
-            console.log('Sections:', sections);
+            // console.log('Frame Data:', frameData);
+            // console.log('Sections:', sections);
           
             
             localStorage.setItem('frameData', frameData);
@@ -180,8 +281,20 @@ function onSearched(event) {
         }
     });
 }
+//-----------------------logout--------------
 
+document.getElementById('logout').onclick = logout;
+function logout() {
+    setCookie("loggedIn", "false", 1);
+    window.location.href = 'login.html';
+}
 
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiration in days
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
 
 
 
@@ -191,7 +304,7 @@ function toggleMenu() {
     const menu = document.getElementById('popupMenu');
     menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 }
-
+document.getElementById('logoutToggle').onclick = toggleMenu;
 // Close the menu when clicking outside
 document.addEventListener('click', (event) => {
     const menu = document.getElementById('popupMenu');
