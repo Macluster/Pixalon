@@ -149,7 +149,8 @@ document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
     event.stopPropagation();
      document.getElementById('work-space').querySelectorAll("*").forEach((e)=>{
-        e.style.border = "2px solid transparent";
+        if(e.style.border == "2px solid rgb(76, 201, 254)")
+            e.style.border = "2px solid transparent";
         let currentSelectedDiv = e.children; // Get only direct children
         Array.from(currentSelectedDiv).forEach(child => {
             if (child.classList.contains("resizer")) {

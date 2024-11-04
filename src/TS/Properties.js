@@ -25,14 +25,22 @@ function onTextColorChanged(event)
     console.log(target.value);
     const view = document.getElementById(currentSelectedContainer);
     console.log(view);
-    if (view) {
+    if (view.querySelectorAll('textarea')[0]) {
         view.querySelectorAll('textarea')[0].style.color = target.value;
+        const hex = rgbToHex(window.getComputedStyle(view.querySelectorAll('textarea')[0]).color);
+        document.getElementById('colorCodeDisplay').value = hex;
+        document.getElementById('fillColorInput').value = hex;
+    }
+
+    if (view.querySelectorAll('table')[0]) {
+      view.querySelectorAll('table')[0].style.color = target.value;
+      const hex = rgbToHex(window.getComputedStyle(view.querySelectorAll('table')[0]).color);
+      document.getElementById('colorCodeDisplay').value = hex;
+      document.getElementById('fillColorInput').value = hex;
     }
 
    // Update color in the property box
-   const hex = rgbToHex(window.getComputedStyle(view.querySelectorAll('textarea')[0]).color);
-   document.getElementById('colorCodeDisplay').value = hex;
-   document.getElementById('fillColorInput').value = hex;
+  //   
 }
 
 
