@@ -1,6 +1,3 @@
-
-
-
 async function showData()
 {
 // Retrieve frameData and sections from localStorage
@@ -21,7 +18,8 @@ if (frameData) {
     const tempDiv = await (parser.parseFromString(frameData, "text/html")).body.firstChild;
     tempDiv.id="page1"
    
-   
+    console.log("hai")
+    console.log(tempDiv)
     makeElementDraggable(tempDiv);
     resizeOfCopyPasteElement(tempDiv);
     // clickTextBox(ele);
@@ -56,12 +54,16 @@ if (frameData) {
                     doubleClickTextBox(parentofTextarea)
                 })
 
-               let allChild= sec.querySelectorAll('*')
-               allChild.forEach((e)=>{
-                let parentofChild=e.parentElement
-                makeElementDraggable(parentofChild);
-                resizeOfCopyPasteElement(parentofChild);
-               })
+                let allChild = sec.querySelectorAll('*');
+                allChild.forEach((e) => {
+                    // Check if the element does not have the class "resizer"
+                    if (!e.classList.contains('resizer')) {
+                        let parentofChild = e.parentElement;
+                        makeElementDraggable(parentofChild);
+                        resizeOfCopyPasteElement(parentofChild);
+                    }
+                });
+                
                
 
                 makeElementDraggable(sec);
@@ -81,7 +83,9 @@ if (frameData) {
     }
 
     workSpaceElement.appendChild(tempDiv);
- 
+    console.log("when retriving")
+    console.log(tempDiv)
+    console.log("end")
 } else {
     console.error('Frame data not found'); // Handle case where frameData is not available
 }
@@ -116,12 +120,21 @@ function doubleClickTextBox(ele) {
 }
 
 
-
 function resizeOfCopyPasteElement(ele) {
     const resizerPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+
+    // Find existing resizers or create them if they don't exist
     resizerPositions.forEach((position) => {
-        const resizer = document.createElement('div');
-        resizer.classList.add('resizer', position);
+        let resizer = ele.querySelector(`.resizer.${position}`);
+
+        // Only add resizer if it does not exist
+        if (!resizer) {
+            resizer = document.createElement('div');
+            resizer.classList.add('resizer', position);
+            ele.appendChild(resizer);
+        }
+
+        // Add the event listener for resizing
         resizer.addEventListener('mousedown', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -131,6 +144,7 @@ function resizeOfCopyPasteElement(ele) {
             const startHeight = parseInt(document.defaultView.getComputedStyle(ele).height, 10);
             const startLeft = parseInt(ele.style.left, 10);
             const startTop = parseInt(ele.style.top, 10);
+
             const resize = (e) => {
                 if (position.includes('right')) {
                     ele.style.width = startWidth + (e.clientX - startX) + "px";
@@ -149,16 +163,18 @@ function resizeOfCopyPasteElement(ele) {
                     ele.style.top = (startTop - heightChange) + "px";
                 }
             };
+
             const stopResize = () => {
                 document.removeEventListener('mousemove', resize);
                 document.removeEventListener('mouseup', stopResize);
             };
+
             document.addEventListener('mousemove', resize);
             document.addEventListener('mouseup', stopResize);
         });
-        ele.appendChild(resizer);
     });
 }
+
 function makeElementDraggable(ele) {
     ele.addEventListener("mousedown", (e) => {
         e.stopPropagation();
@@ -198,4 +214,4 @@ function makeElementDraggable(ele) {
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", onMouseMove), { once: true });
     });
     ele.ondragstart = () => false;
-}
+} 

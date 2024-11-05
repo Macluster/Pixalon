@@ -29,6 +29,7 @@ function addFrame() {
     document.getElementById('fillColorInput').value = hex;
 }
 document.getElementById("frameBtn")?.addEventListener("click", addFrame);
+
 // Adding Table
 const tableList = [];
 let tableId = 0;
