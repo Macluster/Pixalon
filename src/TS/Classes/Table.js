@@ -5,6 +5,7 @@ class Table extends View {
     this.selectedCells = [];
     // this.element.style.padding = "20px";
     this.element.style.backgroundColor = "transparent";
+    this.element.classList.add("Table")
     const table = document.createElement("table");
     for (let i = 0; i < rows; i++) {
       const newRow = document.createElement("tr");

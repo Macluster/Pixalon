@@ -9,6 +9,7 @@ function addFrame() {
     frame.element.id = "page1";
     frame.element.style.display = "flex";
     frame.element.style.flexDirection = "column";
+   
     pages.push(frame);
     frame.appendTo(".work-space");
 
@@ -30,6 +31,7 @@ function addFrame() {
     document.getElementById('fillColorInput').value = hex;
 }
 document.getElementById("frameBtn")?.addEventListener("click", addFrame);
+
 // Adding Table
 const tableList = [];
 let tableId = 0;
