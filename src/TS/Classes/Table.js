@@ -24,6 +24,7 @@ class Table extends View {
     }
     table.style.fontSize ="14px";
     table.style.font ="Arial";
+    table.style.textAlignalign ="left";
     // this.element.contentEditable = "true";
     this.element.appendChild(table);
     console.log(rows);
