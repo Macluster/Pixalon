@@ -20,8 +20,15 @@ if (frameData) {
    
     console.log("hai")
     console.log(tempDiv)
-    makeElementDraggable(tempDiv);
-    resizeOfCopyPasteElement(tempDiv);
+
+    const frame = new Frame("500px", "500px", "white", "");
+    frame.element=tempDiv;
+    frame.addResizers();
+                // Add Movable Property (same as your original code)
+    frame.makeMovable();
+
+    // makeElementDraggable(tempDiv);
+    // resizeOfCopyPasteElement(tempDiv);
     // clickTextBox(ele);
     // doubleClickTextBox(ele);
  
@@ -36,43 +43,67 @@ if (frameData) {
         // Find the main frame (assuming the ID is unique)
         
 
-        if (tempDiv) {
+        if (frame) {
           
-            parsedSections.forEach( async(section) =>{
+            parsedSections.forEach( async(sectionData) =>{
                 
-                const sec = await  (parser.parseFromString(section.data, "text/html")).body.firstChild;
-                sec.id=section.id
-                console.log(sec)
-                console.log(sec)
+                const sec = await  (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
+                let section = new Section("100%", "300px", "grey", "");
+                section.element.id=sectionData.id
+                section.element=sec
+                // Add the resizer elements (four corner resizers)
+                section.addResizers();
+                // Add Movable Property (same as your original code)
+                section.makeMovable();
+                
+                
+              
 
-                let textareas= sec.querySelectorAll('textarea')
-                textareas.forEach((e)=>{
-                    
-                   
-                    let parentofTextarea=e.parentElement
-                    clickTextBox(parentofTextarea)
-                    doubleClickTextBox(parentofTextarea)
-                })
-
-                let allChild = sec.querySelectorAll('*');
+                let allChild = section.element.querySelectorAll('*');
                 allChild.forEach((e) => {
                     // Check if the element does not have the class "resizer"
                     if (!e.classList.contains('resizer')) {
-                        let parentofChild = e.parentElement;
-                        makeElementDraggable(parentofChild);
-                        resizeOfCopyPasteElement(parentofChild);
+
+                        if(e.classList.contains("TextBox"))
+                        {
+                            let textBox = new TextBox();
+                            textBox.element=e;
+                             // Add the resizer elements (four corner resizers)
+                            textBox.addResizers();
+                            // Add Movable Property (same as your original code)
+                            textBox.makeMovable();
+                            textBox.appendTo(section.element.id)
+                           // section.element.appendChild(textBox.element)
+                        }
+                        if(e.classList.contains("Image"))
+                            {
+                                console.log("there is a image")
+                                let image =  new Img(e.style.backgroundImage)
+                                image.element=e;
+                                 // Add the resizer elements (four corner resizers)
+                                image.addResizers();
+                                // Add Movable Property (same as your original code)
+                                image.makeMovable();
+                                image.appendTo(section.element.id)
+
+                                //section.element.appendChild(image.element)
+                            }
+                       
+                        // makeElementDraggable(parentofChild);
+                        // resizeOfCopyPasteElement(parentofChild);
                     }
                 });
+               
                 
                
 
-                makeElementDraggable(sec);
-                resizeOfCopyPasteElement(sec);
+                // makeElementDraggable(sec);
+                // resizeOfCopyPasteElement(sec);
 
                 
 
                 // Append each section to the frame
-                tempDiv.appendChild(sec);
+                tempDiv.appendChild(section.element);
             }
             
               
@@ -215,3 +246,4 @@ function makeElementDraggable(ele) {
     });
     ele.ondragstart = () => false;
 } 
+

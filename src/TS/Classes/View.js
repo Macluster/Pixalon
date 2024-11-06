@@ -6,6 +6,7 @@ class View {
         this.element.style.height = height;
         this.element.style.backgroundColor = backgroundColor;
         this.element.textContent = content || '';
+        this.element.classList.add("View")
         // Set styles for positioning and make div movable and resizable
         this.element.style.position = 'absolute';
         this.element.style.left = '0px';
@@ -21,8 +22,18 @@ class View {
     addResizers() {
         const resizerPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
         resizerPositions.forEach((position) => {
-            const resizer = document.createElement('div');
-            resizer.classList.add('resizer', position);
+            let resizer = document.createElement('div');
+            if(this.element.classList.contains('resizer'))
+            {
+                    resizer=this.element.getElementsByClassName(position)
+            }
+            else
+            {
+               
+                resizer.classList.add('resizer', position);
+            }
+            
+           
             resizer.addEventListener('mousedown', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -80,11 +91,14 @@ class View {
                 document.addEventListener('mouseup', stopResize);
             });
             // Append resizer to the element
+            if(!this.element.classList.contains('resizer'))
             this.element.appendChild(resizer);
         });
     }
     // Method to make the element movable (same as your original code)
     makeMovable() {
+        console.log("mouse is down"+this.element.classList.contains("Image"))
+
         this.element.addEventListener("mousedown", (e) => {
             e.stopPropagation();
             previouslySelectedElement = currentSelectedContainer;

@@ -8,6 +8,7 @@ function addFrame() {
     frame.element.id = "page1";
     frame.element.style.display = "flex";
     frame.element.style.flexDirection = "column";
+   
     pages.push(frame);
     frame.appendTo(".work-space");
 

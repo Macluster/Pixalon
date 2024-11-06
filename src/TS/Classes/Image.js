@@ -4,5 +4,7 @@ class Img extends View {
         super('200px', '200px', 'grey', '');
         this.element.style.backgroundImage = `url('${src}')`;
         this.element.style.backgroundSize = "cover";
+        this.element.classList.add("Image")
+        
     }
 }

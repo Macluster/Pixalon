@@ -3,5 +3,6 @@ class Frame extends View {
     constructor(height, width, bgColor, content) {
         super(height, width, bgColor, content);
         this.element.style.backgroundColor = bgColor;
+        this.element.classList.add("Frame")
     }
 }
