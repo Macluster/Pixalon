@@ -1,5 +1,6 @@
 import uploadImageToFirebase from "../TS/Backend/upload.js";
 import { addLayerItem } from "./Classes/layers.js";
+import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
 const pages = [];
@@ -210,9 +211,12 @@ myButton.addEventListener("click", () => {
                 URL.revokeObjectURL(a.href);
             }
             break;
+
         case "png":
             // Get the div element by ID and ensure it's not null
             const captureElement = document.getElementById("page1");
+            console.log(captureElement);
+            
             if (captureElement) {
                 // Use html2canvas to capture the div as a canvas
                 html2canvas(captureElement).then((canvas) => {
@@ -229,8 +233,8 @@ myButton.addEventListener("click", () => {
             else {
                 console.error("Capture element not found.");
             }
-            // Call a specific function for Option 2, if needed
             break;
+
         case "jpeg":
             const capturejpeg = document.getElementById("page1");
             if (capturejpeg) {
@@ -250,6 +254,7 @@ myButton.addEventListener("click", () => {
                 console.error("Capture element not found.");
             }
             break;
+            
         case "pdf":
             // Get the div element by ID and ensure it's not null
             const capturepdf = document.getElementById("page1");
