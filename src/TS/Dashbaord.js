@@ -1,54 +1,55 @@
 "use strict";
-import {displaySavedFiles} from './Backend/savedItems.js';
-import {getRecentFiles} from './Backend/getRecentItems.js'
+import { displaySavedFiles } from './Backend/savedItems.js';
+import { getRecentFiles } from './Backend/getRecentItems.js'
 import { getTemplates } from './Backend/getTemplates.js';
 
 
-let recentData=[
-    
+let recentData = [
+
 ]
 
 async function getRecentData() {
-    recentData = await getRecentFiles(); 
-console.log(recentData)
-   // const names = recentData.map(file => file.fileName);
+    recentData = await getRecentFiles();
+
+    // const names = recentData.map(file => file.fileName);
 
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
-    for (let i = 1; i <= 4&&i<recentData.length; i++) {
-        const id = "recent_name" + i;  
+    for (let i = 1; i <= 4 && i < recentData.length; i++) {
+        const id = "recent_name" + i;
 
-console.log(recentData[i - 1].frameData)
+
         const name = recentData[i - 1].fileName; // Adjust index to match names array
         console.log(id);
-        const string = name ;
-        
+        const string = name;
+
         // Get the element by ID
+
+
         const element = document.getElementById(id);
         element.addEventListener("click", () => {
             // Log frameData and sections for reference
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
-          
-            
-            localStorage.setItem('frameData',recentData[i - 1].frameData );
-            localStorage.setItem('sections', JSON.stringify(recentData[i - 1].sections)); // Store sections as a JSON string
-            
-            
-            
+
+            localStorage.setItem('fileKey', recentData[i - 1].uid);
+
+
+
+
             // Redirect to workspace.html
-         window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}`;
+            window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}`;
         });
-        
+
         // Check if the element exists and if there is a corresponding name
         if (element && name) {
             element.innerHTML = string; // Set the value of the input element
             console.log(name); // Log the name for debugging
         }
-        else{
+        else {
             document.getElementById("recent_box" + i).style.display = "none";
             element.style.display = "none";
         }
-    } 
+    }
 }
 
 
@@ -56,19 +57,22 @@ console.log(recentData[i - 1].frameData)
 
 
 async function getTemplatesData() {
-    recentData = await getTemplates(); 
+    recentData = await getTemplates();
     
+    
+
+
     const names = recentData.map(file => file.fileName);
-  
+
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
-    let templateContainer=document.getElementById("templates-container")
- //   templateContainer.style.overflowX="auto"
-    let i=0;
-    recentData.forEach((e)=>{
-        let card=document.createElement("div")
-        card.style.height="150px"
-        card.style.width="200px"
-        card.innerHTML=`<img src="../../assets/dashboard/news${i}.png" alt="">`
+    let templateContainer = document.getElementById("templates-container")
+    //   templateContainer.style.overflowX="auto"
+    let i = 0;
+    recentData.forEach((e) => {
+        let card = document.createElement("div")
+        card.style.height = "150px"
+        card.style.width = "200px"
+        card.innerHTML = `<img src="../../assets/dashboard/news${i}.png" alt="">`
         i++;
 
 
@@ -76,28 +80,27 @@ async function getTemplatesData() {
             // Log frameData and sections for reference
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
-          
-            
-            localStorage.setItem('frameData', e.frameData);
-            localStorage.setItem('sections', JSON.stringify(e.sections)); // Store sections as a JSON string
-            
-            
-            
-            // Redirect to workspace.html
-       window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}`;
-        });
-        
 
-       
-       
-        templateContainer.appendChild( card)
+
+            localStorage.setItem('fileKey', e.uid);
+
+
+
+            // Redirect to workspace.html
+            window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}`;
+        });
+
+
+
+
+        templateContainer.appendChild(card)
 
 
 
 
     })
 
-     
+
 
 
 
@@ -108,10 +111,10 @@ async function getTemplatesData() {
     //     const name = names[i - 1]; // Adjust index to match names array
     //     console.log(id);
     //     const string = name ;
-        
+
     //     // Get the element by ID
     //     const element = document.getElementById(id);
-        
+
     //     // Check if the element exists and if there is a corresponding name
     //     if (element && name) {
     //         element.innerHTML = string; // Set the value of the input element
@@ -126,31 +129,27 @@ async function getTemplatesData() {
 
 
 
-document.addEventListener("DOMContentLoaded", async function(event) {
-  
-   await  getTemplatesData()
-   await   getRecentData()
+document.addEventListener("DOMContentLoaded", async function (event) {
+
+    await getTemplatesData()
+    await getRecentData()
 });
 
-async function getInitialData()
-{
-}
-//getInitialData()
 
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');
-onSavedItemClicked.addEventListener("click", async function() {
-    
+onSavedItemClicked.addEventListener("click", async function () {
+
     const savedFiles = await displaySavedFiles(); // Fetch data from Firebase
     const menuDiv = document.getElementById("menu");
     const div = document.createElement("div");
-    
+
     div.style.display = "flex";
     div.style.flexDirection = "column";
     div.style.alignItems = "center";
     div.style.width = "100%";
     div.style.height = "100%";
-    div.style.overflowY="auto"
-    
+    div.style.overflowY = "auto"
+
     menuDiv.innerHTML = `<div onclick="onSavedItemsbackButtonPressed()" style="width:100%;display:flex;align-items:center;margin-top:20px;gap:10px">
                             <a href="../Pages/dashboard.html">
                                 <i style="display:flex;align-items:center;height:20px;" class="fa-solid fa-arrow-left"></i>
@@ -160,28 +159,28 @@ onSavedItemClicked.addEventListener("click", async function() {
     menuDiv.appendChild(div);
     menuDiv.style.height = "100%";
 
-    savedFiles.forEach(({ fileName, fileType, frameData, sections }) => {
+    savedFiles.forEach(({ uid, fileName, fileType }) => {
         let imgSrc;
 
         // Set image source based on file type
-        switch(fileType){
+        switch (fileType) {
             case "newsletter":
                 imgSrc = "../../assets/dashboard/newsletter.svg";
                 break;
             case "poster":
-                imgSrc = "../../assets/dashboard/poster.svg"; 
+                imgSrc = "../../assets/dashboard/poster.svg";
                 break;
             case "a3":
-                imgSrc = "../../assets/dashboard/A3.svg"; 
+                imgSrc = "../../assets/dashboard/A3.svg";
                 break;
             case "custom":
-                imgSrc = "../../assets/dashboard/custom.svg"; 
+                imgSrc = "../../assets/dashboard/custom.svg";
                 break;
             default:
-                imgSrc = "../../assets/dashboard/default.svg"; 
+                imgSrc = "../../assets/dashboard/default.svg";
                 break;
         }
-        
+
 
         // Create a div element for each saved item
         const card = document.createElement('div');
@@ -196,32 +195,30 @@ onSavedItemClicked.addEventListener("click", async function() {
             // Log frameData and sections for reference
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
-          
-            
-            localStorage.setItem('frameData', frameData);
-            localStorage.setItem('sections', JSON.stringify(sections)); // Store sections as a JSON string
-            
-            
-            
+
+
+            localStorage.setItem('fileKey', uid);
+
+
             // Redirect to workspace.html
-        window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}`;
+            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}`;
         });
-        
+
 
         div.appendChild(card);
-       
+
     });
 });
 
 
 const onCustomPopupOpened = document.getElementById('onCustomPopupOpened');
-onCustomPopupOpened.addEventListener('click',function onCustomPopupOpened() {
+onCustomPopupOpened.addEventListener('click', function onCustomPopupOpened() {
     var popup = document.getElementById('popupContainer');
     popup.style.display = "flex";
 })
 
 const onCustomPopupClosed = document.getElementById('onCustomPopupClosed');
-onCustomPopupClosed.addEventListener('click',function onCustomPopupClosed() {
+onCustomPopupClosed.addEventListener('click', function onCustomPopupClosed() {
     var popup = document.getElementById('popupContainer');
     popup.style.display = "none";
 })
@@ -234,27 +231,27 @@ function onCustomPresetCreate() {
     console.log(height);
     window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}&type=custom`;
 }
-document.getElementById('popupPresetBtn').addEventListener("click",onCustomPresetCreate)
+document.getElementById('popupPresetBtn').addEventListener("click", onCustomPresetCreate)
 
 function onNewsletterCreate() {
     window.location.href = `workspace.html?name=title&height=800&width=600&type=newsletter`;
 }
-document.getElementById('newsletterBtn').addEventListener("click",onNewsletterCreate)
+document.getElementById('newsletterBtn').addEventListener("click", onNewsletterCreate)
 
 function onPosterCreate() {
     window.location.href = `workspace.html?name=title&height=600&width=600&type=poster`;
 }
-document.getElementById('posterBtn').addEventListener("click",onPosterCreate)
+document.getElementById('posterBtn').addEventListener("click", onPosterCreate)
 
 function onA4Create() {
     window.location.href = `workspace.html?name=title&height=600&width=600&type=a4`;
 }
-document.getElementById('A4PresentBtn').addEventListener("click",onA4Create)
+document.getElementById('A4PresentBtn').addEventListener("click", onA4Create)
 
 function onA3Create() {
     window.location.href = `workspace.html?name=title&height=600&width=600&type=a3`;
 }
-document.getElementById('A3PresentBtn').addEventListener("click",onA3Create)
+document.getElementById('A3PresentBtn').addEventListener("click", onA3Create)
 function onSearched(event) {
     console.log("hai");
     const menuDiv = document.getElementById("menu");
