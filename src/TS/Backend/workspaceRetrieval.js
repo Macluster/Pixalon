@@ -1,86 +1,94 @@
-async function showData()
-{
-// Retrieve frameData and sections from localStorage
-const frameData = await   localStorage.getItem('frameData');
-let sections = await localStorage.getItem('sections') ;
+import { fetchFileData } from "./FetchFileData.js";
 
 
-const workSpaceElement = document.getElementById('work-space');
+async function showData() {
+    // Retrieve frameData and sections from localStorage
+    const fileKey = await localStorage.getItem('fileKey');
+    console.log("key="+fileKey)
+
+    let data = await fetchFileData(fileKey)
+    console.log("temp="+data)
+
+    let frameData = data.frameData
+
+    let sections = data.sections
+    console.log("data=" + sections)
+
+
+    const workSpaceElement = document.getElementById('work-space');
 
 
 
-if (frameData) {
-    // Create a temporary div to parse the frameData
-   
+    if (frameData) {
+        // Create a temporary div to parse the frameData
 
-    const parser = new DOMParser();
-   
-    const tempDiv = await (parser.parseFromString(frameData, "text/html")).body.firstChild;
-    tempDiv.id="page1"
-   
-    console.log("hai")
-    console.log(tempDiv)
 
-    const frame = new Frame("500px", "500px", "white", "");
-    frame.element=tempDiv;
-    frame.addResizers();
-                // Add Movable Property (same as your original code)
-    frame.makeMovable();
+        const parser = new DOMParser();
 
-    // makeElementDraggable(tempDiv);
-    // resizeOfCopyPasteElement(tempDiv);
-    // clickTextBox(ele);
-    // doubleClickTextBox(ele);
- 
-  
-    // Append the parsed frameData to work-space
-    
+        const tempDiv = await (parser.parseFromString(frameData, "text/html")).body.firstChild;
+        tempDiv.id = "page1"
 
-    // Handle sections if they existgit
-    if (sections) {
-        const parsedSections = JSON.parse(sections); // Parse sections back to an object
-        
-        // Find the main frame (assuming the ID is unique)
-        
+        console.log("hai")
+        console.log(tempDiv)
 
-        if (frame) {
-          
-            parsedSections.forEach( async(sectionData) =>{
-                
-                const sec = await  (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
-                let section = new Section("100%", "300px", "grey", "");
-                section.element.id=sectionData.id
-                section.element=sec
-                // Add the resizer elements (four corner resizers)
-                section.addResizers();
-                // Add Movable Property (same as your original code)
-                section.makeMovable();
-                
-                
-              
+        const frame = new Frame("500px", "500px", "white", "");
+        frame.element = tempDiv;
+        frame.addResizers();
+        // Add Movable Property (same as your original code)
+        frame.makeMovable();
 
-                let allChild = section.element.querySelectorAll('*');
-                allChild.forEach((e) => {
-                    // Check if the element does not have the class "resizer"
-                    if (!e.classList.contains('resizer')) {
+        // makeElementDraggable(tempDiv);
+        // resizeOfCopyPasteElement(tempDiv);
+        // clickTextBox(ele);
+        // doubleClickTextBox(ele);
 
-                        if(e.classList.contains("TextBox"))
-                        {
-                            let textBox = new TextBox();
-                            textBox.element=e;
-                             // Add the resizer elements (four corner resizers)
-                            textBox.addResizers();
-                            // Add Movable Property (same as your original code)
-                            textBox.makeMovable();
-                            textBox.appendTo(section.element.id)
-                           // section.element.appendChild(textBox.element)
-                        }
-                        if(e.classList.contains("Image"))
-                            {
+
+        // Append the parsed frameData to work-space
+
+
+        // Handle sections if they existgit
+        if (sections) {
+            const parsedSections = sections
+
+            // Find the main frame (assuming the ID is unique)
+
+
+            if (frame) {
+
+                parsedSections.forEach(async (sectionData) => {
+
+                    const sec = await (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
+                    let section = new Section("100%", "300px", "grey", "");
+                    section.element.id = sectionData.id
+                    section.element = sec
+                    // Add the resizer elements (four corner resizers)
+                    section.addResizers();
+                    // Add Movable Property (same as your original code)
+                    section.makeMovable();
+
+
+
+
+                    let allChild = section.element.querySelectorAll('*');
+                    allChild.forEach((e) => {
+                        // Check if the element does not have the class "resizer"
+                        if (!e.classList.contains('resizer')) {
+
+                            if (e.classList.contains("TextBox")) {
+                                let textBox = new TextBox();
+                                textBox.element = e;
+                                // Add the resizer elements (four corner resizers)
+                                textBox.addResizers();
+                                // Add Movable Property (same as your original code)
+                                textBox.makeMovable();
+                                textBox.appendTo(section.element.id)
+                                // section.element.appendChild(textBox.element)
+                            }
+                            if (e.classList.contains("Image")) {
                                 console.log("there is a image")
-                                let image =  new Img(e.style.backgroundImage)
-                                image.element=e;
-                                 // Add the resizer elements (four corner resizers)
+                                let image = new Img(e.style.backgroundImage)
+                                image.element = e;
+                                // Add the resizer elements (four corner resizers)
                                 image.addResizers();
                                 // Add Movable Property (same as your original code)
                                 image.makeMovable();
@@ -88,42 +96,42 @@ if (frameData) {
 
                                 //section.element.appendChild(image.element)
                             }
-                       
-                        // makeElementDraggable(parentofChild);
-                        // resizeOfCopyPasteElement(parentofChild);
-                    }
-                });
-               
-                
-               
 
-                // makeElementDraggable(sec);
-                // resizeOfCopyPasteElement(sec);
+                            // makeElementDraggable(parentofChild);
+                            // resizeOfCopyPasteElement(parentofChild);
+                        }
+                    });
 
-                
 
-                // Append each section to the frame
-                tempDiv.appendChild(section.element);
+
+
+                    // makeElementDraggable(sec);
+                    // resizeOfCopyPasteElement(sec);
+
+
+
+                    // Append each section to the frame
+                    tempDiv.appendChild(section.element);
+                }
+
+
+                );
+            } else {
+                console.error('Frame element not found'); // Handle case where frame is not found
             }
-            
-              
-            );
-        } else {
-            console.error('Frame element not found'); // Handle case where frame is not found
         }
+
+        workSpaceElement.appendChild(tempDiv);
+        console.log("when retriving")
+        console.log(tempDiv)
+        console.log("end")
+    } else {
+        console.error('Frame data not found'); // Handle case where frameData is not available
     }
 
-    workSpaceElement.appendChild(tempDiv);
-    console.log("when retriving")
-    console.log(tempDiv)
-    console.log("end")
-} else {
-    console.error('Frame data not found'); // Handle case where frameData is not available
-}
-
-// Clear localStorage if no longer needed
-localStorage.removeItem('frameData');
-localStorage.removeItem('sections');
+    // Clear localStorage if no longer needed
+    localStorage.removeItem('fileKey');
+ 
 }
 
 
@@ -245,5 +253,5 @@ function makeElementDraggable(ele) {
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", onMouseMove), { once: true });
     });
     ele.ondragstart = () => false;
-} 
+}
 
