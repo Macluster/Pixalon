@@ -9,11 +9,13 @@ export async function displaySavedFiles() {
         if (snapshot.exists()) {
             const files = snapshot.val();
             // Extract fileName and fileType for each file
-            const fileData = Object.values(files).map(file => ({
-                fileName: file.fileName,
-                fileType: file.fileType,
-                frameData: file.frameData,
-                sections: file.sections
+            const fileData = Object.keys(files)
+            .map(key => ({
+                uid:key,
+                fileName: files[key].fileName,
+                fileType: files[key].fileType,
+              
+              
             }));
             return fileData; // Return array of objects with fileName and fileType
         } else {

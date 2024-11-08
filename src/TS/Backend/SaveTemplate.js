@@ -1,10 +1,12 @@
-
-
 import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
-async function addTemplate() {
+async function addTemplate(isUpdating) {
 
+
+
+
+console.log("kkkkkkkkkkkkkkkkk")
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -16,18 +18,44 @@ async function addTemplate() {
     console.log("title=" + title.value)
 
 
-    const userRef = ref(database, `/templates/${title}`);
+
+
+
     var ele = document.getElementById("page1");
- 
+    console.log(ele)
     let sections = Array.from(ele.children)
     sections = sections.filter(section => !section.classList.contains("resizer"));
- 
+
     const clone = ele.cloneNode(false);
     let sectionList = [];
 
+
+    const today = new Date();
+    const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+    console.log(formattedDate);
+
+
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    console.log(formattedTime);
+
+
+    const savedFilesRef = ref(database, `/templateFiles`);
+    let newFile = await push(savedFilesRef, {
+        fileName: title, 
+        fileType: type, 
+        date: formattedDate,
+        time: formattedTime,
+    })
+
+    const savedDataRef = ref(database, `/savedData/${newFile.key}`);
+
     sections.forEach(element => {
 
-      
+
 
         if (element.id.includes("section")) {
 
@@ -51,30 +79,18 @@ async function addTemplate() {
 
     });
 
-    const today = new Date();
-    const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-    console.log(formattedDate);
-
-
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-    console.log(formattedTime);
+   
 
 
     let metaData = {
-        fileName: title,
-        fileType: type,
-        date: formattedDate,
-        time: formattedTime,
+
+
 
         frameData: clone.outerHTML,
         sections: sectionList
     };
     // Write an object with user details
-    await set(userRef, metaData)
+    await set(savedDataRef, metaData)
         .then(() => {
             console.log('User data written successfully!');
 
@@ -85,7 +101,7 @@ async function addTemplate() {
 
     displayMessage("Data Saved", "success")
 }
-document.getElementById('addTemplateBtn').addEventListener('click', addTemplate);
+document.getElementById('savedatabtn').addEventListener('click', addTemplate);
 
 
 function displayMessage(message, type) {

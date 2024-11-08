@@ -8,18 +8,20 @@ export async function getRecentFiles() {
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
             const files = snapshot.val();
+            console.log(files)
             // Convert the files object to an array and include timestamp for sorting
-            const fileData = Object.values(files)
-                .map(file => ({
-                    fileName: file.fileName,
-                    fileType: file.fileType,
-                    frameData: file.frameData,
-                    sections: file.sections,
-                    createdDate: file.createdDate,
-                    createdTime: file.time,
+            const fileData = Object.keys(files)
+                .map(key => ({
+                    uid:key,
+                    fileName: files[key].fileName,
+                    fileType: files[key].fileType,
+                  
+                    createdDate: files[key].date,
+                    createdTime: files[key].time,
                     // Create a sortable timestamp from createdDate and createdTime
-                    timestamp: new Date(`${file.createdDate}T${file.time}`).getTime()
+                    timestamp: new Date(`${files[key].date}T${files[key].time}`).getTime()
                 }));
+                
 
             // Sort the files by the timestamp in descending order (latest first)
             fileData.sort((a, b) => b.timestamp - a.timestamp);
