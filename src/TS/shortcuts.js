@@ -3,7 +3,10 @@ import addData from "./Backend/SaveFile.js";
 "use strict";
 
 let clipboard = ""; // Clipboard to store the copied HTML
+let undoStack = []; // Stack for undo actions
+let redoStack = []; // Stack for redo actions
 
+// Function to copy an element's HTML to the clipboard
 function copyElementToClipboard() {
     const currentElement = document.getElementById(currentSelectedContainer);
     if (currentElement) {
@@ -14,55 +17,60 @@ function copyElementToClipboard() {
     }
 }
 
-
-
 // Function to paste the content of the clipboard into the workspace
 function pasteElementToWorkspace() {
     const workspace = document.getElementById("page1");
-
     if (workspace && clipboard) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(clipboard, "text/html");
-        const ele = doc.body.firstChild;
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(clipboard, "text/html");
+            const ele = doc.body.firstChild;
 
-        if (!ele) {
-            console.error("Failed to parse clipboard HTML.");
-            return;
+            if (!ele) {
+                console.error("Failed to parse clipboard HTML. Clipboard might contain invalid HTML:", clipboard);
+                return;
+            }
+
+            // Generate a unique ID for the new element
+            ele.id = `pasted-${Date.now()}`;
+            ele.style.position = "absolute";
+            ele.style.left = "15px";
+            ele.style.top = "15px";
+
+            workspace.appendChild(ele);
+
+            // Push to undo stack and clear redo stack
+            undoStack.push({ action: 'add'});
+            redoStack.length = 0;
+
+            // Apply event listeners
+            makeElementDraggable(ele);
+            resizeOfCopyPasteElement(ele);
+            clickTextBox(ele);
+            doubleClickTextBox(ele);
+
+            // Update the selected container
+            currentSelectedContainer = ele.id;
+
+            console.log("Element pasted to workspace:", ele);
+        } catch (error) {
+            console.error("Error parsing clipboard content:", error, clipboard);
         }
-       
-
-        ele.id = `pasted-${Date.now()}`; // Unique ID
-        ele.style.position = "absolute";
-        ele.style.left = "15px";
-        ele.style.top = "15px";
-
-       
-
-        workspace.appendChild(ele);
-        undoStack.push({ action: 'add', element: ele.outerHTML });
-        redoStack.length = 0;
-
-        makeElementDraggable(ele);
-        resizeOfCopyPasteElement(ele);
-        clickTextBox(ele); 
-        doubleClickTextBox(ele);
-        currentSelectedContainer = ele.id;
-        console.log("Element pasted to workspace:", ele);
-
     } else {
-        console.error("Cannot paste: Workspace not found or clipboard is empty.");
+        console.error("Workspace not found or clipboard is empty.");
     }
 }
-
 
 
 // Function to make the element draggable
 function makeElementDraggable(ele) {
     ele.addEventListener("mousedown", (e) => {
+        // e.preventDefault();
         e.stopPropagation();
         previouslySelectedElement = currentSelectedContainer;
         currentSelectedContainer = ele.id;
         ele.style.border = "2px solid #4CC9FE";
+        
         Array.from(ele.children).forEach(child => {
             if (child.classList.contains("resizer")) {
                 child.style.backgroundColor = "#4CC9FE";
@@ -84,10 +92,10 @@ function makeElementDraggable(ele) {
         if (e.target.classList.contains('resizer'))
             return;
 
-        e.preventDefault();
         const parentRect = ele.parentNode.getBoundingClientRect();
         const shiftX = e.clientX - ele.getBoundingClientRect().left;
         const shiftY = e.clientY - ele.getBoundingClientRect().top;
+
         const moveAt = (clientX, clientY) => {
             const newLeft = Math.max(0, Math.min(clientX - parentRect.left - shiftX, parentRect.width - ele.offsetWidth));
             const newTop = Math.max(0, Math.min(clientY - parentRect.top - shiftY, parentRect.height - ele.offsetHeight));
@@ -109,7 +117,7 @@ function resizeOfCopyPasteElement(ele) {
         const resizer = document.createElement('div');
         resizer.classList.add('resizer', position);
         resizer.addEventListener('mousedown', (e) => {
-            e.preventDefault();
+            // e.preventDefault();
             e.stopPropagation();
             const startX = e.clientX;
             const startY = e.clientY;
@@ -117,6 +125,7 @@ function resizeOfCopyPasteElement(ele) {
             const startHeight = parseInt(document.defaultView.getComputedStyle(ele).height, 10);
             const startLeft = parseInt(ele.style.left, 10);
             const startTop = parseInt(ele.style.top, 10);
+
             const resize = (e) => {
                 if (position.includes('right')) {
                     ele.style.width = startWidth + (e.clientX - startX) + "px";
@@ -135,6 +144,7 @@ function resizeOfCopyPasteElement(ele) {
                     ele.style.top = (startTop - heightChange) + "px";
                 }
             };
+
             const stopResize = () => {
                 document.removeEventListener('mousemove', resize);
                 document.removeEventListener('mouseup', stopResize);
@@ -151,17 +161,24 @@ document.addEventListener("keydown", (event) => {
     if (event.ctrlKey || event.metaKey) {
         switch (event.key) {
             case "c":
-                // event.preventDefault();
                 copyElementToClipboard();
                 break;
             case "v":
-                // event.preventDefault();
                 pasteElementToWorkspace();
                 break;
             case "s":
-                // event.preventDefault();
                 addData();
                 break;
         }
     }
 });
+
+
+
+
+
+
+// Export everything as a single object
+
+
+
