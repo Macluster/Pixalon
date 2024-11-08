@@ -8,6 +8,12 @@ function showPopUp() {
         ele.style.display = "none";
 }
 
+function exportfile(){
+  const fileName = document.getElementById('fileName');
+  const title = document.getElementById('title');
+  fileName.value=title.value;
+}
+
 
 function custom() {
     const queryString = window.location.search;

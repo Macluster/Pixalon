@@ -6,7 +6,7 @@ import { storage } from "./Firebase.js";
 
 // Upload the file to Firebase Storage
 
-async function uploadImageToFirebase(file)
+export async function uploadImageToFirebase(file)
 {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -36,4 +36,3 @@ async function uploadImageToFirebase(file)
 }
 
 
-export default uploadImageToFirebase

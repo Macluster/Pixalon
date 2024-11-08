@@ -1,5 +1,6 @@
-import uploadImageToFirebase from "../TS/Backend/upload.js";
+import {uploadImageToFirebase} from "../TS/Backend/upload.js";
 import { addLayerItem } from "./Classes/layers.js";
+import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
 const pages = [];
@@ -74,26 +75,66 @@ document.getElementById("createTableButton")?.addEventListener("click",addTable)
 const sectionList = [];
 let sectionId = 0;
 function addSection() {
+    // Get the container's height to set boundaries for resizing
+    const container = document.getElementById(currentSelectedContainer);
+    const containerHeight = container.offsetHeight;
+    
     // Create a new section
     let section = new Section("100%", "300px", "grey", "");
+    
+    // Ensure the section's height doesn't exceed the container's height
+    section.element.style.maxHeight = containerHeight + "px";
+    
     // Position the new section after the previous one, if it exists
     if (sectionId > 0) {
         const prevSection = sectionList[sectionId - 1];
         const prevSectionTop = prevSection.element.offsetTop;
         const prevSectionHeight = prevSection.element.offsetHeight;
-        // Calculate and set the top position for the new section
         section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
     }
+    
     // Set an ID for the new section and add it to the list
     section.element.id = "section" + sectionId++;
     sectionList.push(section);
+    
     // Append the new section to the container
     section.appendTo("#" + currentSelectedContainer);
 
     // Add layer for the section
     addLayerItem("Section", section.element.id);
+
+    // Make the section resizable and draggable within container boundaries
+    makeResizableAndDraggable(section.element, container);
 }
+
+function makeResizableAndDraggable(element, container) {
+    // Assuming your View class has methods for setting resize and drag boundaries
+    const containerRect = container.getBoundingClientRect();
+
+    // Enable dragging within the container's width
+    element.draggable = true;
+    element.addEventListener('drag', function(event) {
+        let newTop = parseInt(element.style.top || 0) + event.movementY;
+        let newLeft = parseInt(element.style.left || 0) + event.movementX;
+
+        // Constrain within container
+        newTop = Math.max(0, Math.min(newTop, containerRect.height - element.offsetHeight));
+        newLeft = Math.max(0, Math.min(newLeft, containerRect.width - element.offsetWidth));
+        
+        element.style.top = newTop + 'px';
+        element.style.left = newLeft + 'px';
+    });
+
+    // Add resizing constraints
+    element.addEventListener('resize', function() {
+        if (element.offsetHeight > container.offsetHeight) {
+            element.style.height = container.offsetHeight + "px";
+        }
+    });
+}
+
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
+
 
 
 // Adding TextBox
@@ -166,6 +207,10 @@ document.getElementById("work-space")?.addEventListener("mousedown", onWorkspace
 // Get references to the select and button elements
 const mySelect = document.getElementById("format");
 const myButton = document.getElementById("exportFormat");
+const fileName = document.getElementById('fileName');
+
+
+
 // Add an event listener to the button
 myButton.addEventListener("click", () => {
     const selectedOption = mySelect.options[mySelect.selectedIndex];
@@ -204,33 +249,53 @@ myButton.addEventListener("click", () => {
                 // Create an anchor element
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = 'myfile.html';
+                a.download = `${fileName.value}.html`;
                 // Programmatically click the anchor to trigger the download
                 a.click();
                 // Clean up by revoking the Object URL
-                URL.revokeObjectURL(a.href);
+                URL.revokeObjectURL(a.href);  
             }
             break;
         case "png":
-            // Get the div element by ID and ensure it's not null
-            const captureElement = document.getElementById("page1");
-            if (captureElement) {
-                // Use html2canvas to capture the div as a canvas
-                html2canvas(captureElement).then((canvas) => {
-                    // Create a link element to trigger the download
-                    const link = document.createElement('a');
-                    link.download = 'div_image.png';
-                    // Convert the canvas to a PNG data URL and set it as the href for the link
-                    link.href = canvas.toDataURL("image/png");
-                    link.click();
-                }).catch((error) => {
-                    console.error("An error occurred while capturing the div:", error);
-                });
-            }
-            else {
-                console.error("Capture element not found.");
-            }
-            // Call a specific function for Option 2, if needed
+                const captureElement = document.getElementById("page1");
+                if (captureElement) {
+                    const images = captureElement.getElementsByTagName('img');
+                    let loadedImagesCount = 0;
+
+                    // Check if all images are loaded
+                    for (let img of images) {
+                        img.onload = function() {
+                            loadedImagesCount++;
+                            if (loadedImagesCount === images.length) {
+                                captureAndDownload();
+                                console.log(img.src);
+                                
+                            }
+                        };
+                        img.onerror = function() {
+                            console.error('An image failed to load:', img.src);
+                        };
+                    }
+
+                    // If no images are found or all are already loaded, capture directly
+                    if (images.length === 0 || loadedImagesCount === images.length) {
+                        captureAndDownload();
+                    }
+
+                    function captureAndDownload() {
+                        html2canvas(captureElement).then((canvas) => {
+                            const link = document.createElement('a');
+                            link.download = `${fileName.value}.png`;
+                            link.href = canvas.toDataURL("image/png");
+                            link.click();
+                        }).catch((error) => {
+                            console.error("An error occurred while capturing the div:", error);
+                        });
+                    }
+                } else {
+                    console.error("Capture element not found.");
+                }
+
             break;
         case "jpeg":
             const capturejpeg = document.getElementById("page1");
@@ -239,7 +304,7 @@ myButton.addEventListener("click", () => {
                 html2canvas(capturejpeg).then((canvas) => {
                     // Create a link element to trigger the download
                     const link = document.createElement('a');
-                    link.download = 'div_image.jpeg';
+                    link.download = `${fileName.value}.jpeg`;
                     // Convert the canvas to a PNG data URL and set it as the href for the link
                     link.href = canvas.toDataURL("image/jpeg", 0.8);
                     link.click();

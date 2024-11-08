@@ -1,4 +1,4 @@
-import uploadImageToFirebase from "../TS/Backend/upload.js";
+import {uploadImageToFirebase} from "../TS/Backend/upload.js";
 
 
 
