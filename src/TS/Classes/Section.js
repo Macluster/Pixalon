@@ -6,6 +6,7 @@ class Section extends View {
     constructor(id,width, height, bgColor, content) {
         super(width, height, bgColor, content);
         this.element.id=id
+        this.element.classList.add("Section")
         console.log(id)
         let upArrow = document.createElement("div");
        
