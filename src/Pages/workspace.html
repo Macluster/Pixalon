@@ -106,8 +106,17 @@
             </div>
 
             <div class="layers">
-                <div id="layers-container">
+                <select name="layers_sections" id="layers_sections" onchange="layers_sections()">
+                    <option value="layers">Layers</option>
+                    <option value="sections">Sections</option>
+                </select>
+                <div style="display: none;" id="layers-container">
                     <!-- Layers for each tool will be added here dynamically -->
+                     <p>layers</p>
+                </div>
+                <div style="display: none;" id="sections-container">
+                    <!-- sections will be added here dynamically -->
+                     <p>sections</p>
                 </div>
             </div>
 
@@ -193,7 +202,7 @@
                         </div>
                         <img onclick="constrain('constrain-proportion')"
                             src="../../assets/material-symbols_link (1).png" width="18" height="18"
-                            style="padding: 7px;"
+                            style="padding: 7px;">
                     </div>
                 </div>
                 <hr style="width: 100%;margin-top: 18px;">
@@ -387,6 +396,7 @@
 <script src="../TS/global.js"></script>
 <script src="../TS/Classes/View.js"></script>
 <script src="../TS/Classes/Frame.js"></script>
+<script src="../TS/SectionArrangement.js"></script>
 <script src="../TS/Classes/Section.js"></script>
 <script type="module"  src="../TS/shortcuts.js"></script>
 <script src="../TS/Classes/Image.js"></script>
@@ -401,9 +411,25 @@
 <script src="../TS/Classes/align.js"></script>
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
 <script type="module" src="../TS/Backend/SaveTemplate.js"></script>
-<script src="../TS/Backend/workspaceRetrieval.js"></script>
+<script type="module" src="../TS/Backend/workspaceRetrieval.js"></script>
+<script type="module" src="../TS/Backend/FetchFileData.js"
 
 
+<script>
+    function layers_sections() {
+        const selectedValue = document.getElementById('layers_sections').value;
+        const layersContainer = document.getElementById('layers-container');
+        const sectionsContainer = document.getElementById('sections-container');
+
+        if (selectedValue === 'layers') {
+            layersContainer.style.display = 'flex';
+            sectionsContainer.style.display = 'none';
+        } else {
+            layersContainer.style.display = 'none';
+            sectionsContainer.style.display = 'flex';
+        }
+    }
+</script>
 
 
 
