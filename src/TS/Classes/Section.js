@@ -45,6 +45,8 @@ class Section extends View {
         optionsContainer.appendChild(downArrow);
 
         this.element.appendChild(optionsContainer);
+  
+        
 
 
 
