@@ -1,5 +1,6 @@
 import uploadImageToFirebase from "../TS/Backend/upload.js";
 import { addLayerItem } from "./Classes/layers.js";
+import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
 const pages = [];
@@ -8,6 +9,7 @@ function addFrame() {
     frame.element.id = "page1";
     frame.element.style.display = "flex";
     frame.element.style.flexDirection = "column";
+   
     pages.push(frame);
     frame.appendTo(".work-space");
 
@@ -29,6 +31,7 @@ function addFrame() {
     document.getElementById('fillColorInput').value = hex;
 }
 document.getElementById("frameBtn")?.addEventListener("click", addFrame);
+
 // Adding Table
 const tableList = [];
 let tableId = 0;
@@ -211,9 +214,12 @@ myButton.addEventListener("click", () => {
                 URL.revokeObjectURL(a.href);
             }
             break;
+
         case "png":
             // Get the div element by ID and ensure it's not null
             const captureElement = document.getElementById("page1");
+            console.log(captureElement);
+            
             if (captureElement) {
                 // Use html2canvas to capture the div as a canvas
                 html2canvas(captureElement).then((canvas) => {
@@ -230,8 +236,8 @@ myButton.addEventListener("click", () => {
             else {
                 console.error("Capture element not found.");
             }
-            // Call a specific function for Option 2, if needed
             break;
+
         case "jpeg":
             const capturejpeg = document.getElementById("page1");
             if (capturejpeg) {
@@ -251,6 +257,7 @@ myButton.addEventListener("click", () => {
                 console.error("Capture element not found.");
             }
             break;
+            
         case "pdf":
             // Get the div element by ID and ensure it's not null
             const capturepdf = document.getElementById("page1");
