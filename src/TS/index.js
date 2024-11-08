@@ -78,7 +78,7 @@ const sectionList = [];
 let sectionId = 0;
 function addSection() {
     // Create a new section
-    let section = new Section("100%", "300px", "grey", "");
+    let section = new Section(("section" + (sectionId)),"100%", "300px", "grey", "");
     // Position the new section after the previous one, if it exists
     if (sectionId > 0) {
         const prevSection = sectionList[sectionId - 1];
@@ -87,9 +87,11 @@ function addSection() {
         // Calculate and set the top position for the new section
         section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
     }
+    sectionId++;
     // Set an ID for the new section and add it to the list
-    section.element.id = "section" + sectionId++;
+   // section.element.id = "section" + sectionId++;
     sectionList.push(section);
+    sectionArraylist.push(section)
     // Append the new section to the container
     section.appendTo("#" + currentSelectedContainer);
 

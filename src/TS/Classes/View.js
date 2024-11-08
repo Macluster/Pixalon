@@ -104,6 +104,14 @@ class View {
             previouslySelectedElement = currentSelectedContainer;
             currentSelectedContainer = this.element.id;
             this.element.style.border = "2px solid #4CC9FE";
+            
+            if(this.element.classList.contains("Section"))
+                {
+                  let prev=  document.getElementById(previouslySelectedElement).querySelectorAll(".sectionOption")[0]
+                  prev.style.visibility="hidden"
+                  let sectionOption=  this.element.querySelectorAll(".sectionOption")[0]
+                  sectionOption.style.visibility="visible"
+                }
 
             //updating hight and width in proparty box
             document.getElementById('height').value = this.element.style.height.split("p")[0];
