@@ -1,6 +1,7 @@
 import uploadImageToFirebase from "../TS/Backend/upload.js";
 import { addLayerItem } from "./Classes/layers.js";
 import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
+import { addSections } from "./Section_container.js";
 
 // Adding Page
 const pages = [];
@@ -93,6 +94,8 @@ function addSection() {
 
     // Add layer for the section
     addLayerItem("Section", section.element.id);
+    // add to section layer 
+    addSections(section.element.id)
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 

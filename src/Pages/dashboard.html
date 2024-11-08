@@ -67,16 +67,15 @@
         </nav>
        
         <div class="second-row">
-            <div class="profile pointer" onclick="toggleMenu()">
+            <div id="toggleMenu" class="profile pointer">
                 <i class="fa-regular fa-user"></i>
-
             </div>
             <div class="popup-menu" id="popupMenu">
                 <div class="profile-name">
                     <img src="../../assets/dashboard/user.png">
-                    <p>Name</p>
+                    <p style="font-size: small;" id="name">Name</p>
                 </div>
-                <div onclick="logout()" class="menu-item">
+                <div  id="logout" class="menu-item">
                     <i class="fa-solid fa-sign-out-alt"></i> 
                     <samp>Logout</samp>
                 </div>

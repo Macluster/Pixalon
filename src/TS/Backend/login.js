@@ -28,6 +28,8 @@ function login() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
             // Signed in successfully
+            setCookie("username", email, 1)
+            
             setCookie("loggedIn", "true", 1);
             const user = userCredential.user;
             // Redirect to dashboard

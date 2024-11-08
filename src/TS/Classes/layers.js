@@ -189,18 +189,25 @@ function toggleVisibility(id, button) {
 
 // Function to delete a layer with confirmation and smooth animation
 export function deleteLayer(id) {
+    const sectionItem = document.getElementById(`section-${id}`);
     const layerItem = document.getElementById(`layer-${id}`);
     const correspondingElement = document.getElementById(id);
 
-    if (layerItem) {
-        layers.splice(layers.indexOf(layerItem), 1);
-        updateZIndices();
+    // Remove section from sections-container
+    if (sectionItem) {
+        sectionItem.style.transition = "opacity 0.3s ease-out";
+        sectionItem.style.opacity = "0";
+        setTimeout(() => sectionItem.remove(), 300);
+    }
 
-        // Fade out and remove the layer item
+    // Remove layer from layers-container
+    if (layerItem) {
         layerItem.style.transition = "opacity 0.3s ease-out";
         layerItem.style.opacity = "0";
         setTimeout(() => layerItem.remove(), 300);
     }
+
+    // Remove corresponding work area section
     if (correspondingElement) {
         correspondingElement.style.transition = "opacity 0.3s ease-out";
         correspondingElement.style.opacity = "0";

@@ -1,4 +1,5 @@
 import {deleteLayer} from './Classes/layers.js'
+import { deleteSection } from './Section_container.js';
 "use strict";
 let scaleFactor = 1;
 // Adjust scale of the div
@@ -32,6 +33,7 @@ window.addEventListener('keydown', (event) => {
 
             //delete layer
             deleteLayer(currentSelectedContainer)
+            deleteSection(selectedElement.id)
         }
     }
 });

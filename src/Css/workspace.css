@@ -1103,3 +1103,48 @@ img {
   margin-left: 5px;
   padding: 2px 5px;
 } */
+
+/* -----------------------------------sections layer----------------------------------- */
+
+/* Basic styling for the section items */
+.section-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.section-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Dash border for drop target */
+.section-item[style*="dashed"] {
+  border: 2px dashed #007bff;
+}
+
+/* Delete button style */
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+  transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+  color: darkred;
+}
+
+.layers_sections{
+  display: none;
+  flex-direction: column;
+}

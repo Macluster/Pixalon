@@ -293,6 +293,32 @@ function toggleMenu() {
     menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 }
 
+document.getElementById('toggleMenu').addEventListener('click', toggleMenu);
+//----------------------logout-------------------------------------------------------------
+document.getElementById('logout').addEventListener('click', logout);
+
+function logout() {
+    setCookie("loggedIn", "false", 1);
+    window.location.href = './login.html';
+}
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Expiration in days
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 // Close the menu when clicking outside
 document.addEventListener('click', (event) => {
     const menu = document.getElementById('popupMenu');
@@ -301,3 +327,12 @@ document.addEventListener('click', (event) => {
         menu.style.display = 'none';
     }
 }); 
+
+document.addEventListener("DOMContentLoaded", function () {
+    let email =  getCookie("username");
+    email = email.replace(/[0-9]/g, '')
+    const username = email.split('@')[0];
+    console.log(email);
+    console.log(username);
+    document.getElementById('name').innerHTML = username;
+});

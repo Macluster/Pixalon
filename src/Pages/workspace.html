@@ -110,13 +110,11 @@
                     <option value="layers">Layers</option>
                     <option value="sections">Sections</option>
                 </select>
-                <div style="display: none;" id="layers-container">
+                <div class="layers_sections" id="layers-container">
                     <!-- Layers for each tool will be added here dynamically -->
-                     <p>layers</p>
                 </div>
-                <div style="display: none;" id="sections-container">
+                <div class="layers_sections" id="sections-container">
                     <!-- sections will be added here dynamically -->
-                     <p>sections</p>
                 </div>
             </div>
 
@@ -411,8 +409,21 @@
 <script type="module" src="../TS/Backend/SaveFile.js"></script>
 <script type="module" src="../TS/Backend/SaveTemplate.js"></script>
 <script src="../TS/Backend/workspaceRetrieval.js"></script>
+<script src="../TS/Section_container.js"></script>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const layersSections = document.getElementById('layers_sections');
+        const layersContainer = document.getElementById('layers-container');
+        const sectionsContainer = document.getElementById('sections-container');
+
+        if (layersSections.value === 'layers') {
+            layersContainer.style.display = "flex";
+        } else {
+            sectionsContainer.style.display = "flex";
+        }
+    });
+
     function layers_sections() {
         const selectedValue = document.getElementById('layers_sections').value;
         const layersContainer = document.getElementById('layers-container');
