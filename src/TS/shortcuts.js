@@ -167,7 +167,7 @@ document.addEventListener("keydown", (event) => {
                 pasteElementToWorkspace();
                 break;
             case "s":
-                addData();
+                addData(true);
                 break;
         }
     }

@@ -1,7 +1,7 @@
 import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
-async function addData(isUpdating) {
+async function addData() {
 
 
 
@@ -12,10 +12,12 @@ async function addData(isUpdating) {
     const urlParams = new URLSearchParams(queryString);
     let title = urlParams.get('name');
     title = document.getElementById('title').value
+    let fileKey = ""
 
     const type = urlParams.get('type');
-    console.log("type=" + type)
-    console.log("title=" + title.value)
+    const isUpdating = urlParams.get('isUpdating');
+  
+    
 
 
 
@@ -44,14 +46,26 @@ async function addData(isUpdating) {
 
 
     const savedFilesRef = ref(database, `/savedFiles`);
-    let newFile = await push(savedFilesRef, {
-        fileName: title, 
-        fileType: type, 
-        date: formattedDate,
-        time: formattedTime,
-    })
+    if(isUpdating==0)
+    {
+        const tempkey= await push(savedFilesRef, {
+            fileName: title, 
+            fileType: type, 
+            date: formattedDate,
+            time: formattedTime,
+        })
+        fileKey=tempkey.key
+    }
+    else
+    {
+      fileKey=  await localStorage.getItem('fileKey');
+      console.log(fileKey)
+    }
+   
 
-    const savedDataRef = ref(database, `/savedData/${newFile.key}`);
+    
+
+    const savedDataRef = ref(database, `/savedData/${fileKey}`);
 
     sections.forEach(element => {
 
@@ -101,7 +115,9 @@ async function addData(isUpdating) {
 
     displayMessage("Data Saved", "success")
 }
-document.getElementById('savedatabtn').addEventListener('click', addData);
+document.getElementById('savedatabtn').addEventListener('click', (event)=>{
+addData(true)
+});
 
 
 function displayMessage(message, type) {

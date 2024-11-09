@@ -2,6 +2,8 @@ import { fetchFileData } from "./FetchFileData.js";
 
 
 async function showData() {
+
+    sectionArraylist=[]
     // Retrieve frameData and sections from localStorage
     const fileKey = await localStorage.getItem('fileKey');
     console.log("key="+fileKey)
@@ -37,6 +39,8 @@ async function showData() {
         // Add Movable Property (same as your original code)
         frame.makeMovable();
 
+        workSpaceElement.appendChild(tempDiv);
+
         // makeElementDraggable(tempDiv);
         // resizeOfCopyPasteElement(tempDiv);
         // clickTextBox(ele);
@@ -55,17 +59,22 @@ async function showData() {
 
             if (frame) {
 
+               
                 parsedSections.forEach(async (sectionData) => {
 
                     const sec = await (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
-                    let section = new Section("100%", "300px", "grey", "");
-                    section.element.id = sectionData.id
+                    let section = new Section(("section" + (sectionArraylist.length)),"100%", "300px", "grey", "");
+                    
                     section.element = sec
+                    section.element.id=`section${sectionArraylist.length}`
+                    sectionArraylist.push(section)
+                    tempDiv.appendChild(section.element);
+                    //sectionArraylist.push(section)
+                    console.log(sectionArraylist)
                     // Add the resizer elements (four corner resizers)
                     section.addResizers();
                     // Add Movable Property (same as your original code)
                     section.makeMovable();
-
 
 
 
@@ -81,7 +90,8 @@ async function showData() {
                                 textBox.addResizers();
                                 // Add Movable Property (same as your original code)
                                 textBox.makeMovable();
-                                textBox.appendTo(section.element.id)
+                                console.log("hhhhhhhhhh")
+                                textBox.appendTo(`#section${sectionArraylist.length-1}`)
                                 // section.element.appendChild(textBox.element)
                             }
                             if (e.classList.contains("Image")) {
@@ -92,7 +102,8 @@ async function showData() {
                                 image.addResizers();
                                 // Add Movable Property (same as your original code)
                                 image.makeMovable();
-                                image.appendTo(section.element.id)
+                                console.log("yyyyyyyyyyyyyyy")
+                                image.appendTo(`#section${sectionArraylist.length-1}`)
 
                                 //section.element.appendChild(image.element)
                             }
@@ -111,7 +122,9 @@ async function showData() {
 
 
                     // Append each section to the frame
-                    tempDiv.appendChild(section.element);
+                    
+                   
+                  
                 }
 
 
@@ -121,7 +134,7 @@ async function showData() {
             }
         }
 
-        workSpaceElement.appendChild(tempDiv);
+       
         console.log("when retriving")
         console.log(tempDiv)
         console.log("end")

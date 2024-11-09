@@ -75,22 +75,24 @@ document.getElementById("createTableButton")?.addEventListener("click",addTable)
 
 // Adding Section
 const sectionList = [];
-let sectionId = 0;
+
 function addSection() {
+
+    console.log(sectionArraylist)
     // Create a new section
-    let section = new Section(("section" + (sectionId)),"100%", "300px", "grey", "");
+    let section = new Section(("section" + (sectionArraylist.length)),"100%", "300px", "grey", "");
     // Position the new section after the previous one, if it exists
-    if (sectionId > 0) {
-        const prevSection = sectionList[sectionId - 1];
+    if (sectionArraylist.length > 0) {
+        const prevSection = sectionArraylist[sectionArraylist.length-1];
         const prevSectionTop = prevSection.element.offsetTop;
         const prevSectionHeight = prevSection.element.offsetHeight;
         // Calculate and set the top position for the new section
         section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
     }
-    sectionId++;
+    
     // Set an ID for the new section and add it to the list
    // section.element.id = "section" + sectionId++;
-    sectionList.push(section);
+   // sectionList.push(section);
     sectionArraylist.push(section)
     // Append the new section to the container
     section.appendTo("#" + currentSelectedContainer);
