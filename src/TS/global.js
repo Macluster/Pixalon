@@ -1,4 +1,5 @@
 "use strict";
 let currentSelectedContainer = "";
 let previouslySelectedElement = "";
-let sectionArraylist=[]
+let sectionArraylist=[];
+window.selectedCells = [];

@@ -75,15 +75,22 @@
     <div class="main">
 
         <!-- table tools -->
+         
         <div id="tableTools">
-            <label>Cell Color:</label>
-            <input type="color" id="cellColor" value="#d0e6ff" />
+            <h5>Cell Tools</h5>
+            <div class="tablebuttontools">
+            <img src="../../assets/paintbucket.svg" alt="">
+            <input type="color" id="cellColor" value="#ffffff">
         
-            <label>Border Color:</label>
-            <input type="color" id="borderColor" value="#007bff" />
+            <img src="../../assets/border_color_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <input type="color" id="borderColor" value="#000000" />
         
-            <label>Font Color:</label>
+            <img src="../../assets/flowbite--font-color-alt-solid.svg" alt="">
             <input type="color" id="fontColor" value="#000000" />
+
+            <button id="tableMergeVertical">Merge Vertical</button>
+            <button id="tableMergeHorizontal">Merge Horizontal</button>
+        </div>
          </div>
 
         <!-- Left sideBars-to add frame,select etc -->
@@ -365,7 +372,7 @@
                     <div class="opacity">
                         <img src="../../assets/material-symbols-light_opacity (1).png" width="14" height="14"
                             class="input-icon">
-                        <input id="opacityInput" class="property-input" style="width: 50px;"  />
+                        <input id="opacityInput" type="number" max="100" min="0" value="" class="property-input" style="width: 50px;" />
                     </div>
                     <div class="corner">
                         <img src="../../assets/tabler_border-corner-pill.png" width="12" height="12" class="input-icon">
