@@ -52,7 +52,7 @@ async function getRecentData() {
 
 
             // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}`;
+            window.location.href = `workspace.html?name=${recentData[i - 1].fileName}&height=${0}&width=${0}&type=${recentData[i - 1].fileType}&isUpdating=1`;
         });
 
         // Check if the element exists and if there is a corresponding name
@@ -74,19 +74,13 @@ async function getRecentData() {
 async function getTemplatesData() {
 
     let templates=[]
-    let cache=localStorage.getItem("templates")
-    if(cache)
-    {
-        templates = JSON.parse(cache)
-        let newData=await getTemplates()
-        localStorage.setItem("templates",JSON.stringify(newData))
-    }
-    else
-    {
-        templates = await getTemplates();
-        localStorage.setItem("templates",JSON.stringify(recentData))
+   
+    templates = await getTemplates();
+    console.log("hai")
+    console.log(templates)
+      
 
-    }
+    
 
 
 
@@ -120,7 +114,7 @@ async function getTemplatesData() {
 
 
             // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}`;
+            window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}&isUpdating=1`;
         });
 
 
@@ -252,7 +246,7 @@ onSavedItemClicked.addEventListener("click", async function () {
 
 
             // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}`;
+            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}&isUpdating=1`;
         });
 
 
@@ -280,27 +274,27 @@ function onCustomPresetCreate() {
     const height = document.getElementById("cwidth").value;
     console.log(width);
     console.log(height);
-    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}&type=custom`;
+    window.location.href = `workspace.html?name=${fileName}&height=${height}&width=${width}&type=custom&isUpdating=0`;
 }
 document.getElementById('popupPresetBtn').addEventListener("click", onCustomPresetCreate)
 
 function onNewsletterCreate() {
-    window.location.href = `workspace.html?name=title&height=800&width=600&type=newsletter`;
+    window.location.href = `workspace.html?name=title&height=800&width=600&type=newsletter&isUpdating=0`;
 }
 document.getElementById('newsletterBtn').addEventListener("click", onNewsletterCreate)
 
 function onPosterCreate() {
-    window.location.href = `workspace.html?name=title&height=600&width=600&type=poster`;
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=poster&isUpdating=0`;
 }
 document.getElementById('posterBtn').addEventListener("click", onPosterCreate)
 
 function onA4Create() {
-    window.location.href = `workspace.html?name=title&height=600&width=600&type=a4`;
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=a4&isUpdating=0`;
 }
 document.getElementById('A4PresentBtn').addEventListener("click", onA4Create)
 
 function onA3Create() {
-    window.location.href = `workspace.html?name=title&height=600&width=600&type=a3`;
+    window.location.href = `workspace.html?name=title&height=600&width=600&type=a3&isUpdating=0`;
 }
 document.getElementById('A3PresentBtn').addEventListener("click", onA3Create)
 function onSearched(event) {

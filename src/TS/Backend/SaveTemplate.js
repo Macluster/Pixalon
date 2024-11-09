@@ -1,21 +1,24 @@
 import { app, database } from './Firebase.js';
 import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 // Reference to the 'users' node in the 
-async function addTemplate(isUpdating) {
+async function addTemplate() {
 
 
 
 
-console.log("kkkkkkkkkkkkkkkkk")
+
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let title = urlParams.get('name');
     title = document.getElementById('title').value
+    let fileKey = ""
 
     const type = urlParams.get('type');
-    console.log("type=" + type)
-    console.log("title=" + title.value)
+    const isUpdating = urlParams.get('isUpdating');
+    console.log("sdfafaf"+isUpdating)
+  
+    
 
 
 
@@ -44,14 +47,28 @@ console.log("kkkkkkkkkkkkkkkkk")
 
 
     const savedFilesRef = ref(database, `/templateFiles`);
-    let newFile = await push(savedFilesRef, {
-        fileName: title, 
-        fileType: type, 
-        date: formattedDate,
-        time: formattedTime,
-    })
+    if(isUpdating=="0")
+    {
+        console.log("isssssssss")
+        const tempkey= await push(savedFilesRef, {
+            fileName: title, 
+            fileType: type, 
+            date: formattedDate,
+            time: formattedTime,
+        })
+        fileKey=tempkey.key
+    }
+    else
+    {
+      fileKey=  await localStorage.getItem('fileKey');
+      console.log(fileKey)
+      console.log("hai")
+    }
+   
 
-    const savedDataRef = ref(database, `/savedData/${newFile.key}`);
+    
+
+    const savedDataRef = ref(database, `/savedData/${fileKey}`);
 
     sections.forEach(element => {
 
@@ -101,7 +118,11 @@ console.log("kkkkkkkkkkkkkkkkk")
 
     displayMessage("Data Saved", "success")
 }
-document.getElementById('savedatabtn').addEventListener('click', addTemplate);
+
+
+document.getElementById('addTemplateBtn').addEventListener('click', (event)=>{
+    addTemplate()
+    });
 
 
 function displayMessage(message, type) {
