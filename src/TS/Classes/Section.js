@@ -15,13 +15,13 @@ class Section extends View {
         upArrow.addEventListener('click', function(event) {
             moveSectionUp(id)
         });
-        upArrow.innerHTML = `<img src='../../../assets/up-arrow.png' style='height:20px;width:20px;'/>`;
+        upArrow.innerHTML = `<img src='https://cdn-icons-png.flaticon.com/128/626/626075.png' style='height:20px;width:20px;'/>`;
 
         let downArrow = document.createElement("div");
         
         downArrow.style.display = "flex";
         downArrow.style.alignItems = "center";  // Center the image vertically
-        downArrow.innerHTML = `<img src='../../../assets/down-arrow.png' style='height:20px;width:20px;'/>`;
+        downArrow.innerHTML = `<img src='https://cdn-icons-png.flaticon.com/128/608/608258.png' style='height:20px;width:20px;'/>`;
         downArrow.addEventListener('click', function(event) {
             moveSectionDown(id)
         });
@@ -30,7 +30,7 @@ class Section extends View {
         
         deleteSection.style.display = "flex";
         deleteSection.style.alignItems = "center";  // Center the image vertically
-        deleteSection.innerHTML = `<img src='../../../assets/delete.svg' style='height:20px;width:20px;'/>`;
+        deleteSection.innerHTML = `<img src='https://cdn-icons-png.flaticon.com/128/484/484662.png' style='height:20px;width:20px;'/>`;
         deleteSection.addEventListener('click', function(event) {
             deleteSection1(id)
         });
