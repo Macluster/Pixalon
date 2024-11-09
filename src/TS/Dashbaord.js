@@ -99,18 +99,18 @@ async function getTemplatesData() {
         i++;
 
 
-        card.addEventListener("click", () => {
+        card.addEventListener("click",async () => {
             // Log frameData and sections for reference
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
 
             console.log("keyyyy"+e.uid)
-            localStorage.setItem('fileKey', e.uid);
+           await  localStorage.setItem('fileKey', e.uid);
 
 
 
             // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}&isUpdating=1`;
+            window.location.href = `workspace.html?name=${e.fileName}&height=${0}&width=${0}&type=${e.fileType}&isUpdating=1&id=${e.uid}&isTempalate=1`;
         });
 
 

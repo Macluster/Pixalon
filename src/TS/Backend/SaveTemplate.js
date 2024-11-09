@@ -61,7 +61,7 @@ async function addTemplate() {
     }
     else
     {
-      fileKey=  await localStorage.getItem('fileKey');
+      fileKey=  urlParams.get('id');
      
       console.log("haiiii"+fileKey)
      
