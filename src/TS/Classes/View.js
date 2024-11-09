@@ -8,6 +8,7 @@ class View {
         this.element.textContent = content || '';
         // Set styles for positioning and make div movable and resizable
         this.element.style.position = 'absolute';
+        this.element.style.opacity='100%';
         this.element.style.left = '0px';
         this.element.classList.add("movable");
         this.element.classList.add("resizable");
