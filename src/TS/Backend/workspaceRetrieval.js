@@ -98,6 +98,8 @@ async function showData() {
                                     textBox.addResizers();
                                     // Add Movable Property (same as your original code)
                                     textBox.makeMovable();
+                                    textBox.clickTextBox()
+                                    textBox.doubleClickTextBox()
                                     console.log("hhhhhhhhhh")
                                     textBox.appendTo(`#section${sectionArraylist.length - 1}`)
                                     // section.element.appendChild(textBox.element)
@@ -110,6 +112,7 @@ async function showData() {
                                     image.addResizers();
                                     // Add Movable Property (same as your original code)
                                     image.makeMovable();
+
                                     console.log("yyyyyyyyyyyyyyy")
                                     image.appendTo(`#section${sectionArraylist.length - 1}`)
 
