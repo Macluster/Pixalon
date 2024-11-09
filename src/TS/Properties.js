@@ -163,9 +163,30 @@ function alignParagraph(event,alignValue) {
     const view = document.getElementById(currentSelectedContainer);
     console.log(view);
     if (view) {
-        view.querySelectorAll('textarea')[0].style.textAlign = `${alignValue}`;
-    }
+        if(view.querySelectorAll('textarea')[0])
+         view.querySelectorAll('textarea')[0].style.textAlign = `${alignValue}`;
+      }
+        // else 
+        // {
+        //   view.querySelectorAll('table')[0].style.textAlign = `${alignValue}`;
+        // }
+      // console.log(view.getElementsByClassName('selected')[0]);
+        
+    
 }
+
+// Function to change the opacity
+function onOpacityChanged(event)
+{
+  const target = event.target;
+  console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  if (view) {
+    view.style.opacity = `${target.value}%`;
+  }
+}
+
+
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
   const exportModal = document.getElementById("exportModal");
@@ -206,6 +227,8 @@ function exportFile(fileName, size, format) {
   );
 }
 
+
+
 function rgbToHex(rgb) {
     if (!rgb) return "#000000"; // Default if no color is set
     const result = rgb.match(/\d+/g);
@@ -221,6 +244,133 @@ function rgbToHex(rgb) {
     }
     return "#ffffff"; // Return black if parsing fails
   }
+
+// Table properties
+
+
+function onCellColorChange(event)
+{
+  const target = event.target;
+  // console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  // console.log(view);
+  const cell = view.getElementsByClassName("selected")[0];
+  console.log(cell);
+  
+  if(cell)
+    cell.style.backgroundColor = target.value;
+
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view.getElementsByClassName('selected')[0]).backgroundColor);
+   document.getElementById('cellColor').value = hex;
+  //  document.getElementById('fillColorInput').value = hex;
+}
+
+function onCellBrdColorChange(event)
+{
+  const target = event.target;
+  // console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  // console.log(view);
+  const cell = view.getElementsByClassName("selected")[0];
+  console.log(cell);
+  
+  if(cell)
+    cell.style.borderColor = target.value;
+
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view.getElementsByClassName('selected')[0]).borderColor);
+   document.getElementById('borderColor').value = hex;
+  //  document.getElementById('fillColorInput').value = hex;
+}
+
+function onCellFontColorChange(event)
+{
+  const target = event.target;
+  // console.log(target.value);
+  const view = document.getElementById(currentSelectedContainer);
+  // console.log(view);
+  const cell = view.getElementsByClassName("selected")[0];
+  console.log(cell);
+  
+  if(cell)
+    cell.style.color = target.value;
+
+   // Update color in the property box
+   const hex = rgbToHex(window.getComputedStyle(view.getElementsByClassName('selected')[0]).color);
+   document.getElementById('fontColor').value = hex;
+}
+
+
+function mergeCellsHorizontally() {
+  if (!isSameRow()) {
+    alert("Cells must be in the same row to merge horizontally!");
+    return;
+  }
+  if (window.selectedCells.length < 2) {
+    alert("Select at least two cells to merge!");
+    return;
+  }
+
+  const colspanValue = window.selectedCells.length;
+  console.log(colspanValue);
+  
+  const firstCell = window.selectedCells[0];
+  const cellWidth = firstCell.offsetWidth;
+  console.log(cellWidth);
+  
+  // const totalWidth = window.selectedCells.reduce((sum,cell) =>{
+  //   console.log(cell.offsetwidth);
+  //   return sum + cell.offsetwidth;
+    
+  // },0);
+
+  // console.log(totalWidth);
+  
+  firstCell.setAttribute("colspan", colspanValue);
+  
+  firstCell.style.width =`${(cellWidth+(25*colspanValue))/(colspanValue)}%`;
+
+  // Remove additional cells
+  window.selectedCells.slice(1).forEach((cell) => cell.remove());
+  // clearAllSelections(); // Clear selection visuals
+}
+
+// Merge selected cells vertically
+function mergeCellsVertically() {
+  // if (!isSameColumn()) {
+  //   alert("Cells must be in the same column to merge vertically!");
+  //   return;
+  // }
+  if (window.selectedCells.length < 2) {
+    alert("Select at least two cells to merge vertically!");
+    return;
+  }
+
+  const rowspanValue = window.selectedCells.length;
+  window.selectedCells[0].setAttribute("rowspan", rowspanValue);
+
+  // Remove additional cells
+  window.selectedCells.slice(1).forEach((cell) => cell.remove());
+  clearAllSelections();
+}
+
+// Check if selected cells are in the same row
+function isSameRow() {
+  const firstRow = window.selectedCells[0].parentElement;
+  return window.selectedCells.every((cell) => cell.parentElement === firstRow);
+}
+
+// Check if selected cells are in the same column
+function isSameColumn() {
+  const colIndex = Array.from(window.selectedCells[0].parentElement.children).indexOf(window.selectedCells[0]);
+  return window.selectedCells.every((cell) => {
+    return Array.from(cell.parentElement.children).indexOf(cell) === colIndex;
+  });
+}
+
+
+
 
 
 
@@ -246,10 +396,12 @@ function rgbToHex(rgb) {
     document.getElementById("height").addEventListener("change",onHeightChanged);
     document.getElementById("width").addEventListener("change",onWidthChanged);
     
-
-   
-
-
+    document.getElementById("opacityInput").addEventListener("change",onOpacityChanged);
+    document.getElementById("cellColor").addEventListener("change",onCellColorChange);
+    document.getElementById("borderColor").addEventListener("change",onCellBrdColorChange);
+    document.getElementById("fontColor").addEventListener("change",onCellFontColorChange);
+    document.getElementById("tableMergeVertical").addEventListener("click",mergeCellsVertically);
+    document.getElementById("tableMergeHorizontal").addEventListener("click",mergeCellsHorizontally);
 
 
     document.getElementById("background-image-picker").addEventListener("click",selectBackgroundImage);
