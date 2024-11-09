@@ -46,7 +46,8 @@ async function addData() {
 
 
     const savedFilesRef = ref(database, `/savedFiles`);
-    if(isUpdating==0)
+    const isTempalate= urlParams.get('isTempalate');
+    if(isUpdating==0||isTempalate==1)
     {
         const tempkey= await push(savedFilesRef, {
             fileName: title, 
@@ -58,7 +59,7 @@ async function addData() {
     }
     else
     {
-      fileKey=  await localStorage.getItem('fileKey');
+        fileKey=  urlParams.get('id');
       console.log(fileKey)
     }
    
@@ -116,7 +117,7 @@ async function addData() {
     displayMessage("Data Saved", "success")
 }
 document.getElementById('savedatabtn').addEventListener('click', (event)=>{
-addData(true)
+addData()
 });
 
 
