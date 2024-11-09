@@ -9,6 +9,7 @@ class TextBox extends View {
         this.input.style.overflow = "hidden";
         this.input.style.resize = "none";
         // Prevent focus on single click
+        this.element.classList.add("TextBox")
         this.input.addEventListener("mousedown", function (e) {
             e.preventDefault();
         });

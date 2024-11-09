@@ -1,7 +1,74 @@
 "use strict";
+
+
+
 class Section extends View {
-    constructor(width, height, bgColor, content) {
+    constructor(id,width, height, bgColor, content) {
         super(width, height, bgColor, content);
-        this.element.style.backgroundColor = bgColor;
+        this.element.id=id
+        this.element.classList.add("Section")
+        console.log(id)
+        let upArrow = document.createElement("div");
+       
+        upArrow.style.display = "flex";
+        upArrow.style.alignItems = "center";  // Center the image vertically
+        upArrow.addEventListener('click', function(event) {
+            moveSectionUp(id)
+        });
+        upArrow.innerHTML = `<img src='../../../assets/up-arrow.png' style='height:20px;width:20px;'/>`;
+
+        let downArrow = document.createElement("div");
+        
+        downArrow.style.display = "flex";
+        downArrow.style.alignItems = "center";  // Center the image vertically
+        downArrow.innerHTML = `<img src='../../../assets/down-arrow.png' style='height:20px;width:20px;'/>`;
+        downArrow.addEventListener('click', function(event) {
+            moveSectionDown(id)
+        });
+
+        let deleteSection = document.createElement("div");
+        
+        deleteSection.style.display = "flex";
+        deleteSection.style.alignItems = "center";  // Center the image vertically
+        deleteSection.innerHTML = `<img src='../../../assets/delete.svg' style='height:20px;width:20px;'/>`;
+        deleteSection.addEventListener('click', function(event) {
+            deleteSection1(id)
+        });
+
+       
+        let optionsContainer = document.createElement("div");
+        optionsContainer.classList.add("sectionOption")
+        optionsContainer.style.display = "flex";
+        optionsContainer.style.flexDirection = "column";
+        optionsContainer.style.position = "absolute";
+        optionsContainer.style.justifyContent = "space-around";
+        optionsContainer.style.left = "-50px";
+        optionsContainer.style.height = "100px";
+        optionsContainer.style.backgroundColor = "white";
+        optionsContainer.style.borderRadius = "10px";
+        optionsContainer.style.padding = "5px";
+        optionsContainer.style.visibility="hidden"
+
+        
+        optionsContainer.appendChild(upArrow);
+        optionsContainer.appendChild(deleteSection);
+        optionsContainer.appendChild(downArrow);
+
+        this.element.appendChild(optionsContainer);
+  
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

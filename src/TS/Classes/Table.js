@@ -3,8 +3,7 @@ class Table extends View {
     super(width, height, bgcolor, content);
     this.selectedCells = [];
     this.element.style.backgroundColor = "transparent";
-
-    // Create and store a reference to the table
+    this.element.classList.add("Table");
     this.table = document.createElement("table");
     for (let i = 0; i < rows; i++) {
       const newRow = document.createElement("tr");

@@ -21,9 +21,6 @@ function custom() {
   
     if(height!=0)
     {
-
-    
-
       const type = urlParams.get('type');
       console.log("type="+type)
       console.log("height" + height);

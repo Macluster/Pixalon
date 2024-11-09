@@ -1128,3 +1128,51 @@ img {
   margin-left: 5px;
   padding: 2px 5px;
 } */
+
+
+/* ----------------------------Tooltip------------------------------- */
+
+
+.tooltip,.tooltip1 {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 60px;
+  background-color: rgba(128, 97, 195, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltip1 .tooltiptext1 {
+  visibility: hidden;
+  width: 60px;
+  background-color: rgba(128, 97, 195, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  top: 50%;
+  left: -70px; /* Adjust to position the tooltip fully on the left */
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}
