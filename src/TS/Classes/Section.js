@@ -26,7 +26,16 @@ class Section extends View {
             moveSectionDown(id)
         });
 
+        let deleteSection = document.createElement("div");
+        
+        deleteSection.style.display = "flex";
+        deleteSection.style.alignItems = "center";  // Center the image vertically
+        deleteSection.innerHTML = `<img src='../../../assets/delete.svg' style='height:20px;width:20px;'/>`;
+        deleteSection.addEventListener('click', function(event) {
+            deleteSection1(id)
+        });
 
+       
         let optionsContainer = document.createElement("div");
         optionsContainer.classList.add("sectionOption")
         optionsContainer.style.display = "flex";
@@ -42,6 +51,7 @@ class Section extends View {
 
         
         optionsContainer.appendChild(upArrow);
+        optionsContainer.appendChild(deleteSection);
         optionsContainer.appendChild(downArrow);
 
         this.element.appendChild(optionsContainer);
