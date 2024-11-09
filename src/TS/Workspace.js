@@ -21,6 +21,7 @@ function custom() {
   
     if(height!=0)
     {
+      console.log("hai")
       const type = urlParams.get('type');
       console.log("type="+type)
       console.log("height" + height);
