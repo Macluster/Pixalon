@@ -28,6 +28,7 @@ async function addTemplate() {
     console.log(ele)
     let sections = Array.from(ele.children)
     sections = sections.filter(section => !section.classList.contains("resizer"));
+    console.log(sections)
 
     const clone = ele.cloneNode(false);
     let sectionList = [];
@@ -61,8 +62,9 @@ async function addTemplate() {
     else
     {
       fileKey=  await localStorage.getItem('fileKey');
-      console.log(fileKey)
-      console.log("hai")
+     
+      console.log("haiiii"+fileKey)
+     
     }
    
 
@@ -74,7 +76,7 @@ async function addTemplate() {
 
 
 
-        if (element.id.includes("section")) {
+        if (element.classList.contains("Section")) {
 
 
             const textareas = element.querySelectorAll("textarea");

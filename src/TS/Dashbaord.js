@@ -9,22 +9,15 @@ let recentData = [
 ]
 
 async function getRecentData() {
-    let cache=localStorage.getItem("recents")
-    if(cache)
-    {
-        recentData = JSON.parse(cache)
-        let newData=await getRecentFiles()
-        localStorage.setItem("recents",JSON.stringify(newData))
-    }
-    else
-    {
-        recentData = await getRecentFiles();
-        localStorage.setItem("recents",JSON.stringify(recentData))
-
-    }
 
 
-    
+    recentData = await getRecentFiles();
+
+
+
+
+
+
 
     // const names = recentData.map(file => file.fileName);
 
@@ -45,6 +38,9 @@ async function getRecentData() {
             // Log frameData and sections for reference
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
+
+            
+            console.log("keyyyy"+recentData[i - 1].uid)
 
             localStorage.setItem('fileKey', recentData[i - 1].uid);
 
@@ -73,23 +69,23 @@ async function getRecentData() {
 
 async function getTemplatesData() {
 
-    let templates=[]
-   
+    let templates = []
+
     templates = await getTemplates();
     console.log("hai")
     console.log(templates)
-      
-
-    
 
 
 
-    
-    
-    
 
 
-  
+
+
+
+
+
+
+
 
     // Loop from 1 to 4 (inclusive) to match the naming convention of the IDs
     let templateContainer = document.getElementById("templates-container")
@@ -108,7 +104,7 @@ async function getTemplatesData() {
             // console.log('Frame Data:', frameData);
             // console.log('Sections:', sections);
 
-
+            console.log("keyyyy"+e.uid)
             localStorage.setItem('fileKey', e.uid);
 
 
@@ -166,23 +162,15 @@ document.addEventListener("DOMContentLoaded", async function (event) {
 const onSavedItemClicked = document.getElementById('onSavedItemClicked');
 onSavedItemClicked.addEventListener("click", async function () {
 
-  
-    
-    let savedFiles=[]
 
-    let cache=localStorage.getItem("savedFiles")
-    if(cache)
-    {
-        savedFiles = JSON.parse(cache)
-        let newData=await displaySavedFiles();
-        localStorage.setItem("savedFiles",JSON.stringify(newData))
-    }
-    else
-    {
-        savedFiles = await displaySavedFiles();
-        localStorage.setItem("savedFiles",JSON.stringify(savedFiles))
 
-    }
+    let savedFiles = []
+
+
+    savedFiles = await displaySavedFiles();
+
+
+
 
 
     const menuDiv = document.getElementById("menu");
