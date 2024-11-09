@@ -49,7 +49,7 @@ button {
   background-color:#8061c3;
   padding-left: 2%;
   padding-right: 2%;
-  width: 40%;
+  width: 30%;
   height: 10%;
   border-radius: 30px;
   z-index: 1;
@@ -82,9 +82,21 @@ button {
   
   align-items: center;
 }
+
+.tablebuttontools button
+{
+  width: 30%;
+  height: 85%;
+  border-radius: 20px;
+  border: none;
+  background-color:#6547a5;
+  color: #d9d9d9;
+  font-size: 12px;
+}
+
 .tablebuttontools img
 {
-  width: 3%;
+  width: 4%;
   height: auto;
   margin-right: 1%;
   
