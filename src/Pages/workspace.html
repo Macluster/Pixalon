@@ -75,15 +75,22 @@
     <div class="main">
 
         <!-- table tools -->
+         
         <div id="tableTools">
-            <label>Cell Color:</label>
-            <input type="color" id="cellColor" value="#d0e6ff" />
+            <h5>Cell Tools</h5>
+            <div class="tablebuttontools">
+            <img src="../../assets/paintbucket.svg" alt="">
+            <input type="color" id="cellColor" value="#ffffff">
         
-            <label>Border Color:</label>
-            <input type="color" id="borderColor" value="#007bff" />
+            <img src="../../assets/border_color_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <input type="color" id="borderColor" value="#000000" />
         
-            <label>Font Color:</label>
+            <img src="../../assets/flowbite--font-color-alt-solid.svg" alt="">
             <input type="color" id="fontColor" value="#000000" />
+
+            <button id="tableMergeVertical">Merge Vertical</button>
+            <button id="tableMergeHorizontal">Merge Horizontal</button>
+        </div>
          </div>
 
         <!-- Left sideBars-to add frame,select etc -->
@@ -91,11 +98,30 @@
             <div class="tools">
                 <input type="file" style="display: none;" id="fileInput" accept="image/*">
                 <img onclick="Selectiontool()" src="../../assets/Group 79.png">
-                <img id="frameBtn" src="../../assets/lets-icons_frame-light.png">
-                <img id="sectionBtn" src="../../assets/mingcute--section-line.svg">
-                <img id="textboxBtn" src="../../assets/iconoir_text.png">
-                <img id="tableBtn" src="../../assets/tabler_table.png">
-                <img id="imageBtn" src="../../assets/akar-icons_image.png">
+
+                <div class="tooltip"><img id="frameBtn" src="../../assets/lets-icons_frame-light.png">
+                    <span class="tooltiptext">frame</span>
+                  </div>
+                  
+
+                  <div class="tooltip"><img id="sectionBtn" src="../../assets/mingcute--section-line.svg">
+                    <span class="tooltiptext">Section</span>
+                  </div>
+                  
+                  <div class="tooltip"><img id="textboxBtn" src="../../assets/iconoir_text.png">
+                    <span class="tooltiptext">Text</span>
+                  </div>
+
+                  <div class="tooltip"><img id="tableBtn" src="../../assets/tabler_table.png">
+                    <span class="tooltiptext">Table</span>
+                  </div>
+
+                  <div class="tooltip"><img id="imageBtn" src="../../assets/akar-icons_image.png">
+                    <span class="tooltiptext">Image</span>
+                  </div>
+
+
+                
             </div>
 
             <div id="tablePop">
@@ -125,39 +151,87 @@
                 <div class="alignment">
                     <div class="align">
                         <div class="align-buttons">
-                            <img onclick="leftalign()" src="../../assets/solar_align-left-bold-duotone.png"
+                            
+                            <div class="tooltip">
+                                <img onclick="leftalign()" src="../../assets/solar_align-left-bold-duotone.png"
                                 width="16" height="16">
-                            <img onclick="centeralign()"
+                                <span class="tooltiptext">Left Align</span>
+                              </div>
+
+                              <div class="tooltip"><img onclick="centeralign()"
                                 src="../../assets/solar_align-horizontal-center-bold-duotone (1).png" width="16"
                                 height="16">
-                            <img onclick="rightalign()" src="../../assets/solar_align-right-bold-duotone (1).png"
+                                <span class="tooltiptext">Vertical Align</span>
+                              </div>
+
+                              <div class="tooltip1"><img onclick="rightalign()" src="../../assets/solar_align-right-bold-duotone (1).png"
                                 width="16" height="16">
+                                <span class="tooltiptext1">Right Align</span>
+                              </div>
+
                         </div>
                         <div class="align-buttons">
-                            <img onclick="topalign()" src="../../assets/solar_align-top-bold-duotone.png"
+
+                            <div class="tooltip">
+                                <img onclick="topalign()" src="../../assets/solar_align-top-bold-duotone.png"
                                 width="16" height="16">
-                            <img onclick="centerVertically()"
+                                <span class="tooltiptext">Top Align</span>
+                              </div>
+
+                              <div class="tooltip">
+                                <img onclick="centerVertically()"
                                 src="../../assets/solar_align-vertical-center-bold-duotone.png" width="16" height="16">
-                            <img onclick="bottomalign()" src="../../assets/solar_align-bottom-bold-duotone.png"
+                                <span class="tooltiptext">Horizontal Align</span>
+                              </div>
+
+                              <div class="tooltip1">
+                                <img onclick="bottomalign()" src="../../assets/solar_align-bottom-bold-duotone.png"
                                 width="16" height="16">
+                                <span class="tooltiptext1">Bottom Align</span>
+                              </div>
+                            
                         </div>
                     </div>
                     <div class="align-spacing">
                         <div class="spacing">
                             <!-- <img onclick="alignItems('tidy-up')" src="" width="16" height="16"> -->
-                            <img onclick="vertical_spacing()"
+                            <div class="tooltip">
+                                <img onclick="vertical_spacing()"
                                 src="../../assets/solar_align-vertical-spacing-bold-duotone.png" width="16" height="16">
-                            <img onclick="horizontal_spacing()"
+                                <span class="tooltiptext">Vertical Spacing</span>
+                              </div>
+
+                              <div class="tooltip">
+                                <img onclick="horizontal_spacing()"
                                 src="../../assets/solar_align-horizonta-spacing-bold-duotone.png" width="16"
                                 height="16">
+                                <span class="tooltiptext">Horizontal Spacing</span>
+                              </div>
+
+                            
+                            
                         </div>
                         <div class="rotation">
-                            <img onclick="alignItems('rotation')" src="../../assets/gridicons_rotate.png" width="16"
+
+                            <div class="tooltip">
+                                <img onclick="alignItems('rotation')" src="../../assets/gridicons_rotate.png" width="16"
                                 height="16">
-                            <img onclick="alignItems('vertical-flip')" src="../../assets/uim_flip-h.png" width="16"
+                                <span class="tooltiptext">Rotate</span>
+                              </div>
+
+                              <div class="tooltip">
+                                <img onclick="alignItems('vertical-flip')" src="../../assets/uim_flip-h.png" width="16"
                                 height="16">
-                            <img onclick="alignItems('horizontal-flip')" src="../../assets/uim_flip-h (1).png"
+                                <span class="tooltiptext">Vertical Flip</span>
+                              </div>
+
+                              <div class="tooltip1">
+                                <img onclick="alignItems('horizontal-flip')" src="../../assets/uim_flip-h (1).png"
                                 width="16" height="16">
+                                <span class="tooltiptext1">Horizontal Flip</span>
+                              </div>
+                            
+                            
                         </div>
                     </div>
                     <div class="positions">
@@ -230,24 +304,46 @@
                     </div>
                     <div>
                         <div class="line-formatter">
-                            <img src="../../assets/vertical.png" class="format" style="padding-left: 5px;">
-                            <input class="line-formatter-verticallay" type="text" value="auto"
-                              id="line-height-input"  >
+                            <div class="tooltip">
+                                <img src="../../assets/vertical.png" class="format" style="padding-left: 5px;">
+                                <input class="line-formatter-verticallay" type="text" value="auto"
+                                  id="line-height-input"  >
+                                <span class="tooltiptext">Line height</span>
+                              </div>
+                            
                             <div class="line-formatter-horizontal">
-                                <img src="../../assets/Horizontal (2).png" id="formats" style="padding-left: 5px;">
-                                <input class="line-formatter-horizontally" type="text" value="auto"
-                                  id="letter-spacing-input" >
+                                <div class="tooltip1">
+                                    <img src="../../assets/Horizontal (2).png" id="formats" style="padding-left: 5px;">
+                                    <input class="line-formatter-horizontally" type="text" value="auto"
+                                    id="letter-spacing-input" >
+                                    <span class="tooltiptext1">Letter Spacing</span>
+                                  </div>
+                                
+                               
                             </div>
                         </div>
                     </div>
                     <div class="align-text">
                         <div id="align-paragraph">
-                            <img  id="align-left"    src="../../assets/align-left.png" width="16"
+
+                            <div class="tooltip">
+                                <img  id="align-left"    src="../../assets/align-left.png" width="16"
                                 height="16">
-                            <img id="align-center" src="../../assets/align-center.png"
+                                <span class="tooltiptext">Align Left</span>
+                              </div>
+
+                              <div class="tooltip">
+                                <img id="align-center" src="../../assets/align-center.png"
                                 width="16" height="16">
-                            <img  id="align-right"  src="../../assets/align-right.png" width="16"
+                                <span class="tooltiptext">Align Center</span>
+                              </div>
+
+                              <div class="tooltip">
+                                <img  id="align-right"  src="../../assets/align-right.png" width="16"
                                 height="16">
+                                <span class="tooltiptext">Align Right</span>
+                              </div>
+
                         </div>
                         <div id="align-sides">
                             <img id="alignTopImg"  src="../../assets/align-top.png" width="16"
@@ -276,7 +372,7 @@
                     <div class="opacity">
                         <img src="../../assets/material-symbols-light_opacity (1).png" width="14" height="14"
                             class="input-icon">
-                        <input id="opacityInput" class="property-input" style="width: 50px;"  />
+                        <input id="opacityInput" type="number" max="100" min="0" value="" class="property-input" style="width: 50px;" />
                     </div>
                     <div class="corner">
                         <img src="../../assets/tabler_border-corner-pill.png" width="12" height="12" class="input-icon">

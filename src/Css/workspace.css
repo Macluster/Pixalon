@@ -50,14 +50,15 @@ button {
   padding-left: 2%;
   padding-right: 2%;
   width: 40%;
-  height: 8%;
+  height: 10%;
   border-radius: 30px;
   z-index: 1;
   color: #d9d9d9;
   display: flex;
-  flex-direction: row;
-  gap: 4%;
-  align-items: center;
+  flex-direction: column;
+  /* gap: 4%; */
+  /* align-items: center; */
+  
 }
 
 #tableTools input[type = "color"]
@@ -68,7 +69,31 @@ button {
   /* border: #d9d9d9 2px solid; */
   border-radius: 0%;
   cursor: default;
-  background-color: white;
+  background-color: transparent;
+  margin-left: -2%;
+}
+
+.tablebuttontools
+{
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+  margin-top: -2%;
+  
+  align-items: center;
+}
+.tablebuttontools img
+{
+  width: 3%;
+  height: auto;
+  margin-right: 1%;
+  
+}
+
+#tableTools h5
+{
+  float: left;
+  margin-top: 1.5%
 }
 
 nav {
@@ -1103,3 +1128,51 @@ img {
   margin-left: 5px;
   padding: 2px 5px;
 } */
+
+
+/* ----------------------------Tooltip------------------------------- */
+
+
+.tooltip,.tooltip1 {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 60px;
+  background-color: rgba(128, 97, 195, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltip1 .tooltiptext1 {
+  visibility: hidden;
+  width: 60px;
+  background-color: rgba(128, 97, 195, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  top: 50%;
+  left: -70px; /* Adjust to position the tooltip fully on the left */
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}
