@@ -98,8 +98,9 @@ async function showData() {
                                     textBox.addResizers();
                                     // Add Movable Property (same as your original code)
                                     textBox.makeMovable();
-                                    textBox.clickTextBox()
-                                    textBox.doubleClickTextBox()
+                                    doubleClickTextBox(textBox.ele)
+                                    clickTextBox(textBox.ele)
+                                  
                                     console.log("hhhhhhhhhh")
                                     textBox.appendTo(`#section${sectionArraylist.length - 1}`)
                                     // section.element.appendChild(textBox.element)

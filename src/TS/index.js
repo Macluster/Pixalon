@@ -3,34 +3,35 @@ import { addLayerItem } from "./Classes/layers.js";
 import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
-const pages = [];
-function addFrame() {
-    const frame = new Frame("500px", "500px", "white", "");
-    frame.element.id = "page1";
-    frame.element.style.display = "flex";
-    frame.element.style.flexDirection = "column";
+const shapesList = [];
+let shapeeId = 0;
+function addShape() {
+    const shape= new Shape("100px", "100px", "white", "");
+    shape.element.id = "shape";
+    shape.element.style.display = "flex";
+    shape.element.style.flexDirection = "column";
    
-    pages.push(frame);
-    frame.appendTo(".work-space");
+    shapesList.push(shape);
+    shape.appendTo("#" + currentSelectedContainer);
 
     // Add layer for the frame
-    addLayerItem("Frame", frame.element.id);
+   // addLayerItem("Frame", frame.element.id);
 
     // updating hight and width in property box
-    document.getElementById('height').value = 500;
-    document.getElementById('width').value = 500;
+    document.getElementById('height').value = 100;
+    document.getElementById('width').value = 100;
 
-    // Get the bounding rectangle of the frame element to get its position
-    const rect = frame.element.getBoundingClientRect();
-    document.getElementById('x-position').value = rect.left; // Update x-position input
-    document.getElementById('y-position').value = rect.top;  // Update y-position input
+    // // Get the bounding rectangle of the frame element to get its position
+    // const rect = frame.element.getBoundingClientRect();
+    // document.getElementById('x-position').value = rect.left; // Update x-position input
+    // document.getElementById('y-position').value = rect.top;  // Update y-position input
 
-    //color setting in property box
-    const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor)
-    document.getElementById('colorCodeDisplay').value = hex;
-    document.getElementById('fillColorInput').value = hex;
+    // //color setting in property box
+    // const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor)
+    // document.getElementById('colorCodeDisplay').value = hex;
+    // document.getElementById('fillColorInput').value = hex;
 }
-document.getElementById("frameBtn")?.addEventListener("click", addFrame);
+document.getElementById("frameBtn")?.addEventListener("click", addShape);
 
 // Adding Table
 const tableList = [];
