@@ -21,6 +21,9 @@ function custom() {
   
     if(height!=0)
     {
+
+    
+
       const type = urlParams.get('type');
       console.log("type="+type)
       console.log("height" + height);
@@ -70,5 +73,3 @@ function rgbToHex(rgb) {
     }
     return "#ffffff"; // Return black if parsing fails
   }
-
-  

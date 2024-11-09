@@ -185,7 +185,19 @@ function onOpacityChanged(event)
     view.style.opacity = `${target.value}%`;
   }
 }
+function onBorderColorChange(event)
+{
+  const target = event.target;
+  const view = document.getElementById(currentSelectedContainer);
+  if(view)
+  {
+    view.style.borderColor = target.value;
+  }
 
+  const hex = rgbToHex(window.getComputedStyle(view).borderColor);
+   document.getElementById('borderColorCodeDisplay').value = hex;
+   document.getElementById('borderColorInput').value = hex;
+}
 
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
@@ -395,6 +407,7 @@ function isSameColumn() {
     document.getElementById("font-family-input").addEventListener("change",onFontFamilyChange);
     document.getElementById("height").addEventListener("change",onHeightChanged);
     document.getElementById("width").addEventListener("change",onWidthChanged);
+    // document.getElementById("borderColorInput").addEventListener("change",onBorderColorChange);
     
     document.getElementById("opacityInput").addEventListener("change",onOpacityChanged);
     document.getElementById("cellColor").addEventListener("change",onCellColorChange);
