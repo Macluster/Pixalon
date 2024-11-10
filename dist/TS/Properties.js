@@ -107,7 +107,9 @@ function alignParagraph(alignValue, event) {
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
     const exportModal = document.getElementById("exportModal");
+
     exportModal.style.display = "block";
+    document.getElementById("fileName").value=document.getElementById('title').value
 });
 // Close the modal when the close button is clicked
 document.querySelector(".close")?.addEventListener("click", function () {
