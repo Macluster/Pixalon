@@ -1,5 +1,7 @@
 function moveSectionUp(id) {
+   
     console.log("Moving section up");
+    console.log(id)
     for (let i = 0; i < sectionArraylist.length; i++) {
         if (sectionArraylist[i].element.id == id) {
             if (i === 0) {
@@ -8,10 +10,11 @@ function moveSectionUp(id) {
             }
 
             // Swap the top positions of the current section and the previous one
-            let top = sectionArraylist[i].element.style.top;
-            console.log(top)
+           
+           
             sectionArraylist[i].element.style.top = sectionArraylist[i - 1].element.style.top;
-            sectionArraylist[i - 1].element.style.top = top;
+            let bottom = (parseInt( sectionArraylist[i].element.style.top) || 0) + parseInt( sectionArraylist[i].element.style.height.split("p")[0])
+            sectionArraylist[i - 1].element.style.top = bottom+"px";
 
             // Swap the sections in the array as well
             let section = sectionArraylist[i];
@@ -31,15 +34,18 @@ function moveSectionDown(id) {
                 return; // Avoid out of bounds error
             }
 
-            // Swap the top positions of the current section and the next one
-            let top = sectionArraylist[i].element.style.top;
-            sectionArraylist[i].element.style.top = sectionArraylist[i + 1].element.style.top;
-            sectionArraylist[i + 1].element.style.top = top;
+          
+
+
+            sectionArraylist[i+1].element.style.top = sectionArraylist[i].element.style.top;
+            let bottom = (parseInt( sectionArraylist[i+1].element.style.top) || 0) + parseInt( sectionArraylist[i+1].element.style.height.split("p")[0])
+            console.log("botommm="+bottom)
+            sectionArraylist[i].element.style.top = bottom+"px";
 
             // Swap the sections in the array as well
             let section = sectionArraylist[i];
             sectionArraylist[i] = sectionArraylist[i + 1];
-            sectionArraylist[i + 1] = section;
+            sectionArraylist[i +1] = section;
             break; // Exit loop once the section is found and moved
         }
     }

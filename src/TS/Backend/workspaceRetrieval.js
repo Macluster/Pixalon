@@ -71,14 +71,14 @@ async function showData() {
 
                     let index=0;
                     parsedSections.forEach((sectionData) => {
-                        console.log("dddddddddddddddddddddddddddddddddddddddddddddddd")
+                      
 
                         const sec =  (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
                         let section = new Section(("section" + (index)), "100%", "300px", "grey", "");
 
                         section.element = sec
                         section.element.id = `section${index}`
-                        console.log(`ffffsection${index}`)
+                        
                         sectionArraylist.push(section)
                         tempDiv.appendChild(section.element);
                         //sectionArraylist.push(section)
@@ -94,6 +94,15 @@ async function showData() {
                         allChild.forEach((e) => {
                             // Check if the element does not have the class "resizer"
                             if (!e.classList.contains('resizer')) {
+
+                                if(e.classList.contains("sectionDownArrow"))
+                                {
+                                    addDownArrowListener(index,e)
+                                }
+                                if(e.classList.contains("sectionUpArrow"))
+                                    {
+                                        addUpArrowListener(index,e)
+                                    }
 
                                 if (e.classList.contains("TextBox")) {
                                     let textBox = new TextBox();
@@ -290,4 +299,27 @@ function makeElementDraggable(ele) {
     });
     ele.ondragstart = () => false;
 }
+
+
+
+function addUpArrowListener(index,icon)
+{
+    icon.addEventListener('click', function(event) {
+        moveSectionUp(`section${index}`)
+    });
+}
+
+function addDownArrowListener(index,icon)
+{
+    icon.addEventListener('click', function(event) {
+    moveSectionDown(`section${index}`)
+    });
+}
+function adddeleteListener(index,icon)
+{
+    icon.addEventListener('click', function(event) {
+    deleteSection1(`section${index}`)
+});
+}
+
 
