@@ -104,6 +104,11 @@ async function showData() {
                                         addUpArrowListener(index,e)
                                     }
 
+                                    if(e.classList.contains("sectionDeleteBtn"))
+                                        {
+                                            adddeleteListener(index,e)
+                                        }
+
                                 if (e.classList.contains("TextBox")) {
                                     let textBox = new TextBox();
                                     textBox.element = e;
