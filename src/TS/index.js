@@ -3,6 +3,7 @@ import { addLayerItem } from "./Classes/layers.js";
 import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
+
 const shapesList = [];
 let shapeeId = 0;
 function addShape() {
@@ -26,17 +27,27 @@ function addShape() {
     // document.getElementById('x-position').value = rect.left; // Update x-position input
     // document.getElementById('y-position').value = rect.top;  // Update y-position input
 
+
     // //color setting in property box
     // const hex = rgbToHex(window.getComputedStyle(frame.element).backgroundColor)
     // document.getElementById('colorCodeDisplay').value = hex;
     // document.getElementById('fillColorInput').value = hex;
+
 }
+
+
 document.getElementById("frameBtn")?.addEventListener("click", addShape);
 
 // Adding Table
 const tableList = [];
 let tableId = 0;
 function addTable() {
+    if(sectionList.length == 0)
+        {
+            alert("Add Section to Continue");
+        }
+
+    else{
     document.getElementById("tablePop").style.visibility ="hidden";
     const row = document.getElementsByClassName("rows")[0].value;
     const column = document.getElementsByClassName("columns")[0].value;
@@ -49,6 +60,7 @@ function addTable() {
 
     // Add layer for the table
     addLayerItem("table", table.element.id);
+    }
 }
 
 function tablePopUp() {
@@ -79,7 +91,15 @@ const sectionList = [];
 
 function addSection() {
 
-    console.log(sectionArraylist)
+    console.log(sectionArraylist);
+    const view = document.getElementById(currentSelectedContainer);
+    console.log(view);
+    if(view == null ){
+        alert("Select frame before adding section");
+    }
+
+    else{
+    
     // Create a new section
     let section = new Section(("section" + (sectionArraylist.length)),"100%", "300px", "grey", "");
     // Position the new section after the previous one, if it exists
@@ -96,10 +116,11 @@ function addSection() {
    // sectionList.push(section);
     sectionArraylist.push(section)
     // Append the new section to the container
-    section.appendTo("#" + currentSelectedContainer);
+    section.appendTo("#" + "page1");
 
     // Add layer for the section
     addLayerItem("Section", section.element.id);
+}
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 
@@ -108,6 +129,11 @@ document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 const textBoxList = [];
 let textBoxId = 0;
 function addTextBox() {
+    if(sectionList.length == 0)
+        {
+            alert("Add Section to Continue");
+        }
+    else{
     const textBox = new TextBox();
     textBox.element.id = "T" + textBoxId++;
     textBoxList.push(textBox);
@@ -115,6 +141,7 @@ function addTextBox() {
 
     // Add layer for the textbox
     addLayerItem("text", textBox.element.id);
+    }
 }
 document.getElementById("textboxBtn").addEventListener("click", addTextBox);
 
@@ -124,6 +151,13 @@ document.getElementById("textboxBtn").addEventListener("click", addTextBox);
 const imageList = [];
 let imageId = 0;
 function selectImage() {
+
+    if(sectionList.length == 0)
+        {
+            alert("Add Section to Continue");
+        }
+    
+    else{
     const fileInput = document.getElementById("fileInput");
     if (!fileInput) {
         console.error("File input element not found.");
@@ -152,6 +186,7 @@ function selectImage() {
         }
     });
     fileInput.click(); // Programmatically trigger the file selection dialog
+}
 }
 document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
