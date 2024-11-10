@@ -52,35 +52,43 @@ function moveSectionDown(id) {
 }
 
 function deleteSection1(id) {
-    console.log("Deleting section:", id);
+    
+    for (let i = 0; i < sectionArraylist.length; i++) {
+        if (sectionArraylist[i].element.id == id) {
+            if (i === sectionArraylist.length - 1) {
+                console.log("This section is already at the bottom, can't move down.");
+                return; // Avoid out of bounds error
+            }
 
-    // Remove the main section element
-    const sectionElement = document.getElementById(id);
-    if (sectionElement) {
-        sectionElement.remove();
-    } else {
-        console.warn(`Section with ID ${id} not found in DOM.`);
-        return;
-    }
+          
 
-    // Handle the layer fade-out and removal
-    const layerItem = document.getElementById(`layer-${id}`);
-    if (layerItem) {
-        layerItem.style.transition = "opacity 0.3s ease-out";
-        layerItem.style.opacity = "0";
-        setTimeout(() => layerItem.remove(), 300);
-    }
 
-    // Find and remove the section from the sectionArraylist
-    const index = sectionArraylist.findIndex(section => section.element.id === id);
-    if (index !== -1) {
-        sectionArraylist.splice(index, 1); // Remove the section from the array
+         //   sectionArraylist[i+1].element.style.top = sectionArraylist[i].element.style.top;
+            // let bottom = (parseInt( sectionArraylist[i+1].element.style.top) || 0) + parseInt( sectionArraylist[i+1].element.style.height.split("p")[0])
+            // console.log("botommm="+bottom)
+            // sectionArraylist[i].element.style.top = bottom+"px";
 
-        // Rearrange the remaining sections by updating the `top` properties if necessary
-        sectionArraylist.forEach((section, i) => {
-            section.element.style.top = `${i * section.element.offsetHeight}px`; // Adjusts top for each remaining section
-        });
-    } else {
-        console.warn(`Section with ID ${id} not found in sectionArraylist.`);
+            // Swap the sections in the array as well
+
+            let idToBeDeleted=sectionArraylist[i].element.id;
+            for(let j=i;j<sectionArraylist.length;j++)
+            {
+                
+                if(sectionArraylist[j]!=sectionArraylist.length-1)
+                {
+                    sectionArraylist[j+1].element.style.top = sectionArraylist[j].element.style.top;
+
+                    sectionArraylist[j] = sectionArraylist[j + 1];
+                }
+                   
+               
+            }
+            sectionArraylist.length=sectionArraylist.length-1;
+            console.log(idToBeDeleted)
+
+            document.getElementById(idToBeDeleted).remove()
+           
+            break; // Exit loop once the section is found and moved
+        }
     }
 }

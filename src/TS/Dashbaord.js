@@ -1,5 +1,5 @@
 "use strict";
-import { displaySavedFiles } from './Backend/savedItems.js';
+
 import { getRecentFiles } from './Backend/getRecentItems.js'
 import { getTemplates } from './Backend/getTemplates.js';
 
@@ -158,90 +158,6 @@ document.addEventListener("DOMContentLoaded", async function (event) {
     await getRecentData()
 });
 
-
-const onSavedItemClicked = document.getElementById('onSavedItemClicked');
-onSavedItemClicked.addEventListener("click", async function () {
-
-
-
-    let savedFiles = []
-
-
-    savedFiles = await displaySavedFiles();
-
-
-
-
-
-    const menuDiv = document.getElementById("menu");
-    const div = document.createElement("div");
-
-    div.style.display = "flex";
-    div.style.flexDirection = "column";
-    div.style.alignItems = "center";
-    div.style.width = "100%";
-    div.style.height = "100%";
-    div.style.overflowY = "auto"
-
-    menuDiv.innerHTML = `<div onclick="onSavedItemsbackButtonPressed()" style="width:100%;display:flex;align-items:center;margin-top:20px;gap:10px">
-                            <a href="../Pages/dashboard.html">
-                                <i style="display:flex;align-items:center;height:20px;" class="fa-solid fa-arrow-left"></i>
-                            </a>
-                            <h3>Saved items</h3>
-                         </div>`;
-    menuDiv.appendChild(div);
-    menuDiv.style.height = "100%";
-
-    savedFiles.forEach(({ uid, fileName, fileType }) => {
-        let imgSrc;
-
-        // Set image source based on file type
-        switch (fileType) {
-            case "newsletter":
-                imgSrc = "../../assets/dashboard/newsletter.svg";
-                break;
-            case "poster":
-                imgSrc = "../../assets/dashboard/poster.svg";
-                break;
-            case "a3":
-                imgSrc = "../../assets/dashboard/A3.svg";
-                break;
-            case "custom":
-                imgSrc = "../../assets/dashboard/custom.svg";
-                break;
-            default:
-                imgSrc = "../../assets/dashboard/default.svg";
-                break;
-        }
-
-
-        // Create a div element for each saved item
-        const card = document.createElement('div');
-        card.className = "savedItem";
-        card.innerHTML = `
-            <img src="${imgSrc}" style="height:20px;width:20px;margin-top:0px" />
-            <h5 style="margin:0px;color:white">${fileName}</h5>
-        `;
-
-        // Add click event to redirect to another page with query parameters
-        card.addEventListener("click", () => {
-            // Log frameData and sections for reference
-            // console.log('Frame Data:', frameData);
-            // console.log('Sections:', sections);
-
-
-            localStorage.setItem('fileKey', uid);
-
-
-            // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}&isUpdating=1&id=${uid}&isTempalate=0`;
-        });
-
-
-        div.appendChild(card);
-
-    });
-});
 
 
 const onCustomPopupOpened = document.getElementById('onCustomPopupOpened');
