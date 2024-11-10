@@ -42,7 +42,7 @@ document.getElementById("frameBtn")?.addEventListener("click", addShape);
 const tableList = [];
 let tableId = 0;
 function addTable() {
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
@@ -129,7 +129,7 @@ document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 const textBoxList = [];
 let textBoxId = 0;
 function addTextBox() {
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
@@ -152,7 +152,7 @@ const imageList = [];
 let imageId = 0;
 function selectImage() {
 
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
