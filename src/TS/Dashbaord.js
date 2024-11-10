@@ -234,7 +234,7 @@ onSavedItemClicked.addEventListener("click", async function () {
 
 
             // Redirect to workspace.html
-            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}&isUpdating=1`;
+            window.location.href = `workspace.html?name=${fileName}&height=${0}&width=${0}&type=${fileType}&isUpdating=1&id=${uid}&isTempalate=0`;
         });
 
 
