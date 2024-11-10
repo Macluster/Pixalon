@@ -202,6 +202,8 @@ function onBorderColorChange(event)
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
   const exportModal = document.getElementById("exportModal");
+  document.getElementById("fileName").value=document.getElementById('title').value
+
   exportModal.style.display = "block";
 });
 // Close the modal when the close button is clicked

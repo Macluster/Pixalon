@@ -211,6 +211,11 @@ const mySelect = document.getElementById("format");
 const myButton = document.getElementById("exportFormat");
 // Add an event listener to the button
 myButton.addEventListener("click", () => {
+
+    if(document.getElementById("title").value!="title")
+    {
+
+ 
     const selectedOption = mySelect.options[mySelect.selectedIndex];
     // Perform actions based on the selected option
     switch (selectedOption.value) {
@@ -247,7 +252,8 @@ myButton.addEventListener("click", () => {
                 // Create an anchor element
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = 'myfile.html';
+                let filename=document.getElementById("fileName").value
+                a.download = `${filename}.html`;
                 // Programmatically click the anchor to trigger the download
                 a.click();
                 // Clean up by revoking the Object URL
@@ -324,8 +330,13 @@ myButton.addEventListener("click", () => {
             }
             break;
         default:
-            console.log("No valid option selected");
+            alert("No valid file type selected")
     }
+}
+else
+{
+    alert("Please add a filename first")
+}
 });
 
 function rgbToHex(rgb) {
