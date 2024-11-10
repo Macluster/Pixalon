@@ -60,21 +60,25 @@ async function showData() {
 
             // Handle sections if they existgit
             if (sections) {
+                console.log(sections)
                 const parsedSections = sections
+                console.log("parsed:"+parsedSections.length)
 
                 // Find the main frame (assuming the ID is unique)
 
 
                 if (frame) {
 
+                    let index=0;
+                    parsedSections.forEach((sectionData) => {
+                        console.log("dddddddddddddddddddddddddddddddddddddddddddddddd")
 
-                    parsedSections.forEach(async (sectionData) => {
-
-                        const sec = await (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
-                        let section = new Section(("section" + (sectionArraylist.length)), "100%", "300px", "grey", "");
+                        const sec =  (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
+                        let section = new Section(("section" + (index)), "100%", "300px", "grey", "");
 
                         section.element = sec
-                        section.element.id = `section${sectionArraylist.length}`
+                        section.element.id = `section${index}`
+                        console.log(`ffffsection${index}`)
                         sectionArraylist.push(section)
                         tempDiv.appendChild(section.element);
                         //sectionArraylist.push(section)
@@ -94,15 +98,18 @@ async function showData() {
                                 if (e.classList.contains("TextBox")) {
                                     let textBox = new TextBox();
                                     textBox.element = e;
-                                    // Add the resizer elements (four corner resizers)
+                                            // Add the resizer elements (four corner resizers)
                                     textBox.addResizers();
                                     // Add Movable Property (same as your original code)
                                     textBox.makeMovable();
-                                    doubleClickTextBox(textBox.ele)
-                                    clickTextBox(textBox.ele)
+                                    textBox.mouseDownClick();
+                                    textBox.doubleClick();
+                                    textBox.mouseOver()
+                                    
                                   
-                                    console.log("hhhhhhhhhh")
-                                    textBox.appendTo(`#section${sectionArraylist.length - 1}`)
+                                  
+                                    console.log(`#sssection${index}`)
+                                    textBox.appendTo(`#section${index}`)
                                     // section.element.appendChild(textBox.element)
                                 }
                                 if (e.classList.contains("Image")) {
@@ -113,9 +120,10 @@ async function showData() {
                                     image.addResizers();
                                     // Add Movable Property (same as your original code)
                                     image.makeMovable();
+                                    
 
                                     console.log("yyyyyyyyyyyyyyy")
-                                    image.appendTo(`#section${sectionArraylist.length - 1}`)
+                                    image.appendTo(`#section${index}`)
 
                                     //section.element.appendChild(image.element)
                                 }
@@ -136,7 +144,7 @@ async function showData() {
                         // Append each section to the frame
 
 
-
+                        index++;
                     }
 
 
@@ -170,22 +178,23 @@ function clickTextBox(ele) {
         e.preventDefault();
     });
 }
+
+
+
 function doubleClickTextBox(ele) {
-    // Allow focus only on double click
+    // Allow focus only on double-click
     ele.querySelectorAll('textarea')[0].addEventListener("dblclick", (e) => {
+        const textarea = e.target;
         ele.querySelectorAll('textarea')[0].focus(); // Focus on input when double-clicked
         e.stopPropagation(); // Prevent triggering parent events
     });
-    ele.querySelectorAll('textarea')[0].addEventListener("mousedown", function (e) {
-        e.preventDefault();
-    });
+
     ele.querySelectorAll('textarea')[0].addEventListener("mouseover", (e) => {
-        ele.querySelectorAll('textarea')[0].style.cursor = "default";
-        e.stopPropagation(); // Prevent triggering parent events
+        const textarea = e.target;
+        ele.querySelectorAll('textarea')[0].style.cursor = "default"; // Ensure cursor is set to default
+       // e.stopPropagation(); // Prevent triggering parent events
     });
 }
-
-
 function resizeOfCopyPasteElement(ele) {
     const resizerPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
