@@ -29,7 +29,7 @@
                 height="30" width="30" /> -->
 
             <div id="addTemplateBtn" style="width: 200px;height:50px;"></div>
-            <input type="text" id="title" placeholder="Title" />
+            <input type="text" id="title" placeholder="Title"  />
             <div>
              
                 <button class="workSpaceBtn" id="savedatabtn">Save</button>
@@ -44,7 +44,7 @@
                     <span class="close">&times;</span>
                 </div>
                 <!-- <label for="fileName"></label> -->
-                <input type="text" id="fileName" placeholder="File Name">
+                <input type="text" id="fileName" placeholder="File Name" style="width: 70%;" >
                 <div class="export-file-details">
                     <!-- <label for="size"></label> -->
                     <input type="text" id="size" placeholder="Size">
@@ -58,7 +58,7 @@
                             <option value="pdf">PDF</option>
                         </select>
                     </div>
-                    <button id="exportFormat">Export Format</button>
+                    <button id="exportFormat" style="color: white;">Export Format</button>
                 </div>
             </div>
         </div>
@@ -299,7 +299,7 @@
                             <option value="800">Bold</option>
                             <option value="900">Extra Bold</option>
                         </select>
-                        <input onmousedown="onfonts" id="font-size-input"  type="text" class="font-size"
+                        <input  id="font-size-input"  type="text" class="font-size"
                             value="14">
                     </div>
                     <div>
@@ -484,6 +484,7 @@
 <script src="../TS/global.js"></script>
 <script src="../TS/Classes/View.js"></script>
 <script src="../TS/Classes/Frame.js"></script>
+<script src="../TS/Classes/Shape.js"></script>
 <script src="../TS/SectionArrangement.js"></script>
 <script src="../TS/Classes/Section.js"></script>
 <script type="module"  src="../TS/shortcuts.js"></script>

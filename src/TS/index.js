@@ -4,16 +4,18 @@ import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 // Adding Page
 
-const shapesList = [];
-let shapeeId = 0;
+
+
 function addShape() {
     const shape= new Shape("100px", "100px", "white", "");
     shape.element.id = "shape";
     shape.element.style.display = "flex";
     shape.element.style.flexDirection = "column";
-   
+    shape.element.id = "shape" + shapesList.length;
     shapesList.push(shape);
     shape.appendTo("#" + currentSelectedContainer);
+  
+  
 
     // Add layer for the frame
    // addLayerItem("Frame", frame.element.id);
@@ -39,10 +41,10 @@ function addShape() {
 document.getElementById("frameBtn")?.addEventListener("click", addShape);
 
 // Adding Table
-const tableList = [];
-let tableId = 0;
+
+
 function addTable() {
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
@@ -54,7 +56,7 @@ function addTable() {
     console.log(row);
 
     const table = new Table("auto", "auto", "grey", "", column, row);
-    table.element.id = "Table" + tableId++;
+    table.element.id = "Table" + tableList.length;
     tableList.push(table);
     table.appendTo("#" + currentSelectedContainer);
 
@@ -87,7 +89,7 @@ document.getElementById("closeTab")?.addEventListener("click", closePopTable);
 document.getElementById("createTableButton")?.addEventListener("click",addTable);
 
 // Adding Section
-const sectionList = [];
+
 
 function addSection() {
 
@@ -126,16 +128,15 @@ document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 
 
 // Adding TextBox
-const textBoxList = [];
-let textBoxId = 0;
+
 function addTextBox() {
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
     else{
     const textBox = new TextBox();
-    textBox.element.id = "T" + textBoxId++;
+    textBox.element.id = "T" +textBoxList.length;
     textBoxList.push(textBox);
     textBox.appendTo("#" + currentSelectedContainer);
 
@@ -148,11 +149,11 @@ document.getElementById("textboxBtn").addEventListener("click", addTextBox);
 
 
 // Adding Image
-const imageList = [];
-let imageId = 0;
+
+
 function selectImage() {
 
-    if(sectionList.length == 0)
+    if(sectionArraylist.length == 0)
         {
             alert("Add Section to Continue");
         }
@@ -172,11 +173,12 @@ function selectImage() {
 
             const image = new Img(imageUrl);
 
-            image.element.id = "I" + imageId++;
-            console.log(image.element)
+            image.element.id = "I" + imageList.length;
+          
 
             // Append the div to the body
             image.appendTo("#" + currentSelectedContainer);
+            imageList.push(image)
 
             // Add layer for the image
             addLayerItem("Image", image.element.id);
@@ -211,6 +213,11 @@ const mySelect = document.getElementById("format");
 const myButton = document.getElementById("exportFormat");
 // Add an event listener to the button
 myButton.addEventListener("click", () => {
+
+    if(document.getElementById("title").value!="title")
+    {
+
+ 
     const selectedOption = mySelect.options[mySelect.selectedIndex];
     // Perform actions based on the selected option
     switch (selectedOption.value) {
@@ -220,6 +227,10 @@ myButton.addEventListener("click", () => {
                 if (!ele)
                     return;
                 const outputdiv = ele.cloneNode(true);
+                let  selectionOptionItems= outputdiv.querySelectorAll(".sectionOption")
+                selectionOptionItems.forEach(e=>{
+                    e.style.display="none"
+                })
                 // Find all input elements within the div
                 const inputElements = outputdiv.querySelectorAll('textarea');
                 // Loop through each input element
@@ -247,7 +258,8 @@ myButton.addEventListener("click", () => {
                 // Create an anchor element
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = 'myfile.html';
+                let filename=document.getElementById("fileName").value
+                a.download = `${filename}.html`;
                 // Programmatically click the anchor to trigger the download
                 a.click();
                 // Clean up by revoking the Object URL
@@ -324,8 +336,13 @@ myButton.addEventListener("click", () => {
             }
             break;
         default:
-            console.log("No valid option selected");
+            alert("No valid file type selected")
     }
+}
+else
+{
+    alert("Please add a filename first")
+}
 });
 
 function rgbToHex(rgb) {

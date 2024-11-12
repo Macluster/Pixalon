@@ -98,11 +98,13 @@ function selectBackgroundImage() {
 function fontSizeChanged(event) {
   const target = event.target;
   const view = document.getElementById(currentSelectedContainer);
-  console.log(view.querySelectorAll("textarea")[0]);
+  console.log(view)
+
   if (view.querySelectorAll("textarea")[0]) {
+    console.log("ddddddddddddd")
     view.querySelectorAll("textarea")[0].style.fontSize = `${target.value}px`;
   }
-  console.log(view.querySelectorAll("table")[0]);
+ 
 
   if (view.querySelectorAll("table")[0]) {
     view.querySelectorAll("table")[0].style.fontSize = `${target.value}px`;
@@ -202,6 +204,8 @@ function onBorderColorChange(event)
 // Add click event listener to open the export modal
 document.getElementById("export")?.addEventListener("click", function () {
   const exportModal = document.getElementById("exportModal");
+  document.getElementById("fileName").value=document.getElementById('title').value
+
   exportModal.style.display = "block";
 });
 // Close the modal when the close button is clicked
