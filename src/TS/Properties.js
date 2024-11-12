@@ -98,11 +98,13 @@ function selectBackgroundImage() {
 function fontSizeChanged(event) {
   const target = event.target;
   const view = document.getElementById(currentSelectedContainer);
-  console.log(view.querySelectorAll("textarea")[0]);
+  console.log(view)
+
   if (view.querySelectorAll("textarea")[0]) {
+    console.log("ddddddddddddd")
     view.querySelectorAll("textarea")[0].style.fontSize = `${target.value}px`;
   }
-  console.log(view.querySelectorAll("table")[0]);
+ 
 
   if (view.querySelectorAll("table")[0]) {
     view.querySelectorAll("table")[0].style.fontSize = `${target.value}px`;
