@@ -123,6 +123,7 @@ async function showData() {
                                   
                                   
                                     console.log(`#sssection${index}`)
+                                    textBoxList.push(textBox)
                                     textBox.appendTo(`#section${index}`)
                                     // section.element.appendChild(textBox.element)
                                 }
@@ -135,9 +136,26 @@ async function showData() {
                                     // Add Movable Property (same as your original code)
                                     image.makeMovable();
                                     
-
+                                    
+                                    imageList.push(image)
                                     console.log("yyyyyyyyyyyyyyy")
                                     image.appendTo(`#section${index}`)
+
+                                    //section.element.appendChild(image.element)
+                                }
+                                if (e.classList.contains("Shape")) {
+                                    
+                                    let shape = new Shape("100px","100px","white","")
+                                    shape.element = e;
+                                    // Add the resizer elements (four corner resizers)
+                                    shape.addResizers();
+                                    // Add Movable Property (same as your original code)
+                                    shape.makeMovable();
+                                    shapesList.push(shape)
+                                    
+
+                                    console.log("yyyyyyyyyyyyyyy")
+                                    shape.appendTo(`#section${index}`)
 
                                     //section.element.appendChild(image.element)
                                 }
