@@ -73,3 +73,5 @@ function rgbToHex(rgb) {
     }
     return "#ffffff"; // Return black if parsing fails
   }
+
+

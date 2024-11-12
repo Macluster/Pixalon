@@ -7,18 +7,18 @@ import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
 
 
 function addShape() {
-    const shape= new Shape("100px", "100px", "white", "");
+    const shape = new Shape("100px", "100px", "white", "");
     shape.element.id = "shape";
     shape.element.style.display = "flex";
     shape.element.style.flexDirection = "column";
     shape.element.id = "shape" + shapesList.length;
     shapesList.push(shape);
     shape.appendTo("#" + currentSelectedContainer);
-  
-  
+
+
 
     // Add layer for the frame
-   // addLayerItem("Frame", frame.element.id);
+    // addLayerItem("Frame", frame.element.id);
 
     // updating hight and width in property box
     document.getElementById('height').value = 100;
@@ -44,24 +44,25 @@ document.getElementById("frameBtn")?.addEventListener("click", addShape);
 
 
 function addTable() {
-    if(sectionArraylist.length == 0)
-        {
-            alert("Add Section to Continue");
-        }
+    if (sectionArraylist.length == 0) {
+        OpenErrorPopUp("Create a section to add Table")
+       
+      
+    }
 
-    else{
-    document.getElementById("tablePop").style.visibility ="hidden";
-    const row = document.getElementsByClassName("rows")[0].value;
-    const column = document.getElementsByClassName("columns")[0].value;
-    console.log(row);
+    else {
+        document.getElementById("tablePop").style.visibility = "hidden";
+        const row = document.getElementsByClassName("rows")[0].value;
+        const column = document.getElementsByClassName("columns")[0].value;
+        console.log(row);
 
-    const table = new Table("auto", "auto", "grey", "", column, row);
-    table.element.id = "Table" + tableList.length;
-    tableList.push(table);
-    table.appendTo("#" + currentSelectedContainer);
+        const table = new Table("auto", "auto", "grey", "", column, row);
+        table.element.id = "Table" + tableList.length;
+        tableList.push(table);
+        table.appendTo("#" + currentSelectedContainer);
 
-    // Add layer for the table
-    addLayerItem("table", table.element.id);
+        // Add layer for the table
+        addLayerItem("table", table.element.id);
     }
 }
 
@@ -73,20 +74,19 @@ function closePopTable() {
     document.getElementById("tablePop").style.visibility = "hidden";
 
 }
-function checkTable()
-{
+function checkTable() {
     const view = document.getElementById(currentSelectedContainer);
     console.log(view);
-    
-    if( view.querySelectorAll("table")[0])
-        document.getElementById("tableTools").style.visibility="visible";
+
+    if (view.querySelectorAll("table")[0])
+        document.getElementById("tableTools").style.visibility = "visible";
     else
-    document.getElementById("tableTools").style.visibility="hidden";
+        document.getElementById("tableTools").style.visibility = "hidden";
 }
-document.getElementById("currentSelectedContainer")?.addEventListener("click",checkTable);
+document.getElementById("currentSelectedContainer")?.addEventListener("click", checkTable);
 document.getElementById("tableBtn")?.addEventListener("click", tablePopUp);
 document.getElementById("closeTab")?.addEventListener("click", closePopTable);
-document.getElementById("createTableButton")?.addEventListener("click",addTable);
+document.getElementById("createTableButton")?.addEventListener("click", addTable);
 
 // Adding Section
 
@@ -96,33 +96,34 @@ function addSection() {
     console.log(sectionArraylist);
     const view = document.getElementById(currentSelectedContainer);
     console.log(view);
-    if(view == null ){
-        alert("Select frame before adding section");
+    if (view == null) {
+        OpenErrorPopUp("Select frame before adding section")
+       
     }
 
-    else{
-    
-    // Create a new section
-    let section = new Section(("section" + (sectionArraylist.length)),"100%", "300px", "grey", "");
-    // Position the new section after the previous one, if it exists
-    if (sectionArraylist.length > 0) {
-        const prevSection = sectionArraylist[sectionArraylist.length-1];
-        const prevSectionTop = prevSection.element.offsetTop;
-        const prevSectionHeight = prevSection.element.offsetHeight;
-        // Calculate and set the top position for the new section
-        section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
-    }
-    
-    // Set an ID for the new section and add it to the list
-   // section.element.id = "section" + sectionId++;
-   // sectionList.push(section);
-    sectionArraylist.push(section)
-    // Append the new section to the container
-    section.appendTo("#" + "page1");
+    else {
 
-    // Add layer for the section
-    addLayerItem("Section", section.element.id);
-}
+        // Create a new section
+        let section = new Section(("section" + (sectionArraylist.length)), "100%", "300px", "grey", "");
+        // Position the new section after the previous one, if it exists
+        if (sectionArraylist.length > 0) {
+            const prevSection = sectionArraylist[sectionArraylist.length - 1];
+            const prevSectionTop = prevSection.element.offsetTop;
+            const prevSectionHeight = prevSection.element.offsetHeight;
+            // Calculate and set the top position for the new section
+            section.element.style.top = (prevSectionTop + prevSectionHeight) + "px";
+        }
+
+        // Set an ID for the new section and add it to the list
+        // section.element.id = "section" + sectionId++;
+        // sectionList.push(section);
+        sectionArraylist.push(section)
+        // Append the new section to the container
+        section.appendTo("#" + "page1");
+
+        // Add layer for the section
+        addLayerItem("Section", section.element.id);
+    }
 }
 document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 
@@ -130,18 +131,18 @@ document.getElementById("sectionBtn")?.addEventListener("click", addSection);
 // Adding TextBox
 
 function addTextBox() {
-    if(sectionArraylist.length == 0)
-        {
-            alert("Add Section to Continue");
-        }
-    else{
-    const textBox = new TextBox();
-    textBox.element.id = "T" +textBoxList.length;
-    textBoxList.push(textBox);
-    textBox.appendTo("#" + currentSelectedContainer);
+    if (sectionArraylist.length == 0) {
+        OpenErrorPopUp("Create a Section to add TextBox")
+       
+    }
+    else {
+        const textBox = new TextBox();
+        textBox.element.id = "T" + textBoxList.length;
+        textBoxList.push(textBox);
+        textBox.appendTo("#" + currentSelectedContainer);
 
-    // Add layer for the textbox
-    addLayerItem("text", textBox.element.id);
+        // Add layer for the textbox
+        addLayerItem("text", textBox.element.id);
     }
 }
 document.getElementById("textboxBtn").addEventListener("click", addTextBox);
@@ -149,52 +150,51 @@ document.getElementById("textboxBtn").addEventListener("click", addTextBox);
 
 
 // Adding Image
-
-
 function selectImage() {
-
-    if(sectionArraylist.length == 0)
-        {
-            alert("Add Section to Continue");
+    if (sectionArraylist.length === 0) {
+        OpenErrorPopUp("Create a Section to add Image")
+        
+    } else {
+        const fileInput = document.getElementById("fileInput");
+        if (!fileInput) {
+            console.error("File input element not found.");
+            return;
         }
-    
-    else{
-    const fileInput = document.getElementById("fileInput");
-    if (!fileInput) {
-        console.error("File input element not found.");
-        return;
+
+        // Trigger the file input change event to select a file
+        fileInput.addEventListener(
+            "change",
+            async function (event) {
+                const file = event.target.files?.[0];
+                if (file) {
+                    const imageUrl = await uploadImageToFirebase(file);
+                    console.log("image link " + imageUrl);
+
+                    const image = new Img(imageUrl);
+
+                    image.element.id = "I" + imageList.length;
+
+                    // Append the div to the current selected container
+                    image.appendTo("#" + currentSelectedContainer);
+                    imageList.push(image);
+
+                    // Add layer for the image
+                    addLayerItem("Image", image.element.id);
+                    console.log("current selected container =" + currentSelectedContainer);
+                }
+            },
+            { once: true } // This ensures the event listener is removed after the first invocation
+        );
+
+        fileInput.click(); // Programmatically trigger the file selection dialog
     }
-    // Trigger the file input change event to select a file
-    fileInput.addEventListener("change", async function (event) {
-        const file = event.target.files?.[0];
-        if (file) {
-            var imageUrl = await uploadImageToFirebase(file);
-            console.log("image link " + imageUrl)
-
-            const image = new Img(imageUrl);
-
-            image.element.id = "I" + imageList.length;
-          
-
-            // Append the div to the body
-            image.appendTo("#" + currentSelectedContainer);
-            imageList.push(image)
-
-            // Add layer for the image
-            addLayerItem("Image", image.element.id);
-        // Append the div to the body
-        console.log("current selected containr ="+currentSelectedContainer)
-          image.appendTo("#" + currentSelectedContainer);
-        }
-    });
-    fileInput.click(); // Programmatically trigger the file selection dialog
 }
-}
+
 document.getElementById("imageBtn")?.addEventListener("click", selectImage);
 function onWorkspaceClicked(event) {
     event.stopPropagation();
-     document.getElementById('work-space').querySelectorAll("*").forEach((e)=>{
-        if(e.style.border == "2px solid rgb(76, 201, 254)")
+    document.getElementById('work-space').querySelectorAll("*").forEach((e) => {
+        if (e.style.border == "2px solid rgb(76, 201, 254)")
             e.style.border = "2px solid transparent";
         let currentSelectedDiv = e.children; // Get only direct children
         Array.from(currentSelectedDiv).forEach(child => {
@@ -202,10 +202,10 @@ function onWorkspaceClicked(event) {
                 child.style.backgroundColor = "transparent"; // Set the desired color
             }
         });
-     })
+    })
 
     const ele = document.getElementById(currentSelectedContainer);
-   
+
 }
 document.getElementById("work-space")?.addEventListener("mousedown", onWorkspaceClicked);
 // Get references to the select and button elements
@@ -214,135 +214,135 @@ const myButton = document.getElementById("exportFormat");
 // Add an event listener to the button
 myButton.addEventListener("click", () => {
 
-    if(document.getElementById("title").value!="title")
-    {
+    if (document.getElementById("title").value != "title") {
 
- 
-    const selectedOption = mySelect.options[mySelect.selectedIndex];
-    // Perform actions based on the selected option
-    switch (selectedOption.value) {
-        case "html":
-            {
-                const ele = document.getElementById("page1");
-                if (!ele)
-                    return;
-                const outputdiv = ele.cloneNode(true);
-                let  selectionOptionItems= outputdiv.querySelectorAll(".sectionOption")
-                selectionOptionItems.forEach(e=>{
-                    e.style.display="none"
-                })
-                // Find all input elements within the div
-                const inputElements = outputdiv.querySelectorAll('textarea');
-                // Loop through each input element
-                inputElements.forEach(function (inputElement) {
-                    const inputValue = inputElement.value;
-                    const inputStyle = inputElement.getAttribute('style'); // Get inline styles
-                    // Create a new h2 element
-                    const h2Element = document.createElement('h5');
-                    h2Element.textContent = inputValue; // Set the content of the h2 to the input value
-                    if (inputStyle) {
-                        h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
-                    }
-                    h2Element.style.fontFamily="Helvetica, sans-serif"
-                    // Replace the input element with the new h2 element
-                    inputElement.parentNode?.replaceChild(h2Element, inputElement);
-                });
-                // Get the outer HTML of the modified div as a string
-                const modifiedDivHtml = outputdiv.outerHTML;
-                downloadFile(modifiedDivHtml);
-            }
-            // Download File Function
-            function downloadFile(text) {
-                // Create a Blob with the text content
-                const blob = new Blob([text], { type: 'text/plain' });
-                // Create an anchor element
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                let filename=document.getElementById("fileName").value
-                a.download = `${filename}.html`;
-                // Programmatically click the anchor to trigger the download
-                a.click();
-                // Clean up by revoking the Object URL
-                URL.revokeObjectURL(a.href);
-            }
-            break;
 
-        case "png":
-            // Get the div element by ID and ensure it's not null
-            const captureElement = document.getElementById("page1");
-            console.log(captureElement);
-            
-            if (captureElement) {
-                // Use html2canvas to capture the div as a canvas
-                html2canvas(captureElement).then((canvas) => {
-                    // Create a link element to trigger the download
-                    const link = document.createElement('a');
-                    link.download = 'div_image.png';
-                    // Convert the canvas to a PNG data URL and set it as the href for the link
-                    link.href = canvas.toDataURL("image/png");
-                    link.click();
-                }).catch((error) => {
-                    console.error("An error occurred while capturing the div:", error);
-                });
-            }
-            else {
-                console.error("Capture element not found.");
-            }
-            break;
+        const selectedOption = mySelect.options[mySelect.selectedIndex];
+        // Perform actions based on the selected option
+        switch (selectedOption.value) {
+            case "html":
+                {
+                    const ele = document.getElementById("page1");
+                    if (!ele)
+                        return;
+                    const outputdiv = ele.cloneNode(true);
+                    let selectionOptionItems = outputdiv.querySelectorAll(".sectionOption")
+                    selectionOptionItems.forEach(e => {
+                        e.style.display = "none"
+                    })
+                    // Find all input elements within the div
+                    const inputElements = outputdiv.querySelectorAll('textarea');
+                    // Loop through each input element
+                    inputElements.forEach(function (inputElement) {
+                        const inputValue = inputElement.value;
+                        const inputStyle = inputElement.getAttribute('style'); // Get inline styles
+                        // Create a new h2 element
+                        const h2Element = document.createElement('h5');
+                        h2Element.textContent = inputValue; // Set the content of the h2 to the input value
+                        if (inputStyle) {
+                            h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
+                        }
+                        h2Element.style.fontFamily = "Helvetica, sans-serif"
+                        // Replace the input element with the new h2 element
+                        inputElement.parentNode?.replaceChild(h2Element, inputElement);
+                    });
+                    // Get the outer HTML of the modified div as a string
+                    const modifiedDivHtml = outputdiv.outerHTML;
+                    downloadFile(modifiedDivHtml);
+                }
+                // Download File Function
+                function downloadFile(text) {
+                    // Create a Blob with the text content
+                    const blob = new Blob([text], { type: 'text/plain' });
+                    // Create an anchor element
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    let filename = document.getElementById("fileName").value
+                    a.download = `${filename}.html`;
+                    // Programmatically click the anchor to trigger the download
+                    a.click();
+                    // Clean up by revoking the Object URL
+                    URL.revokeObjectURL(a.href);
+                }
+                break;
 
-        case "jpeg":
-            const capturejpeg = document.getElementById("page1");
-            if (capturejpeg) {
-                // Use html2canvas to capture the div as a canvas
-                html2canvas(capturejpeg).then((canvas) => {
-                    // Create a link element to trigger the download
-                    const link = document.createElement('a');
-                    link.download = 'div_image.jpeg';
-                    // Convert the canvas to a PNG data URL and set it as the href for the link
-                    link.href = canvas.toDataURL("image/jpeg", 0.8);
-                    link.click();
-                }).catch((error) => {
-                    console.error("An error occurred while capturing the div:", error);
-                });
-            }
-            else {
-                console.error("Capture element not found.");
-            }
-            break;
-            
-        case "pdf":
-            // Get the div element by ID and ensure it's not null
-            const capturepdf = document.getElementById("page1");
-            if (capturepdf) {
-                // // Use html2canvas to capture the div as a canvas
-                // html2canvas(capturepdf).then((canvas: HTMLCanvasElement) => {
-                //   // Get the canvas as an image (JPEG format)
-                //   const imgData = canvas.toDataURL("image/jpeg", 1.0);
-                //   // Create a new jsPDF instance (use 'p' for portrait mode, 'mm' for millimeters, and 'a4' for paper size)
-                //   const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
-                //   // Calculate the width and height of the PDF page
-                //   const pdfWidth = pdf.internal.pageSize.getWidth();
-                //   const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-                //   // Add the image to the PDF, adjusting the size to fit the page
-                //   pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                //   // Save the PDF with a filename
-                //   pdf.save('div_content.pdf');
-                // }).catch((error: Error) => {
-                //   console.error("An error occurred while capturing the div:", error);
-                // });
-            }
-            else {
-                console.error("Capture element not found.");
-            }
-            break;
-        default:
-            alert("No valid file type selected")
+            case "png":
+                // Get the div element by ID and ensure it's not null
+                const captureElement = document.getElementById("page1");
+                console.log(captureElement);
+
+                if (captureElement) {
+                    // Use html2canvas to capture the div as a canvas
+                    html2canvas(captureElement).then((canvas) => {
+                        // Create a link element to trigger the download
+                        const link = document.createElement('a');
+                        link.download = 'div_image.png';
+                        // Convert the canvas to a PNG data URL and set it as the href for the link
+                        link.href = canvas.toDataURL("image/png");
+                        link.click();
+                    }).catch((error) => {
+                        console.error("An error occurred while capturing the div:", error);
+                    });
+                }
+                else {
+                    console.error("Capture element not found.");
+                }
+                break;
+
+            case "jpeg":
+                const capturejpeg = document.getElementById("page1");
+                if (capturejpeg) {
+                    // Use html2canvas to capture the div as a canvas
+                    html2canvas(capturejpeg).then((canvas) => {
+                        // Create a link element to trigger the download
+                        const link = document.createElement('a');
+                        link.download = 'div_image.jpeg';
+                        // Convert the canvas to a PNG data URL and set it as the href for the link
+                        link.href = canvas.toDataURL("image/jpeg", 0.8);
+                        link.click();
+                    }).catch((error) => {
+                        console.error("An error occurred while capturing the div:", error);
+                    });
+                }
+                else {
+                    console.error("Capture element not found.");
+                }
+                break;
+
+            case "pdf":
+                // Get the div element by ID and ensure it's not null
+                const capturepdf = document.getElementById("page1");
+                if (capturepdf) {
+                    // // Use html2canvas to capture the div as a canvas
+                    // html2canvas(capturepdf).then((canvas: HTMLCanvasElement) => {
+                    //   // Get the canvas as an image (JPEG format)
+                    //   const imgData = canvas.toDataURL("image/jpeg", 1.0);
+                    //   // Create a new jsPDF instance (use 'p' for portrait mode, 'mm' for millimeters, and 'a4' for paper size)
+                    //   const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+                    //   // Calculate the width and height of the PDF page
+                    //   const pdfWidth = pdf.internal.pageSize.getWidth();
+                    //   const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                    //   // Add the image to the PDF, adjusting the size to fit the page
+                    //   pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    //   // Save the PDF with a filename
+                    //   pdf.save('div_content.pdf');
+                    // }).catch((error: Error) => {
+                    //   console.error("An error occurred while capturing the div:", error);
+                    // });
+                }
+                else {
+                    console.error("Capture element not found.");
+                }
+                break;
+            default:
+                OpenErrorPopUp("No valid file type selected")
+                
+        }
     }
-}
-else
-{
-    alert("Please add a filename first")
-}
+    else {
+        OpenErrorPopUp("Please add a filename first")
+      
+    }
 });
 
 function rgbToHex(rgb) {
@@ -360,3 +360,28 @@ function rgbToHex(rgb) {
     }
     return "#ffffff"; // Return black if parsing fails
 }
+
+
+function OpenErrorPopUp(message)
+{
+  console.log("sssssssssssssssssss")
+  let popup=document.getElementById("alertPopUp");
+
+  popup.style.display="flex"
+  let errortext=document.getElementById("errorMessageText")
+  errortext.innerHTML=message
+
+ 
+
+ 
+
+
+}
+
+function closeErrorPopup()
+{
+    let popup=document.getElementById("alertPopUp");
+    popup.style.display="none"
+    
+}
+document.getElementById("errorOkaybtn").addEventListener("click",closeErrorPopup)

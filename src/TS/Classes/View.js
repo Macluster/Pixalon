@@ -14,6 +14,7 @@ class View {
         this.element.classList.add("movable");
         this.element.classList.add("resizable");
         this.element.style.boxSizing = "border-box";
+        
         // Add the resizer elements (four corner resizers)
         
         this.addResizers();

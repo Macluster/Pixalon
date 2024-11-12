@@ -6,7 +6,7 @@ async function showData() {
     const urlParams = new URLSearchParams(queryString);
     // Get specific parameters
     const height = urlParams.get('height');
-    console.log("myheight:"+height)
+    console.log("myheight:" + height)
 
 
 
@@ -62,23 +62,23 @@ async function showData() {
             if (sections) {
                 console.log(sections)
                 const parsedSections = sections
-                console.log("parsed:"+parsedSections.length)
+                console.log("parsed:" + parsedSections.length)
 
                 // Find the main frame (assuming the ID is unique)
 
 
                 if (frame) {
 
-                    let index=0;
+                    let index = 0;
                     parsedSections.forEach((sectionData) => {
-                      
 
-                        const sec =  (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
+
+                        const sec = (parser.parseFromString(sectionData.data, "text/html")).body.firstChild;
                         let section = new Section(("section" + (index)), "100%", "300px", "grey", "");
 
                         section.element = sec
                         section.element.id = `section${index}`
-                        
+
                         sectionArraylist.push(section)
                         tempDiv.appendChild(section.element);
                         //sectionArraylist.push(section)
@@ -95,33 +95,30 @@ async function showData() {
                             // Check if the element does not have the class "resizer"
                             if (!e.classList.contains('resizer')) {
 
-                                if(e.classList.contains("sectionDownArrow"))
-                                {
-                                    addDownArrowListener(index,e)
+                                if (e.classList.contains("sectionDownArrow")) {
+                                    addDownArrowListener(index, e)
                                 }
-                                if(e.classList.contains("sectionUpArrow"))
-                                    {
-                                        addUpArrowListener(index,e)
-                                    }
+                                if (e.classList.contains("sectionUpArrow")) {
+                                    addUpArrowListener(index, e)
+                                }
 
-                                    if(e.classList.contains("sectionDeleteBtn"))
-                                        {
-                                            adddeleteListener(index,e)
-                                        }
+                                if (e.classList.contains("sectionDeleteBtn")) {
+                                    adddeleteListener(index, e)
+                                }
 
                                 if (e.classList.contains("TextBox")) {
                                     let textBox = new TextBox();
                                     textBox.element = e;
-                                            // Add the resizer elements (four corner resizers)
+                                    // Add the resizer elements (four corner resizers)
                                     textBox.addResizers();
                                     // Add Movable Property (same as your original code)
                                     textBox.makeMovable();
                                     textBox.mouseDownClick();
                                     textBox.doubleClick();
                                     textBox.mouseOver()
-                                    
-                                  
-                                  
+
+
+
                                     console.log(`#sssection${index}`)
                                     textBoxList.push(textBox)
                                     textBox.appendTo(`#section${index}`)
@@ -135,8 +132,8 @@ async function showData() {
                                     image.addResizers();
                                     // Add Movable Property (same as your original code)
                                     image.makeMovable();
-                                    
-                                    
+
+
                                     imageList.push(image)
                                     console.log("yyyyyyyyyyyyyyy")
                                     image.appendTo(`#section${index}`)
@@ -144,15 +141,15 @@ async function showData() {
                                     //section.element.appendChild(image.element)
                                 }
                                 if (e.classList.contains("Shape")) {
-                                    
-                                    let shape = new Shape("100px","100px","white","")
+
+                                    let shape = new Shape("100px", "100px", "white", "")
                                     shape.element = e;
                                     // Add the resizer elements (four corner resizers)
                                     shape.addResizers();
                                     // Add Movable Property (same as your original code)
                                     shape.makeMovable();
                                     shapesList.push(shape)
-                                    
+
 
                                     console.log("yyyyyyyyyyyyyyy")
                                     shape.appendTo(`#section${index}`)
@@ -224,7 +221,7 @@ function doubleClickTextBox(ele) {
     ele.querySelectorAll('textarea')[0].addEventListener("mouseover", (e) => {
         const textarea = e.target;
         ele.querySelectorAll('textarea')[0].style.cursor = "default"; // Ensure cursor is set to default
-       // e.stopPropagation(); // Prevent triggering parent events
+        // e.stopPropagation(); // Prevent triggering parent events
     });
 }
 function resizeOfCopyPasteElement(ele) {
@@ -325,24 +322,21 @@ function makeElementDraggable(ele) {
 
 
 
-function addUpArrowListener(index,icon)
-{
-    icon.addEventListener('click', function(event) {
+function addUpArrowListener(index, icon) {
+    icon.addEventListener('click', function (event) {
         moveSectionUp(`section${index}`)
     });
 }
 
-function addDownArrowListener(index,icon)
-{
-    icon.addEventListener('click', function(event) {
-    moveSectionDown(`section${index}`)
+function addDownArrowListener(index, icon) {
+    icon.addEventListener('click', function (event) {
+        moveSectionDown(`section${index}`)
     });
 }
-function adddeleteListener(index,icon)
-{
-    icon.addEventListener('click', function(event) {
-    deleteSection1(`section${index}`)
-});
+function adddeleteListener(index, icon) {
+    icon.addEventListener('click', function (event) {
+        deleteSection1(`section${index}`)
+    });
 }
 
 

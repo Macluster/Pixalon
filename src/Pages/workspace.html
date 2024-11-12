@@ -21,7 +21,20 @@
 
 <!-- <body class="body" onkeypress="keyPress()"> -->
 <body class="body">
-    
+    <div id="alertPopUp" class="alertPopUp">
+        <div >
+            <div>
+                <h2 style="font-weight: bold;">Alert</h2>
+                <h3 id="errorMessageText" style="font-weight: 500;">Error Message</h3>
+            </div>
+        
+            <div style="display: flex;flex-direction: row;justify-content: end;width: 100%;">
+                <button onclick="closeErrorPopup()" id="errorOkaybtn">Okay</button>
+            </div>
+           
+        </div>
+
+    </div>
     <nav>
         <div class="navigation">
             <!-- <div class="head"> -->
@@ -74,6 +87,8 @@
 
     <div class="main">
 
+       
+
         <!-- table tools -->
          
         <div id="tableTools">
@@ -100,7 +115,7 @@
                 <img onclick="Selectiontool()" src="../../assets/Group 79.png">
 
                 <div class="tooltip"><img id="frameBtn" src="../../assets/lets-icons_frame-light.png">
-                    <span class="tooltiptext">frame</span>
+                    <span class="tooltiptext">Rectangle</span>
                   </div>
                   
 
