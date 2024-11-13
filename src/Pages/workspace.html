@@ -23,12 +23,12 @@
 <body class="body">
     <div id="alertPopUp" class="alertPopUp">
         <div >
-            <div>
-                <h2 style="font-weight: bold;">Alert</h2>
-                <h3 id="errorMessageText" style="font-weight: 500;">Error Message</h3>
+            <div class="alertText">
+                <h2 style="font-weight: 600; margin: 0%;">Alert</h2>
+                <h3 id="errorMessageText" style="font-weight: 400; margin: 0%;">Error Message</h3>
             </div>
         
-            <div style="display: flex;flex-direction: row;justify-content: end;width: 100%;">
+            <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
                 <button onclick="closeErrorPopup()" id="errorOkaybtn">Okay</button>
             </div>
            
@@ -140,6 +140,7 @@
             </div>
 
             <div id="tablePop">
+                <h4 style="margin: 0%;">Add Table</h4>
                 <span id="closeTab">×</span>
                 <input type="number" class="rows" placeholder="rows">
                 <input type="number" class="columns" placeholder="columns">
