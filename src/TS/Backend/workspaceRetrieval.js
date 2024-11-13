@@ -113,9 +113,13 @@ async function showData() {
                                     textBox.addResizers();
                                     // Add Movable Property (same as your original code)
                                     textBox.makeMovable();
+
+                                    textBox.input= e.querySelectorAll("textarea")[0]
                                     textBox.mouseDownClick();
                                     textBox.doubleClick();
-                                    textBox.mouseOver()
+                                   
+                                  
+                                    textBox.mouseOver();
 
 
 
