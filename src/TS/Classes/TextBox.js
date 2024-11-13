@@ -30,12 +30,16 @@ class TextBox extends View {
 
     mouseDownClick()
     {
+
         this.input.addEventListener("mousedown", function (e) {
             e.preventDefault();
         });
     }
     doubleClick()
     {
+        
+        console.log("my input")
+        console.log(this.input)
          // Allow focus only on double click
          this.input.addEventListener("dblclick", (e) => {
             this.input.focus(); // Focus on input when double-clicked

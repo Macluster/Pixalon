@@ -242,7 +242,12 @@ myButton.addEventListener("click", () => {
                         if (inputStyle) {
                             h2Element.setAttribute('style', inputStyle); // Apply the same styles if they exist
                         }
-                        h2Element.style.fontFamily = "Helvetica, sans-serif"
+                        h2Element.style.fontFamily = "'Montserrat', sans-serif";
+                        if( h2Element.style.lineHeight>=15)
+                        h2Element.style.lineHeight="26px"
+                        if(h2Element.style.fontSiz<30)
+                        h2Element.style.fontWeight="400"
+                        
                         // Replace the input element with the new h2 element
                         inputElement.parentNode?.replaceChild(h2Element, inputElement);
                     });
